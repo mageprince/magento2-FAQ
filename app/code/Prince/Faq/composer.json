@@ -1,0 +1,21 @@
+{
+    "name": "prince/module-faq",
+    "description": "",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mageprince",
+            "email": "7pprince@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Prince\\Faq\\": ""
+        }
+    }
+}
