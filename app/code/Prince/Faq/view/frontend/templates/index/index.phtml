@@ -1,12 +1,12 @@
 <?php $isEnable = $block->getConfig('faqtab/general/enable') ?>
-<?php $showGroup = $block->getConfig('faqtab/general/showgroup') ?>
+<?php $showGroup = $block->getConfig('faqtab/faqgroup/showgroup') ?>
 <?php $faqGroupCollection = $block->getFaqGroupCollection() ?>
 <?php if($isEnable): ?>
     <?php if ($showGroup): ?>
         <div class="faq-groups">
             <?php foreach ($faqGroupCollection as $group): ?>
                 <div class="faq-group">
-                    <a href="#<?php echo $group->getGroupCode() ?>" class="group-link">
+                    <a href="#group<?php echo $group->getFaqgroupId() ?>" class="group-link">
                     <?php if ($group->getIcon()): ?>
                         <img class="group-image" src="<?php echo $block->getImageUrl($group->getIcon()) ?>" />
                     <?php else: ?>
@@ -18,9 +18,13 @@
             <?php endforeach; ?>
         </div>
     <?php endif; ?>
-
+    <div class="faq-content">
     <?php foreach($faqGroupCollection as $group): ?>
-        <div class="group-name" id="<?php echo $group->getGroupCode() ?>"><?php echo $group->getGroupName() ?></div>
+
+        <div class="group-title" id="group<?php echo $group->getFaqgroupId() ?>">
+        <i></i><?php echo $group->getGroupName() ?>
+        </div>
+        
         <div class="faq-accordion">
         <?php $faqCollection = $this->getFaqCollection($group->getId()) ?>
             <?php foreach($faqCollection as $faq): ?> 
@@ -37,7 +41,7 @@
        {
             "*": {
                 "faqjs": {
-                    "animateSpeed": "<?php echo $block->getConfig('faqtab/general/animation') ?>",
+                    "animateSpeed": "<?php echo $block->getConfig('faqtab/faq/animation') ?>",
                     "defaultActive": "<?php echo $block->getConfig('faqtab/general/active') ?>"
                 }
             }

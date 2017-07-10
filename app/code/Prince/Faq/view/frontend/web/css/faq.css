@@ -89,11 +89,36 @@
   text-decoration: none;
 }
 
-.group-name {
-    padding: 25px 0;
-    font-size: 25px;
-    font-weight: bold;
+.ui-accordion-header {
+    float: left;
+    width: 100%;
 }
+
+
+.group-title{
+  margin: 25px 0;
+  font-size: 18px;
+  text-transform: uppercase;
+  line-height: 1.5;
+  padding-bottom: 0.25em;
+  border-bottom: 1px solid #ddd;
+  float: left;
+  width: 100%;
+  position: relative;
+  color: #198dd3;
+  font-weight: bold;
+}
+
+.group-title i {
+  float: left;
+  width: 2.15em;
+  border-bottom: 1px solid #b55;
+  position: absolute;
+  bottom: -1px;
+  z-index: 9999;
+  border-bottom-color: #198dd3;
+}
+
 .faq-groups {
     width: 100%;
     float: left;
@@ -116,4 +141,9 @@ img.group-image {
 .faq-group a.group-link:hover{
   color: #ff5501;
   text-decoration: none;
+}
+
+.faq-content .ui-accordion-header:hover {
+  background-color: #1979c3;
+  color: #ffffff;
 }

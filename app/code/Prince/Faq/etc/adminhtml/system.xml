@@ -12,6 +12,17 @@
                     <label>Module Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+            </group>
+            <group id="faq" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>FAQ Configuration</label>
+                <field id="animation" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Animation Speed</label>
+                    <comment>Enter milliseconds.</comment>
+                    <frontend_class>required-entry validate-digits</frontend_class>
+                </field>
+            </group>
+            <group id="faqgroup" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>FAQ Group Configuration</label>
                 <field id="showgroup" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Show Group Icon</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>

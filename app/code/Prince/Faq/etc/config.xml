@@ -4,9 +4,14 @@
         <faqtab>
             <general>
                 <enable>1</enable>
+            </general>
+            <faq>
+                <animation>500</animation>
+            </faq>
+            <faqgroup>
                 <showgroup>1</showgroup>
                 <animation>500</animation>
-            </general>
+            </faqgroup>
         </faqtab>
     </default>
 </config>
