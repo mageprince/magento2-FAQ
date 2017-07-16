@@ -7,7 +7,7 @@ class FaqGroupActions extends \Magento\Ui\Component\Listing\Columns\Column
 {
 
     const URL_PATH_EDIT = 'prince_faq/faqgroup/edit';
-    protected $urlBuilder;
+    private $urlBuilder;
     const URL_PATH_DELETE = 'prince_faq/faqgroup/delete';
     const URL_PATH_DETAILS = 'prince_faq/faqgroup/details';
 

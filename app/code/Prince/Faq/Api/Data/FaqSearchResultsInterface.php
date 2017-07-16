@@ -5,8 +5,7 @@ namespace Prince\Faq\Api\Data;
 
 interface FaqSearchResultsInterface extends \Magento\Framework\Api\SearchResultsInterface
 {
-
-
+    
     /**
      * Get Faq list.
      * @return \Prince\Faq\Api\Data\FaqInterface[]

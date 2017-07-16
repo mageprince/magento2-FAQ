@@ -11,7 +11,7 @@ class FaqGroup extends \Magento\Framework\Model\AbstractModel implements FaqGrou
     /**
      * @return void
      */
-    protected function _construct()
+    public function _construct()
     {
         $this->_init('Prince\Faq\Model\ResourceModel\FaqGroup');
     }

@@ -77,21 +77,6 @@
 				</item>
 			</argument>
 		</field>
-		<field name="groupcode">
-			<argument name="data" xsi:type="array">
-				<item name="config" xsi:type="array">
-					<item name="dataType" xsi:type="string">text</item>
-					<item name="label" translate="true" xsi:type="string">Group Code</item>
-					<item name="formElement" xsi:type="string">input</item>
-					<item name="source" xsi:type="string">FaqGroup</item>
-					<item name="sortOrder" xsi:type="number">30</item>
-					<item name="dataScope" xsi:type="string">groupcode</item>
-					<item name="validation" xsi:type="array">
-						<item name="required-entry" xsi:type="boolean">true</item>
-					</item>
-				</item>
-			</argument>
-		</field>
 		<field name="icon">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

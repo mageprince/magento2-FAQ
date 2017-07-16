@@ -14,7 +14,6 @@ interface FaqGroupInterface
     const GROUPCODE = 'groupcode';
     const WIDTH = 'width';
 
-
     /**
      * Get faqgroup_id
      * @return string|null

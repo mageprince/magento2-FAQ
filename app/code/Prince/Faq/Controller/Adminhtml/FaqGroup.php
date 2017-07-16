@@ -7,7 +7,7 @@ abstract class FaqGroup extends \Magento\Backend\App\Action
 {
 
     const ADMIN_RESOURCE = 'Prince_Faq::top_level';
-    protected $_coreRegistry;
+    private $coreRegistry;
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
@@ -17,7 +17,7 @@ abstract class FaqGroup extends \Magento\Backend\App\Action
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Registry $coreRegistry
     ) {
-        $this->_coreRegistry = $coreRegistry;
+        $this->coreRegistry = $coreRegistry;
         parent::__construct($context);
     }
 
@@ -30,7 +30,7 @@ abstract class FaqGroup extends \Magento\Backend\App\Action
     {
         $resultPage->setActiveMenu(self::ADMIN_RESOURCE)
             ->addBreadcrumb(__('Prince'), __('Prince'))
-            ->addBreadcrumb(__('Faqgroup'), __('Faqgroup'));
+            ->addBreadcrumb(__('FAQgroup'), __('FAQgroup'));
         return $resultPage;
     }
 }

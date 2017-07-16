@@ -34,9 +34,9 @@ class Index extends \Magento\Framework\View\Element\Template
     public function getFaqCollection($group)
     {
         $faqCollection = $this->faqCollectionFactory->create();
-        $faqCollection->addFieldToFilter('group', array('like' => '%'.$group.'%'));
+        $faqCollection->addFieldToFilter('group', ['like' => '%'.$group.'%']);
         $faqCollection->addFieldToFilter('status', 1);
-        $faqCollection->setOrder('sortorder','ASC');
+        $faqCollection->setOrder('sortorder', 'ASC');
         return $faqCollection;
     }
 
@@ -44,11 +44,11 @@ class Index extends \Magento\Framework\View\Element\Template
     {
         $faqGroupCollection = $this->faqGroupCollectionFactory->create();
         $faqGroupCollection->addFieldToFilter('status', 1);
-        $faqGroupCollection->setOrder('sortorder','ASC');
+        $faqGroupCollection->setOrder('sortorder', 'ASC');
         return $faqGroupCollection;
     }
 
-    public function filterOutputHtml($string) 
+    public function filterOutputHtml($string)
     {
         return $this->templateProcessor->filter($string);
     }
@@ -57,7 +57,7 @@ class Index extends \Magento\Framework\View\Element\Template
     {
         $mediaUrl = $this->storeManager
                          ->getStore()
-                         ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA );
+                         ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
         $imageUrl = $mediaUrl.'faq/tmp/icon/'.$icon;
         return $imageUrl;
     }

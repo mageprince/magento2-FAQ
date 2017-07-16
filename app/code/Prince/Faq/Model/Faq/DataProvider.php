@@ -9,11 +9,17 @@ use Prince\Faq\Model\ResourceModel\Faq\CollectionFactory;
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
 
-    protected $loadedData;
-    protected $dataPersistor;
+    private $loadedData;
 
-    protected $collection;
+    /**
+     * @var \Magento\Framework\App\Request\DataPersistorInterface
+     */
+    private $dataPersistor;
 
+    /**
+     * @var \Prince\Faq\Model\ResourceModel\Faq\CollectionFactory
+     */
+    private $collection;
 
     /**
      * Constructor

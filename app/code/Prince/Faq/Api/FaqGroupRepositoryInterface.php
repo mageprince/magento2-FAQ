@@ -8,7 +8,6 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 interface FaqGroupRepositoryInterface
 {
 
-
     /**
      * Save FaqGroup
      * @param \Prince\Faq\Api\Data\FaqGroupInterface $faqGroup

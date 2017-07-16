@@ -7,8 +7,7 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 
 interface FaqRepositoryInterface
 {
-
-
+    
     /**
      * Save Faq
      * @param \Prince\Faq\Api\Data\FaqInterface $faq

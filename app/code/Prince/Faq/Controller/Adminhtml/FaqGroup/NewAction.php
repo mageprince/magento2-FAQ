@@ -6,7 +6,10 @@ namespace Prince\Faq\Controller\Adminhtml\FaqGroup;
 class NewAction extends \Prince\Faq\Controller\Adminhtml\FaqGroup
 {
 
-    protected $resultForwardFactory;
+    /**
+     * @var \Magento\Backend\Model\View\Result\ForwardFactory
+     */
+    private $resultForwardFactory;
 
     /**
      * @param \Magento\Backend\App\Action\Context $context

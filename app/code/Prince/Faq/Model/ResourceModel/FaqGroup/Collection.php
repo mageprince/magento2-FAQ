@@ -12,7 +12,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
      *
      * @return void
      */
-    protected function _construct()
+    public function _construct()
     {
         $this->_init(
             'Prince\Faq\Model\FaqGroup',
@@ -29,5 +29,4 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
     {
         return parent::_toOptionArray('faqgroup_id', 'groupname');
     }
-
 }

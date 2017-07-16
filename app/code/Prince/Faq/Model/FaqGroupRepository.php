@@ -19,22 +19,45 @@ use Prince\Faq\Api\FaqGroupRepositoryInterface;
 class FaqGroupRepository implements FaqGroupRepositoryInterface
 {
 
+    /**
+     * @var \Magento\Store\Model\StoreManagerInterface
+     */
     private $storeManager;
 
-    protected $resource;
+    /**
+     * @var \Prince\Faq\Model\ResourceModel\FaqGroup
+     */
+    private $resource;
 
-    protected $FaqGroupFactory;
+    /**
+     * @var \Prince\Faq\Api\Data\FaqGroupFactory
+     */
+    private $FaqGroupFactory;
 
-    protected $dataFaqGroupFactory;
+    /**
+     * @var \Prince\Faq\Api\Data\FaqGroupInterfaceFactory
+     */
+    private $dataFaqGroupFactory;
 
-    protected $FaqGroupCollectionFactory;
+    /**
+     * @var \Prince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory
+     */
+    private $FaqGroupCollectionFactory;
 
-    protected $dataObjectProcessor;
+    /**
+     * @var \Magento\Framework\Reflection\DataObjectProcessor
+     */
+    private $dataObjectProcessor;
 
-    protected $dataObjectHelper;
+    /**
+     * @var \Magento\Framework\Api\DataObjectHelper
+     */
+    private $dataObjectHelper;
 
-    protected $searchResultsFactory;
-
+    /**
+     * @var \Prince\Faq\Api\Data\FaqGroupSearchResultsInterfaceFactory
+     */
+    private $searchResultsFactory;
 
     /**
      * @param ResourceFaqGroup $resource
@@ -72,10 +95,6 @@ class FaqGroupRepository implements FaqGroupRepositoryInterface
     public function save(
         \Prince\Faq\Api\Data\FaqGroupInterface $faqGroup
     ) {
-        /* if (empty($faqGroup->getStoreId())) {
-            $storeId = $this->storeManager->getStore()->getId();
-            $faqGroup->setStoreId($storeId);
-        } */
         try {
             $faqGroup->getResource()->save($faqGroup);
         } catch (\Exception $exception) {

@@ -15,14 +15,14 @@ class ImageUploader
      *
      * @var \Magento\MediaStorage\Helper\File\Storage\Database
      */
-    protected $coreFileStorageDatabase;
+    private $coreFileStorageDatabase;
 
     /**
      * Media directory object (writable).
      *
      * @var \Magento\Framework\Filesystem\Directory\WriteInterface
      */
-    protected $mediaDirectory;
+    private $mediaDirectory;
 
     /**
      * Uploader factory
@@ -36,33 +36,33 @@ class ImageUploader
      *
      * @var \Magento\Store\Model\StoreManagerInterface
      */
-    protected $storeManager;
+    private $storeManager;
 
     /**
      * @var \Psr\Log\LoggerInterface
      */
-    protected $logger;
+    private $logger;
 
     /**
      * Base tmp path
      *
      * @var string
      */
-    protected $baseTmpPath;
+    public $baseTmpPath;
 
     /**
      * Base path
      *
      * @var string
      */
-    protected $basePath;
+    public $basePath;
 
     /**
      * Allowed extensions
      *
      * @var string
      */
-    protected $allowedExtensions;
+    public $allowedExtensions;
 
     /**
      * ImageUploader constructor
@@ -81,19 +81,16 @@ class ImageUploader
         \Magento\Framework\Filesystem $filesystem,
         \Magento\MediaStorage\Model\File\UploaderFactory $uploaderFactory,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Psr\Log\LoggerInterface $logger,
-        $baseTmpPath,
-        $basePath,
-        $allowedExtensions
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->coreFileStorageDatabase = $coreFileStorageDatabase;
         $this->mediaDirectory = $filesystem->getDirectoryWrite(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA);
         $this->uploaderFactory = $uploaderFactory;
         $this->storeManager = $storeManager;
         $this->logger = $logger;
-        $this->baseTmpPath = $baseTmpPath;
-        $this->basePath = $basePath;
-        $this->allowedExtensions = $allowedExtensions;
+        $this->baseTmpPath = "faq/tmp/icon";
+        $this->basePath = "faq/icon";
+        $this->allowedExtensions= ['jpg', 'jpeg', 'gif', 'png'];
     }
 
     /**

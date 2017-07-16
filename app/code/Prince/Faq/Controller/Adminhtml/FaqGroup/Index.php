@@ -6,7 +6,10 @@ namespace Prince\Faq\Controller\Adminhtml\FaqGroup;
 class Index extends \Magento\Backend\App\Action
 {
 
-    protected $resultPageFactory;
+    /**
+     * @var \Magento\Framework\View\Result\PageFactory
+     */
+    private $resultPageFactory;
 
     /**
      * Constructor
@@ -30,7 +33,7 @@ class Index extends \Magento\Backend\App\Action
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
-            $resultPage->getConfig()->getTitle()->prepend(__("FaqGroup"));
+            $resultPage->getConfig()->getTitle()->prepend(__("FAQGroup"));
             return $resultPage;
     }
 }

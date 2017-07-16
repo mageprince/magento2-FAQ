@@ -10,11 +10,17 @@ use Magento\Store\Model\StoreManagerInterface;
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
 
-    protected $loadedData;
-    protected $dataPersistor;
+    private $loadedData;
+    
+    /**
+     * @var \Magento\Framework\App\Request\DataPersistorInterface
+     */
+    private $dataPersistor;
 
-    protected $collection;
-
+    /**
+     * @var \Prince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory
+     */
+    public $collection;
 
     /**
      * Constructor
@@ -62,7 +68,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
                 $m['icon'][0]['name'] = $model->getIcon();
                 $m['icon'][0]['url'] = $this->getMediaUrl().$model->getIcon();
                 $fullData = $this->loadedData;
-                $this->loadedData[$model->getId()] = array_merge($fullData[$model->getId()],$m);
+                $this->loadedData[$model->getId()] = array_merge($fullData[$model->getId()], $m);
             }
         }
 
@@ -80,7 +86,8 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 
     public function getMediaUrl()
     {
-        $mediaUrl = $this->storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA).'faq/tmp/icon/';
+        $mediaUrl = $this->storeManager->getStore()
+            ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA).'faq/tmp/icon/';
         return $mediaUrl;
     }
 }

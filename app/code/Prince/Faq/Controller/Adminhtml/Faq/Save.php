@@ -8,7 +8,9 @@ use Magento\Framework\Exception\LocalizedException;
 class Save extends \Magento\Backend\App\Action
 {
 
-    protected $dataPersistor;
+    private $dataPersistor;
+
+    private $faqModel;
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
@@ -16,9 +18,11 @@ class Save extends \Magento\Backend\App\Action
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
+        \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor,
+        \Prince\Faq\Model\Faq $faqModel
     ) {
         $this->dataPersistor = $dataPersistor;
+        $this->faqModel = $faqModel;
         parent::__construct($context);
     }
 
@@ -38,9 +42,9 @@ class Save extends \Magento\Backend\App\Action
         if ($data) {
             $id = $this->getRequest()->getParam('faq_id');
         
-            $model = $this->_objectManager->create('Prince\Faq\Model\Faq')->load($id);
+            $model = $this->faqModel->load($id);
             if (!$model->getId() && $id) {
-                $this->messageManager->addErrorMessage(__('This Faq no longer exists.'));
+                $this->messageManager->addErrorMessage(__('This FAQ no longer exists.'));
                 return $resultRedirect->setPath('*/*/');
             }
         
@@ -48,7 +52,7 @@ class Save extends \Magento\Backend\App\Action
         
             try {
                 $model->save();
-                $this->messageManager->addSuccessMessage(__('You saved the Faq.'));
+                $this->messageManager->addSuccessMessage(__('You saved the FAQ.'));
                 $this->dataPersistor->clear('prince_faq_faq');
         
                 if ($this->getRequest()->getParam('back')) {
@@ -58,7 +62,7 @@ class Save extends \Magento\Backend\App\Action
             } catch (LocalizedException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\Exception $e) {
-                $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the Faq.'));
+                $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the FAQ.'));
             }
         
             $this->dataPersistor->set('prince_faq_faq', $data);

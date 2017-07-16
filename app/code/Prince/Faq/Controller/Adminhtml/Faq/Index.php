@@ -6,7 +6,7 @@ namespace Prince\Faq\Controller\Adminhtml\Faq;
 class Index extends \Magento\Backend\App\Action
 {
 
-    protected $resultPageFactory;
+    private $resultPageFactory;
 
     /**
      * Constructor
@@ -30,7 +30,7 @@ class Index extends \Magento\Backend\App\Action
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
-            $resultPage->getConfig()->getTitle()->prepend(__("Faq"));
+            $resultPage->getConfig()->getTitle()->prepend(__("FAQ"));
             return $resultPage;
     }
 }

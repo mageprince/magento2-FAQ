@@ -13,9 +13,9 @@ class Upload extends \Magento\Backend\App\Action
     /**
      * Image uploader
      *
-     * @var \[Namespace]\[Module]\Model\ImageUploader
+     * @var \Prince\Faq\Model\ImageUploader
      */
-    protected $imageUploader;
+    public $imageUploader;
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
@@ -34,7 +34,7 @@ class Upload extends \Magento\Backend\App\Action
      *
      * @return boolean
      */
-    protected function _isAllowed()
+    public function _isAllowed()
     {
         return $this->_authorization->isAllowed('Prince_Faq::Faq');
     }

@@ -19,22 +19,45 @@ use Magento\Store\Model\StoreManagerInterface;
 class FaqRepository implements FaqRepositoryInterface
 {
 
+    /**
+     * @var \Magento\Store\Model\StoreManagerInterface
+     */
     private $storeManager;
 
-    protected $resource;
+    /**
+     * @var \Prince\Faq\Model\ResourceModel\Faq
+     */
+    private $resource;
 
-    protected $FaqFactory;
+    /**
+     * @var \Prince\Faq\Model\ResourceModel\Faq
+     */
+    private $FaqFactory;
 
-    protected $FaqCollectionFactory;
+    /**
+     * @var \Prince\Faq\Model\ResourceModel\Faq\CollectionFactory
+     */
+    private $FaqCollectionFactory;
 
-    protected $dataObjectProcessor;
+    /**
+     * @var \Magento\Framework\Reflection\DataObjectProcessor
+     */
+    private $dataObjectProcessor;
 
-    protected $dataObjectHelper;
+    /**
+     * @var \Magento\Framework\Api\DataObjectHelper
+     */
+    private $dataObjectHelper;
 
-    protected $dataFaqFactory;
+    /**
+     * @var \Prince\Faq\Api\Data\FaqInterfaceFactory
+     */
+    private $dataFaqFactory;
 
-    protected $searchResultsFactory;
-
+    /**
+     * @var \Prince\Faq\Api\Data\FaqSearchResultsInterfaceFactory
+     */
+    private $searchResultsFactory;
 
     /**
      * @param ResourceFaq $resource
@@ -71,10 +94,6 @@ class FaqRepository implements FaqRepositoryInterface
      */
     public function save(\Prince\Faq\Api\Data\FaqInterface $faq)
     {
-        /* if (empty($faq->getStoreId())) {
-            $storeId = $this->storeManager->getStore()->getId();
-            $faq->setStoreId($storeId);
-        } */
         try {
             $faq->getResource()->save($faq);
         } catch (\Exception $exception) {

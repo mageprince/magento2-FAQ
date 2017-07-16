@@ -6,7 +6,12 @@ namespace Prince\Faq\Controller\Adminhtml\Faq;
 class InlineEdit extends \Magento\Backend\App\Action
 {
 
-    protected $jsonFactory;
+    private $jsonFactory;
+
+    /**
+     * @var \Prince\Faq\Model\Faq
+     */
+    private $faqModel;
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
@@ -14,9 +19,11 @@ class InlineEdit extends \Magento\Backend\App\Action
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
+        \Magento\Framework\Controller\Result\JsonFactory $jsonFactory,
+        \Prince\Faq\Model\Faq $faqModel
     ) {
         parent::__construct($context);
+        $this->faqModel = $faqModel;
         $this->jsonFactory = $jsonFactory;
     }
 
@@ -34,13 +41,13 @@ class InlineEdit extends \Magento\Backend\App\Action
         
         if ($this->getRequest()->getParam('isAjax')) {
             $postItems = $this->getRequest()->getParam('items', []);
-            if (!count($postItems)) {
+            if (empty($postItems)) {
                 $messages[] = __('Please correct the data sent.');
                 $error = true;
             } else {
                 foreach (array_keys($postItems) as $modelid) {
                     /** @var \Magento\Cms\Model\Block $block */
-                    $model = $this->_objectManager->create('Prince\Faq\Model\Faq')->load($modelid);
+                    $model = $this->faqModel->load($modelid);
                     try {
                         $model->setData(array_merge($model->getData(), $postItems[$modelid]));
                         $model->save();

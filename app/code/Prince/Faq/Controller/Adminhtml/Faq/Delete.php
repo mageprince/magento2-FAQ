@@ -7,6 +7,23 @@ class Delete extends \Prince\Faq\Controller\Adminhtml\Faq
 {
 
     /**
+     * @var \Prince\Faq\Model\Faq
+     */
+    private $faqModel;
+
+    /**
+     * @param \Magento\Backend\App\Action\Context $context
+     * @param \Prince\Faq\Model\Faq $coreRegistry
+     */
+    public function __construct(
+        \Magento\Backend\App\Action\Context $context,
+        \Prince\Faq\Model\Faq $faqModel
+    ) {
+        $this->faqModel = $faqModel;
+        parent::__construct($context);
+    }
+
+    /**
      * Delete action
      *
      * @return \Magento\Framework\Controller\ResultInterface
@@ -20,11 +37,11 @@ class Delete extends \Prince\Faq\Controller\Adminhtml\Faq
         if ($id) {
             try {
                 // init model and delete
-                $model = $this->_objectManager->create('Prince\Faq\Model\Faq');
+                $model = $this->faqModel;
                 $model->load($id);
                 $model->delete();
                 // display success message
-                $this->messageManager->addSuccessMessage(__('You deleted the Faq.'));
+                $this->messageManager->addSuccessMessage(__('You deleted the FAQ.'));
                 // go to grid
                 return $resultRedirect->setPath('*/*/');
             } catch (\Exception $e) {
@@ -35,7 +52,7 @@ class Delete extends \Prince\Faq\Controller\Adminhtml\Faq
             }
         }
         // display error message
-        $this->messageManager->addErrorMessage(__('We can\'t find a Faq to delete.'));
+        $this->messageManager->addErrorMessage(__('We can\'t find a FAQ to delete.'));
         // go to grid
         return $resultRedirect->setPath('*/*/');
     }

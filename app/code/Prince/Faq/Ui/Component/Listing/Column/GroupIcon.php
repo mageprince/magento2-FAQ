@@ -13,8 +13,8 @@ class GroupIcon extends \Magento\Ui\Component\Listing\Columns\Column
     private $storeManager;
 
     /**
-    * @var \Magento\Framework\View\Asset\Repository
-    */
+     * @var \Magento\Framework\View\Asset\Repository
+     */
     private $assetRepo;
 
     /**
@@ -46,27 +46,25 @@ class GroupIcon extends \Magento\Ui\Component\Listing\Columns\Column
      */
     public function prepareDataSource(array $dataSource)
     {
-        if(isset($dataSource['data']['items'])) {
+        if (isset($dataSource['data']['items'])) {
             $path = $this->storeManager->getStore()->getBaseUrl(
-                        \Magento\Framework\UrlInterface::URL_TYPE_MEDIA
-                    ).'faq/tmp/icon/';
+                \Magento\Framework\UrlInterface::URL_TYPE_MEDIA
+            ).'faq/tmp/icon/';
 
             $baseImage = $this->assetRepo->getUrl('Prince_Faq::images/faq.png');
             foreach ($dataSource['data']['items'] as & $item) {
-
                 if ($item['icon']) {
                     $item['icon' . '_src'] = $path.$item['icon'];
                     $item['icon' . '_alt'] = $item['groupname'];
                     $item['icon' . '_orig_src'] = $path.$item['icon'];
-                }else{
+                } else {
                     $item['icon' . '_src'] = $baseImage;
                     $item['icon' . '_alt'] = 'Faq';
                     $item['icon' . '_orig_src'] = $baseImage;
-                }       
-                
+                }
             }
         }
 
         return $dataSource;
-    }   
+    }
 }

@@ -11,7 +11,7 @@ class FaqGroup extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      *
      * @return void
      */
-    protected function _construct()
+    public function _construct()
     {
         $this->_init('prince_faqgroup', 'faqgroup_id');
     }

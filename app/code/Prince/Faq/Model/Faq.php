@@ -11,7 +11,7 @@ class Faq extends \Magento\Framework\Model\AbstractModel implements FaqInterface
     /**
      * @return void
      */
-    protected function _construct()
+    public function _construct()
     {
         $this->_init('Prince\Faq\Model\ResourceModel\Faq');
     }

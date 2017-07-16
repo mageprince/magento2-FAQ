@@ -5,8 +5,10 @@ namespace Prince\Faq\Controller\Index;
 
 class Index extends \Magento\Framework\App\Action\Action
 {
-
-    protected $resultPageFactory;
+    /**
+     * @var \Magento\Framework\View\Result\PageFactory
+     */
+    private $resultPageFactory;
 
     /**
      * Constructor

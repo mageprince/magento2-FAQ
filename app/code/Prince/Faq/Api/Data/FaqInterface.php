@@ -12,7 +12,6 @@ interface FaqInterface
     const CONTENT = 'content';
     const STATUS = 'status';
 
-
     /**
      * Get faq_id
      * @return string|null

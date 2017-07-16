@@ -3,24 +3,30 @@
 
 namespace Prince\Faq\Controller\Adminhtml\FaqGroup;
 
-class MassDelete extends \Magento\Backend\App\Action 
+class MassDelete extends \Magento\Backend\App\Action
 {
 
-    protected $filter;
+    /**
+     * @var \Magento\Ui\Component\MassAction\Filter
+     */
+    private $filter;
 
-    protected $collectionFactory;
+    /**
+     * @var \Prince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory
+     */
+    private $collectionFactory;
     
     public function __construct(
         \Magento\Ui\Component\MassAction\Filter $filter,
         \Prince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory $collectionFactory,
         \Magento\Backend\App\Action\Context $context
-        ) {
-            $this->filter            = $filter;
-            $this->collectionFactory = $collectionFactory;
-            parent::__construct($context);
+    ) {
+        $this->filter = $filter;
+        $this->collectionFactory = $collectionFactory;
+        parent::__construct($context);
     }
 
-    public function execute() 
+    public function execute()
     {
         try {
             $logCollection = $this->filter->getCollection($this->collectionFactory->create());
@@ -29,8 +35,8 @@ class MassDelete extends \Magento\Backend\App\Action
                 $item->delete();
                 $itemsDeleted++;
             }
-            $this->messageManager->addSuccess(__('A total of %1 FaqGroup(s) were deleted.', $itemsDeleted));
-        } catch(\Exception $e) {
+            $this->messageManager->addSuccess(__('A total of %1 FAQGroup(s) were deleted.', $itemsDeleted));
+        } catch (\Exception $e) {
             $this->messageManager->addError($e->getMessage());
         }
         $resultRedirect = $this->resultRedirectFactory->create();

@@ -6,7 +6,15 @@ namespace Prince\Faq\Controller\Adminhtml\FaqGroup;
 class InlineEdit extends \Magento\Backend\App\Action
 {
 
-    protected $jsonFactory;
+    /**
+     * @var \Magento\Framework\Controller\Result\JsonFactory
+     */
+    private $jsonFactory;
+
+    /**
+     * @var \Magento\Framework\Controller\Result\JsonFactory
+     */
+    private $faqGroupModel;
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
@@ -14,9 +22,11 @@ class InlineEdit extends \Magento\Backend\App\Action
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
+        \Prince\Faq\Model\FaqGroup $faqGroupModel,
         \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
     ) {
         parent::__construct($context);
+        $this->faqGroupModel = $faqGroupModel;
         $this->jsonFactory = $jsonFactory;
     }
 
@@ -34,13 +44,13 @@ class InlineEdit extends \Magento\Backend\App\Action
         
         if ($this->getRequest()->getParam('isAjax')) {
             $postItems = $this->getRequest()->getParam('items', []);
-            if (!count($postItems)) {
+            if (empty($postItems)) {
                 $messages[] = __('Please correct the data sent.');
                 $error = true;
             } else {
                 foreach (array_keys($postItems) as $modelid) {
                     /** @var \Magento\Cms\Model\Block $block */
-                    $model = $this->_objectManager->create('Prince\Faq\Model\FaqGroup')->load($modelid);
+                    $model = $this->faqGroupModel->load($modelid);
                     try {
                         $model->setData(array_merge($model->getData(), $postItems[$modelid]));
                         $model->save();

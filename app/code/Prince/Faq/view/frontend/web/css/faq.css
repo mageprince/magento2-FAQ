@@ -89,12 +89,6 @@
   text-decoration: none;
 }
 
-.ui-accordion-header {
-    float: left;
-    width: 100%;
-}
-
-
 .group-title{
   margin: 25px 0;
   font-size: 18px;
@@ -102,9 +96,7 @@
   line-height: 1.5;
   padding-bottom: 0.25em;
   border-bottom: 1px solid #ddd;
-  float: left;
   width: 100%;
-  position: relative;
   color: #198dd3;
   font-weight: bold;
 }
@@ -152,4 +144,21 @@ img.group-image {
 
 .faq-group:hover{
   border-color: #ff5501;
+}
+
+.faq-collection {
+  margin-bottom: 30px;
+  float: left;
+  width: 100%;
+}
+
+.ui-accordion .ui-state-default:after {
+  content: '\e608';
+  font-family: 'luma-icons';
+  float: right;
+}
+
+.ui-accordion .ui-accordion-header-active:after {
+  content: '\e622';
+  font-family: 'luma-icons';
 }
