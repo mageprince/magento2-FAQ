@@ -2,9 +2,10 @@
   display: block;
   cursor: pointer;
   position: relative;
-  margin: 2px 0 0 0;
-  padding: .5em .5em .5em .7em;
-  font-size: 100%;
+  margin: 10px 0 0 0;
+  padding: 0.8em .5em 0.8em 1em;
+  font-size: 15px;
+  font-weight: bold;
 }
 .ui-accordion .ui-accordion-content {
   padding: 1em 2.2em;
@@ -119,7 +120,7 @@
 .faq-group {
     float: left;
     padding: 30px;
-    margin-right: 15px;
+    margin-right: 25px;
     border: 1px solid #1979C3;
 }
 img.group-image {
@@ -130,6 +131,7 @@ img.group-image {
     font-size: 15px;
     font-weight: 700;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .faq-group a.group-link:hover{

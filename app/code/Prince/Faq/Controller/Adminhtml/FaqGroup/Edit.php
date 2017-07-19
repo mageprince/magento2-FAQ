@@ -60,11 +60,11 @@ class Edit extends \Prince\Faq\Controller\Adminhtml\FaqGroup
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
         $this->initPage($resultPage)->addBreadcrumb(
-            $id ? __('Edit Faqgroup') : __('New Faqgroup'),
-            $id ? __('Edit Faqgroup') : __('New Faqgroup')
+            $id ? __('Edit Faqgroup') : __('New FAQGroup'),
+            $id ? __('Edit Faqgroup') : __('New FAQGroup')
         );
         $resultPage->getConfig()->getTitle()->prepend(__('FAQgroups'));
-        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? $model->getTitle() : __('New Faqgroup'));
+        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? $model->getTitle() : __('New FAQGroup'));
         return $resultPage;
     }
 }

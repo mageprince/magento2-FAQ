@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="header.links">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" ifconfig="faqtab/general/headerlink" name="faq-header-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">FAQ</argument>
+                    <argument name="path" xsi:type="string">faq</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceBlock name="footer_links">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" ifconfig="faqtab/general/footerlink" name="faq-footer-link" after="privacy-policy-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">FAQ</argument>
+                    <argument name="path" xsi:type="string">faq</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

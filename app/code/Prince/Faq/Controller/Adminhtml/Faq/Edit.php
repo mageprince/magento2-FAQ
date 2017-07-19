@@ -14,6 +14,11 @@ class Edit extends \Prince\Faq\Controller\Adminhtml\Faq
     private $faqModel;
 
     /**
+     * @var \Magento\Framework\Registry
+     */
+    private $coreRegistry;
+
+    /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\Registry $coreRegistry
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
@@ -27,6 +32,7 @@ class Edit extends \Prince\Faq\Controller\Adminhtml\Faq
     ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->faqModel = $faqModel;
+        $this->coreRegistry = $coreRegistry;
         parent::__construct($context, $coreRegistry);
     }
 
@@ -51,7 +57,7 @@ class Edit extends \Prince\Faq\Controller\Adminhtml\Faq
                 return $resultRedirect->setPath('*/*/');
             }
         }
-        $this->_coreRegistry->register('prince_faq_faq', $model);
+        $this->coreRegistry->register('prince_faq_faq', $model);
         
         // 5. Build edit form
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */

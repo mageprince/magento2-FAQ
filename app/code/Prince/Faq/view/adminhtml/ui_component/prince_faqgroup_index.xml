@@ -39,7 +39,7 @@
 	<listingToolbar name="listing_top">
 		<argument name="data" xsi:type="array">
 			<item name="config" xsi:type="array">
-				<item name="sticky" xsi:type="boolean">true</item>
+				<item name="sticky" xsi:type="boolean">false</item>
 			</item>
 		</argument>
 		<massaction name="listing_massaction">

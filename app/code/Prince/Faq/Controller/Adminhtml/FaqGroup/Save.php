@@ -74,7 +74,7 @@ class Save extends \Magento\Backend\App\Action
             }
         
             $this->dataPersistor->set('prince_faq_faqgroup', $data);
-            return $resultRedirect->setPath('*/*/edit', 
+            return $resultRedirect->setPath('*/*/edit',
                 [
                     'faqgroup_id' => $this->getRequest()->getParam('faqgroup_id')
                 ]

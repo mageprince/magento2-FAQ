@@ -3,7 +3,7 @@
     <system>
         <section id="faqtab" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
-            <label>Faq</label>
+            <label>FAQ Settings</label>
             <tab>customer</tab>
             <resource>Magento_Backend::content</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
@@ -12,25 +12,17 @@
                     <label>Module Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-            </group>
-            <group id="faq" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
-                <label>FAQ Configuration</label>
-                <field id="animation" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Animation Speed</label>
-                    <comment>Enter milliseconds.</comment>
-                    <frontend_class>required-entry validate-digits</frontend_class>
-                </field>
-            </group>
-            <group id="faqgroup" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
-                <label>FAQ Group Configuration</label>
                 <field id="showgroup" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Show Group Icon</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="animation" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Animation Speed</label>
-                    <comment>Enter milliseconds.</comment>
-                    <frontend_class>required-entry validate-digits</frontend_class>
+                <field id="footerlink" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Show Footer Link</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="headerlink" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Show Header Link</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
         </section>

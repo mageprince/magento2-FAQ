@@ -82,7 +82,7 @@
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">string</item>
                     <item name="source" xsi:type="string">FaqGroup</item>
-                    <item name="label" xsi:type="string" translate="true">Category Image</item>
+                    <item name="label" xsi:type="string" translate="true">Group Image</item>
                     <item name="visible" xsi:type="boolean">true</item>
                     <item name="formElement" xsi:type="string">fileUploader</item>
                     <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>

@@ -10,8 +10,6 @@ class Index extends \Magento\Framework\View\Element\Template
     private $faqGroupCollectionFactory;
 
     private $storeManager;
-
-    private $scopeConfig;
     
     private $templateProcessor;
 
@@ -19,15 +17,13 @@ class Index extends \Magento\Framework\View\Element\Template
         \Magento\Framework\View\Element\Template\Context $context,
         \Prince\Faq\Model\ResourceModel\Faq\CollectionFactory $faqCollectionFactory,
         \Prince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory $faqGroupCollectionFactory,
-        \Magento\Store\Model\StoreManagerInterface $storeManagerInterface,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Zend_Filter_Interface $templateProcessor
     ) {
         $this->faqCollectionFactory = $faqCollectionFactory;
         $this->faqGroupCollectionFactory = $faqGroupCollectionFactory;
-        $this->storeManager = $storeManagerInterface;
-        $this->scopeConfig = $scopeConfig;
+        $this->storeManager = $context->getStoreManager();
         $this->templateProcessor = $templateProcessor;
+        $this->scopeConfig = $context->getScopeConfig();
         parent::__construct($context);
     }
 

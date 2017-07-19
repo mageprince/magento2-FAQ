@@ -19,7 +19,8 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     /**
      * @var \Prince\Faq\Model\ResourceModel\Faq\CollectionFactory
      */
-    private $collection;
+    
+    public $collection;
 
     /**
      * Constructor
