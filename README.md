@@ -13,6 +13,8 @@ This module adds an easy way to use FAQ section to your Magento store with jQuer
 
 # Frontend
 
+<img src="https://image.ibb.co/nOOP25/faq.jpg" alt="faq" border="0">
+
 <img src="https://image.ibb.co/fGfOUk/FAQ_2.png" alt="FAQ_2" border="0">
 
 # Admin FAQ Edit
