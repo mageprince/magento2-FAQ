@@ -42,14 +42,6 @@ class InstallSchema implements InstallSchemaInterface
             [],
             'groupname'
         );
-        
-        $table_prince_faqgroup->addColumn(
-            'groupcode',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            null,
-            [],
-            'groupcode'
-        );
            
         $table_prince_faqgroup->addColumn(
             'icon',
@@ -57,14 +49,6 @@ class InstallSchema implements InstallSchemaInterface
             null,
             [],
             'icon'
-        );
-        
-        $table_prince_faqgroup->addColumn(
-            'width',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            null,
-            [],
-            'width'
         );
 
         $table_prince_faqgroup->addColumn(
