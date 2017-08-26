@@ -77,6 +77,18 @@
 				</item>
 			</argument>
 		</field>
+		<field name="sortorder">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">Sort Order</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">FaqGroup</item>
+					<item name="sortOrder" xsi:type="number">40</item>
+					<item name="dataScope" xsi:type="string">sortorder</item>
+				</item>
+			</argument>
+		</field>
 		<field name="icon">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -88,7 +100,7 @@
                     <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
                     <item name="previewTmpl" xsi:type="string">Prince_Faq/image-preview</item>
                     <item name="required" xsi:type="boolean">false</item>
-                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
                     <item name="uploaderConfig" xsi:type="array">
                         <item name="url" xsi:type="url" path="prince_faq/faqgroup/upload"/>
                     </item>

@@ -1,5 +1,5 @@
 {
-    "name": "prince/module-faqbeta",
+    "name": "prince/module-faq",
     "description": "Magento2 FAQ Module",
     "require": {
         "magento/module-store": ">100.0",
@@ -7,7 +7,7 @@
         "magento/framework": ">100.0"
     },
     "type": "magento2-module",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": [
         "proprietary"
     ],

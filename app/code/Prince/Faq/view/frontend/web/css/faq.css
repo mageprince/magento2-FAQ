@@ -113,30 +113,39 @@
 }
 
 .faq-groups {
-    width: 100%;
-    float: left;
-    margin-bottom: 20px;
+  width: 100%;
+  float: left;
+  margin-bottom: 30px;
 }
 .faq-group {
-    float: left;
-    padding: 30px;
-    margin-right: 25px;
-    border: 1px solid #1979C3;
+  float: left;
 }
+.faq-group-image {
+  border: 1px solid #1979C3;
+  padding: 20px;
+  margin-right: 25px;
+}
+
 img.group-image {
-    height: 80px;
-    width: 95px;
+    height: 100px;
+    width: 100px;
 }
+
 .faq-groupname {
     font-size: 15px;
     font-weight: 700;
     text-align: center;
     text-transform: uppercase;
+    margin: 10px 25px 0 0;
 }
 
-.faq-group a.group-link:hover{
+.faq-group a.group-link:hover {
   color: #ff5501;
   text-decoration: none;
+}
+
+.faq-group .faq-group-image:hover {
+  border-color: #ff5501;
 }
 
 .faq-content .ui-accordion-header:hover {

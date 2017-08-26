@@ -8,19 +8,23 @@
             <div class="faq-groups">
                 <?php foreach ($faqGroupCollection as $group) : ?>
                     <div class="faq-group">
-                        <a href="#group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>" class="group-link">
-                        <?php if ($group->getIcon()) : ?>
-                            <img class="group-image"
-                                 src="<?php /* @noEscape */ echo $block->getImageUrl($group->getIcon()); ?>" />
-                        <?php else : ?>
-                            <img class="group-image" 
-                                 src="<?php /* @noEscape */ echo $block->getViewFileUrl('Prince_Faq::images/faq.png'); ?>" />
-                        <?php endif; ?>
-                        <div class="faq-groupname">
-                            <?php /* @noEscape */ echo $group->getGroupName(); ?>
+                        <div class="faq-group-image">
+                            <a href="#group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>" class="group-link">
+                            <?php if ($group->getIcon()) : ?>
+                                <img class="group-image"
+                                     src="<?php /* @noEscape */ echo $block->getImageUrl($group->getIcon()); ?>" />
+                            <?php else : ?>
+                                <img class="group-image" 
+                                     src="<?php /* @noEscape */ echo $block->getViewFileUrl('Prince_Faq::images/faq.png'); ?>" />
+                            <?php endif; ?>
+                            </a>
                         </div>
+                        <div class="faq-groupname">
+                        <a href="#group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>" class="group-link">
+                            <?php /* @noEscape */ echo $group->getGroupName(); ?>
                         </a>
-                    </div>    
+                        </div>
+                    </div>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>

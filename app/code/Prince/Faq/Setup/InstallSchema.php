@@ -34,7 +34,7 @@ class InstallSchema implements InstallSchemaInterface
             ],
             'Entity ID'
         );
-                
+
         $table_prince_faqgroup->addColumn(
             'groupname',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -42,7 +42,7 @@ class InstallSchema implements InstallSchemaInterface
             [],
             'groupname'
         );
-           
+        
         $table_prince_faqgroup->addColumn(
             'icon',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,

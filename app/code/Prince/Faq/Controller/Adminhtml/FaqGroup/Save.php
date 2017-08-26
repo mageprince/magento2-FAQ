@@ -86,16 +86,10 @@ class Save extends \Magento\Backend\App\Action
     public function _filterFaqGroupData(array $rawData)
     {
         $data = $rawData;
-        if (isset($data['icon']) && is_array($data['icon'])) {
-            if (!empty($data['icon']['delete'])) {
-                $data['icon'] = null;
-            } else {
-                if (isset($data['icon'][0]['name']) && isset($data['icon'][0]['tmp_name'])) {
-                    $data['icon'] = $data['icon'][0]['name'];
-                } else {
-                    unset($data['icon']);
-                }
-            }
+        if (isset($data['icon'][0]['name'])) {
+            $data['icon'] = $data['icon'][0]['name'];
+        } else {
+            $data['icon'] = null;
         }
         return $data;
     }
