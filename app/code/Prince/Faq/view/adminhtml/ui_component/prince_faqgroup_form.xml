@@ -86,6 +86,9 @@
 					<item name="source" xsi:type="string">FaqGroup</item>
 					<item name="sortOrder" xsi:type="number">40</item>
 					<item name="dataScope" xsi:type="string">sortorder</item>
+					<item name="validation" xsi:type="array">
+                        <item name="validate-number" xsi:type="boolean">true</item>
+                    </item>
 				</item>
 			</argument>
 		</field>
@@ -94,7 +97,7 @@
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">string</item>
                     <item name="source" xsi:type="string">FaqGroup</item>
-                    <item name="label" xsi:type="string" translate="true">Group Image</item>
+                    <item name="label" xsi:type="string" translate="true">Group Image/Icon</item>
                     <item name="visible" xsi:type="boolean">true</item>
                     <item name="formElement" xsi:type="string">fileUploader</item>
                     <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>

@@ -102,6 +102,7 @@
 		<column name="faq_id">
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">
+					<item name="sortOrder" xsi:type="number">10</item>
 					<item name="filter" xsi:type="string">text</item>
 					<item name="sorting" xsi:type="string">asc</item>
 					<item name="label" translate="true" xsi:type="string">ID</item>
@@ -111,6 +112,7 @@
 		<column name="title">
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">
+					<item name="sortOrder" xsi:type="number">20</item>
 					<item name="filter" xsi:type="string">text</item>
 					<item name="label" translate="true" xsi:type="string">Title</item>
 					<item name="editor" xsi:type="array">
@@ -124,6 +126,7 @@
 		</column>
 		<column name="group">
             <argument name="data" xsi:type="array">
+            	<item name="sortOrder" xsi:type="number">30</item>
                 <item name="options" xsi:type="object">Prince\Faq\Ui\Component\Listing\Column\FaqGroup</item>
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">select</item>
@@ -142,6 +145,7 @@
 		<actionsColumn class="Prince\Faq\Ui\Component\Listing\Column\FaqActions" name="actions">
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">
+					<item name="sortOrder" xsi:type="number">60</item>
 					<item name="indexField" xsi:type="string">faq_id</item>
 				</item>
 			</argument>
@@ -149,6 +153,7 @@
 		<column name="sortorder">
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">
+					<item name="sortOrder" xsi:type="number">40</item>
 					<item name="filter" xsi:type="string">text</item>
 					<item name="label" translate="true" xsi:type="string">SortOrder</item>
 					<item name="editor" xsi:type="array">
@@ -164,6 +169,7 @@
             <argument name="data" xsi:type="array">
                 <item name="options" xsi:type="object">Prince\Faq\Ui\Component\Listing\Column\Status</item>
                 <item name="config" xsi:type="array">
+                	<item name="sortOrder" xsi:type="number">50</item>
                     <item name="filter" xsi:type="string">select</item>
                     <item name="label" xsi:type="string" translate="true">Status</item>
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>

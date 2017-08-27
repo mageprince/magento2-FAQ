@@ -90,6 +90,11 @@
   text-decoration: none;
 }
 
+.faq-content {
+  float: left;
+  width: 100%;
+}
+
 .group-title{
   margin: 25px 0;
   font-size: 18px;

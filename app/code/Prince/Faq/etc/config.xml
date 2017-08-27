@@ -4,9 +4,10 @@
         <faqtab>
             <general>
                 <enable>1</enable>
+                <showgrouptitle>1</showgrouptitle>
                 <showgroup>1</showgroup>
                 <footerlink>1</footerlink>
-                <headerlink>0</headerlink>
+                <headerlink>1</headerlink>
             </general>
         </faqtab>
     </default>
