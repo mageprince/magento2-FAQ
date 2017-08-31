@@ -2,6 +2,8 @@
 
 This module adds an easy way to use FAQ section to your Magento store with jQuery Accordion. In this module, admin can add and update FAQ. Admin can also create FAQ group with group icon. Admin can add widgets, blocks, images etc. in FAQ answer with wyswing editor.
 
+<b>Magento Market Place Link:</b> https://marketplace.magento.com/prince-module-faq.html
+
 # Installation Instruction
 
 * Copy the content of the repo to the Magento 2 root folder
