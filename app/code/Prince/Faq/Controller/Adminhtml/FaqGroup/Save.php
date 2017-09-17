@@ -54,7 +54,17 @@ class Save extends \Magento\Backend\App\Action
             }
             
             $data = $this->_filterFaqGroupData($data);
-
+            $cGroup = $data['customer_group'];
+            if (isset($cGroup)) {
+                $customerGroup = implode(',', $data['customer_group']);
+                $data['customer_group'] = $customerGroup;
+            }
+            $stores = $data['storeview'];
+            if (isset($stores)) {
+                $store = implode(',', $data['storeview']);
+                $data['storeview'] = $store;
+            }
+            
             $model->setData($data);
         
             try {

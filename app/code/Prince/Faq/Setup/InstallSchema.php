@@ -52,13 +52,29 @@ class InstallSchema implements InstallSchemaInterface
         );
 
         $table_prince_faqgroup->addColumn(
+            'storeview',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            null,
+            [],
+            'storeview'
+        );
+        
+        $table_prince_faqgroup->addColumn(
+            'customer_group',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            null,
+            [],
+            'customer_group'
+        );
+
+        $table_prince_faqgroup->addColumn(
             'sortorder',
             \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
             null,
             [],
             'sortorder'
         );
-      
+        
         $table_prince_faqgroup->addColumn(
             'status',
             \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
@@ -104,6 +120,22 @@ class InstallSchema implements InstallSchemaInterface
             null,
             [],
             'group'
+        );
+        
+        $table_prince_faq->addColumn(
+            'storeview',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            null,
+            [],
+            'storeview'
+        );
+        
+        $table_prince_faq->addColumn(
+            'customer_group',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            null,
+            [],
+            'customer_group'
         );
         
         $table_prince_faq->addColumn(

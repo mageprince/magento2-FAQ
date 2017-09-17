@@ -38,6 +38,16 @@ class Save extends \Magento\Backend\App\Action
         $data = $this->getRequest()->getPostValue();
         $group = $this->getGroups($data['group']);
         $data['group'] = $group;
+        $cGroup = $data['customer_group'];
+        if (isset($cGroup)) {
+            $customerGroup = implode(',', $data['customer_group']);
+            $data['customer_group'] = $customerGroup;
+        }
+        $stores = $data['storeview'];
+        if (isset($stores)) {
+            $store = implode(',', $data['storeview']);
+            $data['storeview'] = $store;
+        }
 
         if ($data) {
             $id = $this->getRequest()->getParam('faq_id');
