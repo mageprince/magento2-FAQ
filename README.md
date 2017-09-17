@@ -21,7 +21,7 @@ This module adds an easy way to use FAQ section to your Magento store with jQuer
 
 # Admin FAQ New/Edit
 
-<img src="https://image.ibb.co/mNSv9k/admin_FAQ_edit.png" alt="admin_FAQ_edit" border="0">
+<img src="https://image.ibb.co/b8QqeQ/This_is_test_FAQ_question_FAQs_Magento_Admin.png" border="0" />
 
 # Admin FAQ Group Grid
 
@@ -29,5 +29,5 @@ This module adds an easy way to use FAQ section to your Magento store with jQuer
 
 # Admin FAQ Group New/Edit
 
-<img src="http://image.ibb.co/gcavQQ/FAQgroups_edit.png" alt="FAQgroups edit" border="0" />
+<img src="https://image.ibb.co/gjoyYk/New_FAQGroup_FAQgroups_Magento_Admin.png" alt="New FAQGroup" border="0" />
 
