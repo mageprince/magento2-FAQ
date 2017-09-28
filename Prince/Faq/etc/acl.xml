@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Prince_Faq::Faq" sortOrder="10" title="Faq">
+					<resource id="Prince_Faq::Faq_save" sortOrder="10" title="Save Faq"/>
+					<resource id="Prince_Faq::Faq_delete" sortOrder="20" title="Delete Faq"/>
+					<resource id="Prince_Faq::Faq_update" sortOrder="30" title="Update Faq"/>
+					<resource id="Prince_Faq::Faq_view" sortOrder="40" title="View Faq"/>
+				</resource>
+				<resource id="Prince_Faq::FaqGroup" sortOrder="10" title="FaqGroup">
+					<resource id="Prince_Faq::FaqGroup_save" sortOrder="10" title="Save FaqGroup"/>
+					<resource id="Prince_Faq::FaqGroup_delete" sortOrder="20" title="Delete FaqGroup"/>
+					<resource id="Prince_Faq::FaqGroup_update" sortOrder="30" title="Update FaqGroup"/>
+					<resource id="Prince_Faq::FaqGroup_view" sortOrder="40" title="View FaqGroup"/>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

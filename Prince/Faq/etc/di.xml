@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Prince\Faq\Api\FaqGroupRepositoryInterface" type="Prince\Faq\Model\FaqGroupRepository"/>
+	<preference for="Prince\Faq\Api\Data\FaqGroupInterface" type="Prince\Faq\Model\FaqGroup"/>
+	<preference for="Prince\Faq\Api\Data\FaqGroupSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Prince\Faq\Model\ResourceModel\FaqGroup\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">prince_faqgroup</argument>
+			<argument name="resourceModel" xsi:type="string">Prince\Faq\Model\ResourceModel\FaqGroup\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="prince_faqgroup_grid_data_source" xsi:type="string">Prince\Faq\Model\ResourceModel\FaqGroup\Grid\Collection</item>
+				<item name="prince_faq_grid_data_source" xsi:type="string">Prince\Faq\Model\ResourceModel\Faq\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<virtualType name="Prince\Faq\Model\ResourceModel\Faq\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">prince_faq</argument>
+			<argument name="resourceModel" xsi:type="string">Prince\Faq\Model\ResourceModel\Faq\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Prince\Faq\Block\Index\Index">
+	    <arguments>
+	        <argument name="templateProcessor" xsi:type="object">Magento\Widget\Model\Template\Filter</argument>
+	    </arguments>
+	</type>
+	<type name="Prince\Faq\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">faq/tmp/icon</argument>
+            <argument name="basePath" xsi:type="string">faq/icon</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
