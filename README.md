@@ -6,7 +6,7 @@ This module adds an easy way to use FAQ section to your Magento store with jQuer
 
 # Installation Instruction
 
-* Copy the content of the repo to the Magento 2 root folder
+* Copy the content of the repo to the Magento 2 app/code/Prince/Faq
 * Run command:
 <b>php bin/magento setup:upgrade</b>
 * Run Command:
