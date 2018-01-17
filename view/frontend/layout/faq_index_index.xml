@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+        <css src="Prince_Faq/css/faq.css"/>
+        <link src="Prince_Faq/js/faq.js"/> 
+    </head>
+    <body>
+		<referenceContainer name="content">
+			<block class="Prince\Faq\Block\Index\Index" name="index.index" template="Prince_Faq::index/index.phtml"/>
+		</referenceContainer>
+	</body>
+</page>
