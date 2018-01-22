@@ -19,7 +19,7 @@ class Upload extends \Magento\Backend\App\Action
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
-     * @param \[Namespace]\[Module]\Model\ImageUploader $imageUploader
+     * @param \Prince\Faq\Model\ImageUploader $imageUploader
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
