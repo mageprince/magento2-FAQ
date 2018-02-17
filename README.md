@@ -13,6 +13,15 @@ This module adds an easy way to use FAQ section to your Magento store with jQuer
 <b>php bin/magento setup:static-content:deploy</b>
 * Now Flush Cache: <b>php bin/magento cache:flush</b>
 
+# Contribution
+
+Want to contribute to this extension? The quickest way is to <a href="https://help.github.com/articles/about-pull-requests/">open a pull request</a> on GitHub.
+
+# Support
+
+If you encounter any problems or bugs, please <a href="https://github.com/mageprince/magento2-FAQ/issues">open an issue</a> on GitHub.
+
+
 # Frontend
 
 <img src="https://image.ibb.co/nOOP25/faq.jpg" alt="faq" border="0">
