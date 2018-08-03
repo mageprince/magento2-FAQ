@@ -1,22 +1,19 @@
 {
-    "name": "prince/module-faq",
+    "name": "mageprince/module-faq",
     "description": "Magento2 FAQ Module",
-    "require": {
-        "magento/module-store": ">100.0",
-        "magento/module-backend": ">100.0",
-        "magento/framework": ">100.0"
-    },
+    "homepage": "https://github.com/mageprince/magento2-FAQ",
     "type": "magento2-module",
-    "version": "1.0.3",
-    "license": [
-        "proprietary"
-    ],
+    "version": "1.0.0",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
           "name": "Prince Patel",
           "email": "mail.mageprince@gmail.com"
         }
     ],
+    "support": {
+        "issues": "https://github.com/mageprince/magento2-FAQ/issues"
+    },
     "autoload": {
         "files": [
             "registration.php"
