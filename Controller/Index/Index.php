@@ -36,15 +36,22 @@ class Index extends \Magento\Framework\App\Action\Action
     private $resultPageFactory;
 
     /**
-     * Constructor
-     *
-     * @param \Magento\Framework\App\Action\Context  $context
+     * @var \Prince\Faq\Helper\Data
+     */
+    protected $helper;
+
+    /**
+     * Index constructor.
+     * @param \Magento\Framework\App\Action\Context $context
+     * @param \Prince\Faq\Helper\Data $helper
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
+        \Prince\Faq\Helper\Data $helper,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory
     ) {
+        $this->helper = $helper;
         $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context);
     }
@@ -56,6 +63,27 @@ class Index extends \Magento\Framework\App\Action\Action
      */
     public function execute()
     {
-        return $this->resultPageFactory->create();
+        $resultPage = $this->resultPageFactory->create();
+        $pageMainTitle = $resultPage->getLayout()->getBlock('page.main.title');
+        $pageTitle = $this->helper->getConfig('faqtab/general/page_title');
+
+        if ($pageMainTitle && $pageMainTitle instanceof \Magento\Theme\Block\Html\Title) {
+            $pageMainTitle->setPageTitle($pageTitle);
+        }
+
+        if(!$this->helper->getConfig('faqtab/general/enable')) {
+            $pageMainTitle->setPageTitle('FAQ Disabled');
+            return $resultPage;
+        }
+
+        $metaTitleConfig = $this->helper->getConfig('faqtab/general/meta_title');
+        $metaKeywordsConfig = $this->helper->getConfig('faqtab/general/meta_keywords');
+        $metaDescriptionConfig = $this->helper->getConfig('faqtab/general/meta_description');
+
+        $resultPage->getConfig()->getTitle()->set($metaTitleConfig);
+        $resultPage->getConfig()->setDescription($metaKeywordsConfig);
+        $resultPage->getConfig()->setKeywords($metaDescriptionConfig);
+
+        return $resultPage;
     }
 }
