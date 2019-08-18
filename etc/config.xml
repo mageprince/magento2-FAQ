@@ -9,6 +9,7 @@
                 <showgroup>1</showgroup>
                 <footerlink>1</footerlink>
                 <headerlink>1</headerlink>
+                <page_type>scroll</page_type>
             </general>
         </faqtab>
     </default>

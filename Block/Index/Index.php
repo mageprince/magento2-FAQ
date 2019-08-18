@@ -36,6 +36,8 @@ class Index extends \Magento\Framework\View\Element\Template
 
     private $faqGroupCollectionFactory;
 
+    private $faqGroupFactory;
+
     private $storeManager;
 
     private $customerSession;
@@ -46,11 +48,13 @@ class Index extends \Magento\Framework\View\Element\Template
         \Magento\Framework\View\Element\Template\Context $context,
         \Prince\Faq\Model\ResourceModel\Faq\CollectionFactory $faqCollectionFactory,
         \Prince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory $faqGroupCollectionFactory,
+        \Prince\Faq\Model\FaqGroupFactory $faqGroupFactory,
         Session $customerSession,
         \Zend_Filter_Interface $templateProcessor
     ) {
         $this->faqCollectionFactory = $faqCollectionFactory;
         $this->faqGroupCollectionFactory = $faqGroupCollectionFactory;
+        $this->faqGroupFactory = $faqGroupFactory;
         $this->storeManager = $context->getStoreManager();
         $this->customerSession = $customerSession;
         $this->templateProcessor = $templateProcessor;
@@ -101,6 +105,13 @@ class Index extends \Magento\Framework\View\Element\Template
         );
         $faqGroupCollection->setOrder('sortorder', 'ASC');
         return $faqGroupCollection;
+    }
+
+    public function getGroupById($groupId)
+    {
+        $faqGroup = $this->faqGroupFactory->create();
+        $faqGroup->load($groupId);
+        return $faqGroup;
     }
 
     public function filterOutputHtml($string)

@@ -43,6 +43,10 @@
                     <label>Show Header Link</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+                <field id="page_type" translate="label" sortOrder="30" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Page Style</label>
+                    <source_model>Prince\Faq\Model\Source\Config\PageType</source_model>
+                </field>
             </group>
         </section>
     </system>

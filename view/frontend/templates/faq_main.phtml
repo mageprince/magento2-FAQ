@@ -1,6 +1,7 @@
 <?php $isEnable = $block->getConfig('faqtab/general/enable') ?>
 <?php $showGroup = $block->getConfig('faqtab/general/showgroup') ?>
 <?php $showGroupTitle = $block->getConfig('faqtab/general/showgrouptitle') ?>
+<?php $pageType = $block->getConfig('faqtab/general/page_type') ?>
 <?php $faqGroupCollection = $block->getFaqGroupCollection() ?>
 <?php if ($faqGroupCollection->getSize()) : ?>
     <?php if ($isEnable) : ?>
@@ -9,8 +10,8 @@
             <div class="faq-groups">
                 <?php foreach ($faqGroupCollection as $group) : ?>
                     <div class="faq-group">
-                        <div class="faq-group-image">
-                            <a href="#group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>" class="group-link">
+                        <div id="faq-group-image" class="faq-group-image">
+                            <a href="#group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>" class="group-link" groupId="<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">
                             <?php if ($group->getIcon()) : ?>
                                 <img class="group-image"
                                      src="<?php /* @noEscape */ echo $block->getImageUrl($group->getIcon()); ?>" />
@@ -21,7 +22,7 @@
                             </a>
                         </div>
                         <div class="faq-groupname">
-                        <a href="#group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>" class="group-link">
+                        <a href="#group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>" class="group-link" groupId="<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">
                             <?php /* @noEscape */ echo $group->getGroupName(); ?>
                         </a>
                         </div>
@@ -29,17 +30,39 @@
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
-        <div class="faq-content">
-            <?php foreach ($faqGroupCollection as $group) : ?>
+        <div id="faq-content" class="faq-content">
+            <?php if ($pageType == 'scroll') : ?>
+                <?php foreach ($faqGroupCollection as $group) : ?>
+                    <?php if ($showGroupTitle) : ?>
+                        <div class="group-title" id="group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">
+                            <i></i><?php /* @noEscape */ echo $group->getGroupName(); ?>
+                        </div>
+                    <?php endif; ?>
+                    <div class="faq-accordion">
+                    <?php $faqCollection = $block->getFaqCollection($group->getId()); ?>
+                        <?php if ($faqCollection->getSize()) : ?>
+                            <?php foreach ($faqCollection as $faq) : ?>
+                                <h3><?php /* @noEscape */ echo $faq->getTitle(); ?></h3>
+                                <div>
+                                    <p><?php /* @noEscape */ echo $block->filterOutputHtml($faq->getContent()); ?></p>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php else : ?>
+                            <div><?php /* @noEscape */ echo __('No FAQ available'); ?></div>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            <?php else :?>
+                <?php $group = $faqGroupCollection->getFirstItem(); ?>
                 <?php if ($showGroupTitle) : ?>
                     <div class="group-title" id="group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">
                         <i></i><?php /* @noEscape */ echo $group->getGroupName(); ?>
                     </div>
                 <?php endif; ?>
                 <div class="faq-accordion">
-                <?php $faqCollection = $block->getFaqCollection($group->getId()); ?>
+                    <?php $faqCollection = $block->getFaqCollection($group->getId()); ?>
                     <?php if ($faqCollection->getSize()) : ?>
-                        <?php foreach ($faqCollection as $faq) : ?> 
+                        <?php foreach ($faqCollection as $faq) : ?>
                             <h3><?php /* @noEscape */ echo $faq->getTitle(); ?></h3>
                             <div>
                                 <p><?php /* @noEscape */ echo $block->filterOutputHtml($faq->getContent()); ?></p>
@@ -49,7 +72,7 @@
                         <div><?php /* @noEscape */ echo __('No FAQ available'); ?></div>
                     <?php endif; ?>
                 </div>
-            <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
     <?php endif; ?>
@@ -58,3 +81,13 @@
         <h1><?php /* @noEscape */ echo __('No FAQ Group available'); ?></h1>
     </div>
 <?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "faq": {
+                "pageType" : "<?php echo $pageType ?>",
+                "ajax_url" : "<?php echo $this->getUrl() ?>"
+            }
+        }
+    }
+</script>

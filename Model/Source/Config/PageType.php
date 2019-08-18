@@ -26,15 +26,20 @@
  * @author MagePrince
  */
 
-namespace Prince\Faq\Helper;
+namespace Prince\Faq\Model\Source\Config;
 
-class Data extends \Magento\Framework\App\Helper\AbstractHelper
+class PageType implements \Magento\Framework\Data\OptionSourceInterface
 {
-    public function getConfig($config)
+    const SCROLL = 'scroll';
+    const AJAX = 'ajax';
+
+    public function toOptionArray()
     {
-        return $this->scopeConfig->getValue(
-            $config,
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-        );
+        $options = [
+            ['value' => self::SCROLL, 'label' => 'Scroll'],
+            ['value' => self::AJAX, 'label' => 'Ajax']
+        ];
+
+        return $options;
     }
 }
