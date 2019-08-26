@@ -21,11 +21,13 @@
                             <?php endif; ?>
                             </a>
                         </div>
-                        <div class="faq-groupname">
-                        <a href="#group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>" class="group-link" groupId="<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">
-                            <?php /* @noEscape */ echo $group->getGroupName(); ?>
-                        </a>
-                        </div>
+                        <?php if ($showGroupTitle) : ?>
+                            <div class="faq-groupname">
+                                <a href="#group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>" class="group-link" groupId="<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">
+                                    <?php /* @noEscape */ echo $group->getGroupName(); ?>
+                                </a>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 <?php endforeach; ?>
             </div>
