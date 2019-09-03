@@ -5,6 +5,7 @@
             <general>
                 <enable>1</enable>
                 <page_title>FAQ</page_title>
+                <faq_url>faq</faq_url>
                 <showgrouptitle>1</showgrouptitle>
                 <showgroup>1</showgroup>
                 <footerlink>1</footerlink>

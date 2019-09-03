@@ -18,6 +18,10 @@
                 <field id="page_title" translate="label" sortOrder="12" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Page Title</label>
                 </field>
+                <field id="faq_url" translate="label" sortOrder="13" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>FAQ Url</label>
+                    <validate>required-entry</validate>
+                </field>
                 <field id="meta_title" translate="label" sortOrder="14" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Meta Title</label>
                 </field>
