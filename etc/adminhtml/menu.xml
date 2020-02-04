@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
 	<menu>
 		<add id="Prince::top_level" module="Prince_Faq" resource="Prince_Faq::Faq" sortOrder="11" title="FAQ"/>
-		<add action="prince_faq/faqgroup/index" id="Prince::prince_faqgroup" module="Prince_Faq" parent="Prince::top_level" resource="Prince_Forcelogin::forcelogin" sortOrder="10" title="Manage FAQGroup"/>
+		<add action="prince_faq/faqgroup/index" id="Prince::prince_faqgroup" module="Prince_Faq" parent="Prince::top_level" resource="Prince_Faq::Faq" sortOrder="10" title="Manage FAQGroup"/>
 		<add action="prince_faq/faq/index" id="Prince::prince_faq" module="Prince_Faq" parent="Prince::top_level" resource="Prince_Faq::Faq" sortOrder="20" title="Manage FAQ"/>
         <add action="adminhtml/system_config/edit/section/faqtab" id="Prince::prince_faqgroup_settings" module="Prince_Faq" parent="Prince::top_level" resource="Prince_Faq::FaqGroup" sortOrder="30" title="Settings"/>
 	</menu>
