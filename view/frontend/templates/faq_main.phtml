@@ -6,21 +6,23 @@
 <?php if ($faqGroupCollection->getSize()) : ?>
     <?php if ($isEnable) : ?>
     <div class="faq-collection">
-        <?php if ($showGroup) : ?>
+        <?php if ($showGroup || $showGroupTitle) : ?>
             <div class="faq-groups">
                 <?php foreach ($faqGroupCollection as $group) : ?>
                     <div class="faq-group">
-                        <div id="faq-group-image" class="faq-group-image">
-                            <a href="#group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>" class="group-link" groupId="<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">
-                            <?php if ($group->getIcon()) : ?>
-                                <img class="group-image"
-                                     src="<?php /* @noEscape */ echo $block->getImageUrl($group->getIcon()); ?>" />
-                            <?php else : ?>
-                                <img class="group-image" 
-                                     src="<?php /* @noEscape */ echo $block->getViewFileUrl('Prince_Faq::images/faq.png'); ?>" />
-                            <?php endif; ?>
-                            </a>
-                        </div>
+                        <?php if ($showGroup) : ?>
+                            <div id="faq-group-image" class="faq-group-image">
+                                <a href="#group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>" class="group-link" groupId="<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">
+                                <?php if ($group->getIcon()) : ?>
+                                    <img class="group-image"
+                                         src="<?php /* @noEscape */ echo $block->getImageUrl($group->getIcon()); ?>" />
+                                <?php else : ?>
+                                    <img class="group-image"
+                                         src="<?php /* @noEscape */ echo $block->getViewFileUrl('Prince_Faq::images/faq.png'); ?>" />
+                                <?php endif; ?>
+                                </a>
+                            </div>
+                        <?php endif; ?>
                         <?php if ($showGroupTitle) : ?>
                             <div class="faq-groupname">
                                 <a href="#group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>" class="group-link" groupId="<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">

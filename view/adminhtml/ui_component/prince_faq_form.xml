@@ -103,7 +103,6 @@
 					<item name="source" xsi:type="string">Faq</item>
 					<item name="sortOrder" xsi:type="number">40</item>
 					<item name="dataScope" xsi:type="string">group</item>
-                    <item name="default" xsi:type="string">1</item>
 					<item name="validation" xsi:type="array">
 						<item name="required-entry" xsi:type="boolean">true</item>
 					</item>

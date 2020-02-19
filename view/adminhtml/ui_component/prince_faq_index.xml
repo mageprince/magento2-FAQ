@@ -133,6 +133,7 @@
                     <item name="label" xsi:type="string" translate="true">Group</item>
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
                     <item name="dataType" xsi:type="string">select</item>
+					<item name="sortable" xsi:type="boolean">false</item>
                     <item name="editor" xsi:type="array">
                     <item name="editorType" xsi:type="string">select</item>
                         <item name="validation" xsi:type="array">
