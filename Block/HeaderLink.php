@@ -34,7 +34,7 @@ class HeaderLink extends \Magento\Framework\View\Element\Html\Link
     {
         if (
             !$this->_scopeConfig->isSetFlag('faqtab/general/enable') || 
-            !$this->_scopeConfig->isSetFlag('faqtab/general/headerlink')
+            !$this->_scopeConfig->isSetFlag('faqtab/design/headerlink')
         ) {
             return '';
         }

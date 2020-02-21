@@ -78,7 +78,7 @@ class Router implements RouterInterface
         $identifier = trim($request->getPathInfo(), '/');
 
         $faqUrl = $this->scopeConfig->getValue(
-            'faqtab/general/faq_url',
+            'faqtab/seo/faq_url',
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
 

@@ -61,11 +61,11 @@ class ConfigChange implements ObserverInterface
     public function execute(EventObserver $observer)
     {
         $faqParams = $this->request->getParam('groups');
-        $faqUrlVal = $faqParams['general']['fields']['faq_url']['value'];
+        $faqUrlVal = $faqParams['seo']['fields']['faq_url']['value'];
         if($faqUrlVal) {
             $urlKey = str_replace(' ', '-', $faqUrlVal);
             $filterUrlKey = preg_replace('/[^A-Za-z0-9\-]/', '', $urlKey);
-            $this->configWriter->save('faqtab/general/faq_url', $filterUrlKey);
+            $this->configWriter->save('faqtab/seo/faq_url', $filterUrlKey);
         }
         return $this;
     }

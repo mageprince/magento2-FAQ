@@ -76,9 +76,9 @@ class Index extends \Magento\Framework\App\Action\Action
             return $resultPage;
         }
 
-        $metaTitleConfig = $this->helper->getConfig('faqtab/general/meta_title');
-        $metaKeywordsConfig = $this->helper->getConfig('faqtab/general/meta_keywords');
-        $metaDescriptionConfig = $this->helper->getConfig('faqtab/general/meta_description');
+        $metaTitleConfig = $this->helper->getConfig('faqtab/seo/meta_title');
+        $metaKeywordsConfig = $this->helper->getConfig('faqtab/seo/meta_keywords');
+        $metaDescriptionConfig = $this->helper->getConfig('faqtab/seo/meta_description');
 
         $resultPage->getConfig()->getTitle()->set($metaTitleConfig);
         $resultPage->getConfig()->setDescription($metaKeywordsConfig);

@@ -15,41 +15,50 @@
                     <label>Module Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="page_title" translate="label" sortOrder="12" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="page_title" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Page Title</label>
                 </field>
-                <field id="faq_url" translate="label" sortOrder="13" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+            </group>
+            <group id="seo" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Search Engine Optimization </label>
+                <field id="faq_url" translate="label" sortOrder="10" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>FAQ Url</label>
                     <validate>required-entry</validate>
                 </field>
-                <field id="meta_title" translate="label" sortOrder="14" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="meta_title" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Meta Title</label>
                 </field>
-                <field id="meta_keywords" translate="label" sortOrder="16" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="meta_keywords" translate="label" sortOrder="30" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Meta Keywords</label>
                 </field>
-                <field id="meta_description" translate="label" sortOrder="18" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="meta_description" translate="label" sortOrder="40" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Meta Description</label>
                 </field>
-                <field id="showgrouptitle" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Show Group Title</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </group>
+            <group id="design" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Design</label>
+                <field id="page_type" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Page Style</label>
+                    <source_model>Prince\Faq\Model\Source\Config\PageType</source_model>
                 </field>
                 <field id="showgroup" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Show Group Icon</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="page_type">scroll</field>
+                    </depends>
                 </field>
-                <field id="footerlink" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="showgrouptitle" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Group Title</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="footerlink" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Show Footer Link</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="headerlink" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="headerlink" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Show Header Link</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
-                <field id="page_type" translate="label" sortOrder="30" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Page Style</label>
-                    <source_model>Prince\Faq\Model\Source\Config\PageType</source_model>
                 </field>
             </group>
         </section>

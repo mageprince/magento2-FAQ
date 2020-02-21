@@ -5,7 +5,7 @@
             <block class="Prince\Faq\Block\HeaderLink" ifconfig="faqtab/general/enable" name="faq-header-link">
                 <arguments>
                     <argument name="label" xsi:type="string" translate="true">FAQ</argument>
-                    <argument name="path" xsi:type="string">faq</argument>
+                    <argument name="path" xsi:type="helper" helper="Prince\Faq\Helper\Data::getFaqUrl"></argument>
                 </arguments>
             </block>
         </referenceBlock>
@@ -13,7 +13,7 @@
             <block class="Prince\Faq\Block\FooterLink" ifconfig="faqtab/general/enable" name="faq-footer-link" after="privacy-policy-link">
                 <arguments>
                     <argument name="label" xsi:type="string" translate="true">FAQ</argument>
-                    <argument name="path" xsi:type="string">faq</argument>
+                    <argument name="path" xsi:type="helper" helper="Prince\Faq\Helper\Data::getFaqUrl"></argument>
                 </arguments>
             </block>
         </referenceBlock>

@@ -33,8 +33,8 @@ class FooterLink extends \Magento\Framework\View\Element\Html\Link
     public function _toHtml() 
     {
         if (
-            !$this->_scopeConfig->isSetFlag('faqtab/general/enable') || 
-            !$this->_scopeConfig->isSetFlag('faqtab/general/footerlink')
+            !$this->_scopeConfig->isSetFlag('faqtab/general/enable') ||
+            !$this->_scopeConfig->isSetFlag('faqtab/design/footerlink')
         ) {
             return '';
         }
