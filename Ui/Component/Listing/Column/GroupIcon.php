@@ -61,16 +61,21 @@ class GroupIcon extends \Magento\Ui\Component\Listing\Columns\Column
             ).'faq/tmp/icon/';
 
             $baseImage = $this->assetRepo->getUrl('Prince_Faq::images/faq.png');
+            $fieldName = $this->getData('name');
             foreach ($dataSource['data']['items'] as & $item) {
-                if ($item['icon']) {
-                    $item['icon' . '_src'] = $path.$item['icon'];
-                    $item['icon' . '_alt'] = $item['groupname'];
-                    $item['icon' . '_orig_src'] = $path.$item['icon'];
+                if ($item[$fieldName]) {
+                    $item[$fieldName . '_src'] = $path.$item['icon'];
+                    $item[$fieldName . '_alt'] = $item['groupname'];
+                    $item[$fieldName . '_orig_src'] = $path.$item['icon'];
                 } else {
-                    $item['icon' . '_src'] = $baseImage;
-                    $item['icon' . '_alt'] = 'Faq';
-                    $item['icon' . '_orig_src'] = $baseImage;
+                    $item[$fieldName . '_src'] = $baseImage;
+                    $item[$fieldName . '_alt'] = 'Faq';
+                    $item[$fieldName . '_orig_src'] = $baseImage;
                 }
+                $item[$fieldName . '_link'] = $this->storeManager->getStore()->getUrl(
+                    'prince_faq/faqgroup/edit',
+                    ['faqgroup_id' => $item['faqgroup_id']]
+                );
             }
         }
 
