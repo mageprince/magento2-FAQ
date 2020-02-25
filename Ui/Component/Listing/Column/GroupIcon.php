@@ -27,10 +27,17 @@ class GroupIcon extends \Magento\Ui\Component\Listing\Columns\Column
     private $assetRepo;
 
     /**
+     * @var \Magento\Backend\Model\UrlInterface
+     */
+    private $_backendUrl;
+
+    /**
+     * GroupIcon constructor.
      * @param ContextInterface $context
      * @param UiComponentFactory $uiComponentFactory
-     * @param \Magento\Catalog\Helper\Image $imageHelper
-     * @param \Magento\Framework\UrlInterface $urlBuilder
+     * @param StoreManagerInterface $storeManager
+     * @param Repository $assetRepo
+     * @param \Magento\Backend\Model\UrlInterface $backendUrl
      * @param array $components
      * @param array $data
      */
@@ -39,12 +46,14 @@ class GroupIcon extends \Magento\Ui\Component\Listing\Columns\Column
         UiComponentFactory $uiComponentFactory,
         StoreManagerInterface $storeManager,
         Repository $assetRepo,
+        \Magento\Backend\Model\UrlInterface $backendUrl,
         array $components = [],
         array $data = []
     ) {
         parent::__construct($context, $uiComponentFactory, $components, $data);
         $this->storeManager = $storeManager;
         $this->assetRepo = $assetRepo;
+        $this->_backendUrl = $backendUrl;
     }
 
     /**
@@ -72,8 +81,8 @@ class GroupIcon extends \Magento\Ui\Component\Listing\Columns\Column
                     $item[$fieldName . '_alt'] = 'Faq';
                     $item[$fieldName . '_orig_src'] = $baseImage;
                 }
-                $item[$fieldName . '_link'] = $this->storeManager->getStore()->getUrl(
-                    'prince_faq/faqgroup/edit',
+                $item[$fieldName . '_link'] = $this->_backendUrl->getUrl(
+                    "prince_faq/faqgroup/edit",
                     ['faqgroup_id' => $item['faqgroup_id']]
                 );
             }
