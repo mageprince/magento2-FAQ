@@ -121,9 +121,10 @@
   width: 100%;
   float: left;
   margin-bottom: 30px;
+  text-align: center;
 }
 .faq-group {
-  float: left;
+  display: inline-block;
 }
 .faq-group-image {
   border: 1px solid #1979C3;
