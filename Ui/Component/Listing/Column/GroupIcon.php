@@ -2,28 +2,12 @@
 
 /**
  * MagePrince
- * Copyright (C) 2018 Mageprince
+ * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * NOTICE OF LICENSE
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see http://opensource.org/licenses/gpl-3.0.html
- *
- * @category MagePrince
  * @package Prince_Faq
- * @copyright Copyright (c) 2018 MagePrince
+ * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
- * @author MagePrince
+ * @author MagePrince <info@mageprince.com>
  */
 
 namespace Prince\Faq\Ui\Component\Listing\Column;
@@ -43,10 +27,17 @@ class GroupIcon extends \Magento\Ui\Component\Listing\Columns\Column
     private $assetRepo;
 
     /**
+     * @var \Magento\Backend\Model\UrlInterface
+     */
+    private $_backendUrl;
+
+    /**
+     * GroupIcon constructor.
      * @param ContextInterface $context
      * @param UiComponentFactory $uiComponentFactory
-     * @param \Magento\Catalog\Helper\Image $imageHelper
-     * @param \Magento\Framework\UrlInterface $urlBuilder
+     * @param StoreManagerInterface $storeManager
+     * @param Repository $assetRepo
+     * @param \Magento\Backend\Model\UrlInterface $backendUrl
      * @param array $components
      * @param array $data
      */
@@ -55,12 +46,14 @@ class GroupIcon extends \Magento\Ui\Component\Listing\Columns\Column
         UiComponentFactory $uiComponentFactory,
         StoreManagerInterface $storeManager,
         Repository $assetRepo,
+        \Magento\Backend\Model\UrlInterface $backendUrl,
         array $components = [],
         array $data = []
     ) {
         parent::__construct($context, $uiComponentFactory, $components, $data);
         $this->storeManager = $storeManager;
         $this->assetRepo = $assetRepo;
+        $this->_backendUrl = $backendUrl;
     }
 
     /**
@@ -77,16 +70,21 @@ class GroupIcon extends \Magento\Ui\Component\Listing\Columns\Column
             ).'faq/tmp/icon/';
 
             $baseImage = $this->assetRepo->getUrl('Prince_Faq::images/faq.png');
+            $fieldName = $this->getData('name');
             foreach ($dataSource['data']['items'] as & $item) {
-                if ($item['icon']) {
-                    $item['icon' . '_src'] = $path.$item['icon'];
-                    $item['icon' . '_alt'] = $item['groupname'];
-                    $item['icon' . '_orig_src'] = $path.$item['icon'];
+                if ($item[$fieldName]) {
+                    $item[$fieldName . '_src'] = $path.$item['icon'];
+                    $item[$fieldName . '_alt'] = $item['groupname'];
+                    $item[$fieldName . '_orig_src'] = $path.$item['icon'];
                 } else {
-                    $item['icon' . '_src'] = $baseImage;
-                    $item['icon' . '_alt'] = 'Faq';
-                    $item['icon' . '_orig_src'] = $baseImage;
+                    $item[$fieldName . '_src'] = $baseImage;
+                    $item[$fieldName . '_alt'] = 'Faq';
+                    $item[$fieldName . '_orig_src'] = $baseImage;
                 }
+                $item[$fieldName . '_link'] = $this->_backendUrl->getUrl(
+                    "prince_faq/faqgroup/edit",
+                    ['faqgroup_id' => $item['faqgroup_id']]
+                );
             }
         }
 

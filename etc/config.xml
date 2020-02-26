@@ -5,13 +5,17 @@
             <general>
                 <enable>1</enable>
                 <page_title>FAQ</page_title>
+            </general>
+            <seo>
                 <faq_url>faq</faq_url>
-                <showgrouptitle>1</showgrouptitle>
+            </seo>
+            <design>
+                <page_type>scroll</page_type>
                 <showgroup>1</showgroup>
+                <showgrouptitle>1</showgrouptitle>
                 <footerlink>1</footerlink>
                 <headerlink>1</headerlink>
-                <page_type>scroll</page_type>
-            </general>
+            </design>
         </faqtab>
     </default>
 </config>
