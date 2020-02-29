@@ -65,8 +65,8 @@ class Index extends \Magento\Framework\App\Action\Action
         $metaDescriptionConfig = $this->helper->getConfig('faqtab/seo/meta_description');
 
         $resultPage->getConfig()->getTitle()->set($metaTitleConfig);
-        $resultPage->getConfig()->setDescription($metaKeywordsConfig);
-        $resultPage->getConfig()->setKeywords($metaDescriptionConfig);
+        $resultPage->getConfig()->setDescription($metaDescriptionConfig);
+        $resultPage->getConfig()->setKeywords($metaKeywordsConfig);
 
         return $resultPage;
     }

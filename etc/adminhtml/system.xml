@@ -21,9 +21,9 @@
             </group>
             <group id="seo" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Search Engine Optimization </label>
-                <field id="faq_url" translate="label" sortOrder="10" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="faq_url" translate="label" sortOrder="10" type="text" showInDefault="1">
                     <label>FAQ Url</label>
-                    <validate>required-entry</validate>
+                    <validate>required-entry validate-identifier</validate>
                 </field>
                 <field id="meta_title" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Meta Title</label>
