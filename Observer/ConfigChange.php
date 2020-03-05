@@ -12,7 +12,6 @@
 
 namespace Prince\Faq\Observer;
 
-use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Event\Observer as EventObserver;
 use Magento\Framework\App\RequestInterface;
@@ -41,10 +40,6 @@ class ConfigChange implements ObserverInterface
      * @var StoreManagerInterface
      */
     private $storeManager;
-    /**
-     * @var ScopeConfigInterface
-     */
-    private $scopeConfig;
 
     /**
      * ConfigChange constructor.
@@ -52,20 +47,17 @@ class ConfigChange implements ObserverInterface
      * @param WriterInterface $configWriter
      * @param UrlRewriteFactory $urlRewriteFactory
      * @param StoreManagerInterface $storeManager
-     * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
         RequestInterface $request,
         WriterInterface $configWriter,
         UrlRewriteFactory $urlRewriteFactory,
-        StoreManagerInterface $storeManager,
-        ScopeConfigInterface $scopeConfig
+        StoreManagerInterface $storeManager
     ) {
         $this->request = $request;
         $this->configWriter = $configWriter;
         $this->urlRewriteFactory = $urlRewriteFactory;
         $this->storeManager = $storeManager;
-        $this->scopeConfig = $scopeConfig;
     }
 
     public function execute(EventObserver $observer)
@@ -77,22 +69,21 @@ class ConfigChange implements ObserverInterface
             $filterUrlKey = preg_replace('/[^A-Za-z0-9\-]/', '', $urlKey);
             $this->configWriter->save('faqtab/seo/faq_url', $filterUrlKey);
             $storeId = $this->storeManager->getStore()->getId();
-            $faqUrl = $this->scopeConfig->getValue(
-                'faqtab/seo/faq_url',
-                \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
-                $storeId
-            );
             $urlRewriteModel = $this->urlRewriteFactory->create();
             $rewritecollection = $urlRewriteModel->getCollection()
                 ->addFieldToFilter('request_path', self::REQUEST_PATH)
                 ->addFieldToFilter('store_id', $storeId)
                 ->getFirstItem();
             $urlRewriteModel->load($rewritecollection->getId());
-            $urlRewriteModel->setStoreId($storeId);
-            $urlRewriteModel->setTargetPath($faqUrl);
-            $urlRewriteModel->setRequestPath(self::REQUEST_PATH);
-            $urlRewriteModel->setredirectType(301);
-            $urlRewriteModel->save();
+            if($filterUrlKey == self::REQUEST_PATH) {
+                $urlRewriteModel->delete();
+            } else {
+                $urlRewriteModel->setStoreId($storeId);
+                $urlRewriteModel->setTargetPath($filterUrlKey);
+                $urlRewriteModel->setRequestPath(self::REQUEST_PATH);
+                $urlRewriteModel->setredirectType(301);
+                $urlRewriteModel->save();
+            }
         }
         return $this;
     }
