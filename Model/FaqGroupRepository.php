@@ -4,26 +4,26 @@
  * MagePrince
  * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Prince_Faq
+ * @package Mageprince_Faq
  * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
  * @author MagePrince <info@mageprince.com>
  */
 
-namespace Prince\Faq\Model;
+namespace Mageprince\Faq\Model;
 
-use Prince\Faq\Model\ResourceModel\FaqGroup as ResourceFaqGroup;
+use Mageprince\Faq\Model\ResourceModel\FaqGroup as ResourceFaqGroup;
 use Magento\Framework\Exception\CouldNotSaveException;
-use Prince\Faq\Api\Data\FaqGroupSearchResultsInterfaceFactory;
+use Mageprince\Faq\Api\Data\FaqGroupSearchResultsInterfaceFactory;
 use Magento\Framework\Api\DataObjectHelper;
-use Prince\Faq\Api\Data\FaqGroupInterfaceFactory;
-use Prince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory as FaqGroupCollectionFactory;
+use Mageprince\Faq\Api\Data\FaqGroupInterfaceFactory;
+use Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory as FaqGroupCollectionFactory;
 use Magento\Framework\Reflection\DataObjectProcessor;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\Api\SortOrder;
-use Prince\Faq\Api\FaqGroupRepositoryInterface;
+use Mageprince\Faq\Api\FaqGroupRepositoryInterface;
 
 class FaqGroupRepository implements FaqGroupRepositoryInterface
 {
@@ -34,22 +34,22 @@ class FaqGroupRepository implements FaqGroupRepositoryInterface
     private $storeManager;
 
     /**
-     * @var \Prince\Faq\Model\ResourceModel\FaqGroup
+     * @var \Mageprince\Faq\Model\ResourceModel\FaqGroup
      */
     private $resource;
 
     /**
-     * @var \Prince\Faq\Api\Data\FaqGroupFactory
+     * @var \Mageprince\Faq\Api\Data\FaqGroupFactory
      */
     private $FaqGroupFactory;
 
     /**
-     * @var \Prince\Faq\Api\Data\FaqGroupInterfaceFactory
+     * @var \Mageprince\Faq\Api\Data\FaqGroupInterfaceFactory
      */
     private $dataFaqGroupFactory;
 
     /**
-     * @var \Prince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory
+     * @var \Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory
      */
     private $FaqGroupCollectionFactory;
 
@@ -64,7 +64,7 @@ class FaqGroupRepository implements FaqGroupRepositoryInterface
     private $dataObjectHelper;
 
     /**
-     * @var \Prince\Faq\Api\Data\FaqGroupSearchResultsInterfaceFactory
+     * @var \Mageprince\Faq\Api\Data\FaqGroupSearchResultsInterfaceFactory
      */
     private $searchResultsFactory;
 
@@ -102,7 +102,7 @@ class FaqGroupRepository implements FaqGroupRepositoryInterface
      * {@inheritdoc}
      */
     public function save(
-        \Prince\Faq\Api\Data\FaqGroupInterface $faqGroup
+        \Mageprince\Faq\Api\Data\FaqGroupInterface $faqGroup
     ) {
         try {
             $faqGroup->getResource()->save($faqGroup);
@@ -170,7 +170,7 @@ class FaqGroupRepository implements FaqGroupRepositoryInterface
      * {@inheritdoc}
      */
     public function delete(
-        \Prince\Faq\Api\Data\FaqGroupInterface $faqGroup
+        \Mageprince\Faq\Api\Data\FaqGroupInterface $faqGroup
     ) {
         try {
             $faqGroup->getResource()->delete($faqGroup);

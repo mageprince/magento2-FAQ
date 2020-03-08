@@ -4,13 +4,13 @@
  * MagePrince
  * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Prince_Faq
+ * @package Mageprince_Faq
  * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
  * @author MagePrince <info@mageprince.com>
  */
 
-namespace Prince\Faq\Ui\Component\Listing\Column;
+namespace Mageprince\Faq\Ui\Component\Listing\Column;
 
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
@@ -69,7 +69,7 @@ class GroupIcon extends \Magento\Ui\Component\Listing\Columns\Column
                 \Magento\Framework\UrlInterface::URL_TYPE_MEDIA
             ).'faq/tmp/icon/';
 
-            $baseImage = $this->assetRepo->getUrl('Prince_Faq::images/faq.png');
+            $baseImage = $this->assetRepo->getUrl('Mageprince_Faq::images/faq.png');
             $fieldName = $this->getData('name');
             foreach ($dataSource['data']['items'] as & $item) {
                 if ($item[$fieldName]) {
@@ -82,7 +82,7 @@ class GroupIcon extends \Magento\Ui\Component\Listing\Columns\Column
                     $item[$fieldName . '_orig_src'] = $baseImage;
                 }
                 $item[$fieldName . '_link'] = $this->_backendUrl->getUrl(
-                    "prince_faq/faqgroup/edit",
+                    "mageprince_faq/faqgroup/edit",
                     ['faqgroup_id' => $item['faqgroup_id']]
                 );
             }

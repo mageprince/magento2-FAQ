@@ -4,13 +4,13 @@
  * MagePrince
  * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Prince_Faq
+ * @package Mageprince_Faq
  * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
  * @author MagePrince <info@mageprince.com>
  */
 
-namespace Prince\Faq\Controller\Adminhtml\Faq;
+namespace Mageprince\Faq\Controller\Adminhtml\Faq;
 
 class InlineEdit extends \Magento\Backend\App\Action
 {
@@ -18,7 +18,7 @@ class InlineEdit extends \Magento\Backend\App\Action
     private $jsonFactory;
 
     /**
-     * @var \Prince\Faq\Model\Faq
+     * @var \Mageprince\Faq\Model\Faq
      */
     private $faqModel;
 
@@ -29,7 +29,7 @@ class InlineEdit extends \Magento\Backend\App\Action
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Controller\Result\JsonFactory $jsonFactory,
-        \Prince\Faq\Model\Faq $faqModel
+        \Mageprince\Faq\Model\Faq $faqModel
     ) {
         parent::__construct($context);
         $this->faqModel = $faqModel;

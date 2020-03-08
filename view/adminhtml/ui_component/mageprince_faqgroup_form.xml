@@ -1,26 +1,37 @@
 <?xml version="1.0" ?>
+<!--
+/**
+ * MagePrince
+ * Copyright (C) 2020 Mageprince <info@mageprince.com>
+ *
+ * @package Mageprince_Faq
+ * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MagePrince <info@mageprince.com>
+ */
+-->
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
 	<argument name="data" xsi:type="array">
 		<item name="js_config" xsi:type="array">
-			<item name="provider" xsi:type="string">prince_faqgroup_form.faqgroup_form_data_source</item>
-			<item name="deps" xsi:type="string">prince_faqgroup_form.faqgroup_form_data_source</item>
+			<item name="provider" xsi:type="string">mageprince_faqgroup_form.faqgroup_form_data_source</item>
+			<item name="deps" xsi:type="string">mageprince_faqgroup_form.faqgroup_form_data_source</item>
 		</item>
 		<item name="label" translate="true" xsi:type="string">General Information</item>
 		<item name="config" xsi:type="array">
 			<item name="dataScope" xsi:type="string">data</item>
-			<item name="namespace" xsi:type="string">prince_faqgroup_form</item>
+			<item name="namespace" xsi:type="string">mageprince_faqgroup_form</item>
 		</item>
 		<item name="template" xsi:type="string">templates/form/collapsible</item>
 		<item name="buttons" xsi:type="array">
-			<item name="back" xsi:type="string">Prince\Faq\Block\Adminhtml\FaqGroup\Edit\BackButton</item>
-			<item name="delete" xsi:type="string">Prince\Faq\Block\Adminhtml\FaqGroup\Edit\DeleteButton</item>
-			<item name="save" xsi:type="string">Prince\Faq\Block\Adminhtml\FaqGroup\Edit\SaveButton</item>
-			<item name="save_and_continue" xsi:type="string">Prince\Faq\Block\Adminhtml\FaqGroup\Edit\SaveAndContinueButton</item>
+			<item name="back" xsi:type="string">Mageprince\Faq\Block\Adminhtml\FaqGroup\Edit\BackButton</item>
+			<item name="delete" xsi:type="string">Mageprince\Faq\Block\Adminhtml\FaqGroup\Edit\DeleteButton</item>
+			<item name="save" xsi:type="string">Mageprince\Faq\Block\Adminhtml\FaqGroup\Edit\SaveButton</item>
+			<item name="save_and_continue" xsi:type="string">Mageprince\Faq\Block\Adminhtml\FaqGroup\Edit\SaveAndContinueButton</item>
 		</item>
 	</argument>
 	<dataSource name="faqgroup_form_data_source">
 		<argument name="dataProvider" xsi:type="configurableObject">
-			<argument name="class" xsi:type="string">Prince\Faq\Model\FaqGroup\DataProvider</argument>
+			<argument name="class" xsi:type="string">Mageprince\Faq\Model\FaqGroup\DataProvider</argument>
 			<argument name="name" xsi:type="string">faqgroup_form_data_source</argument>
 			<argument name="primaryFieldName" xsi:type="string">faqgroup_id</argument>
 			<argument name="requestFieldName" xsi:type="string">faqgroup_id</argument>
@@ -86,11 +97,11 @@
                     <item name="visible" xsi:type="boolean">true</item>
                     <item name="formElement" xsi:type="string">fileUploader</item>
                     <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
-                    <item name="previewTmpl" xsi:type="string">Prince_Faq/image-preview</item>
+                    <item name="previewTmpl" xsi:type="string">Mageprince_Faq/image-preview</item>
                     <item name="required" xsi:type="boolean">false</item>
                     <item name="sortOrder" xsi:type="number">30</item>
                     <item name="uploaderConfig" xsi:type="array">
-                        <item name="url" xsi:type="url" path="prince_faq/faqgroup/upload"/>
+                        <item name="url" xsi:type="url" path="mageprince_faq/faqgroup/upload"/>
                     </item>
                 </item>
             </argument>

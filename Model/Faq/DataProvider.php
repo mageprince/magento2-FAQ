@@ -4,16 +4,16 @@
  * MagePrince
  * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Prince_Faq
+ * @package Mageprince_Faq
  * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
  * @author MagePrince <info@mageprince.com>
  */
 
-namespace Prince\Faq\Model\Faq;
+namespace Mageprince\Faq\Model\Faq;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
-use Prince\Faq\Model\ResourceModel\Faq\CollectionFactory;
+use Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory;
 
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
@@ -26,7 +26,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     private $dataPersistor;
 
     /**
-     * @var \Prince\Faq\Model\ResourceModel\Faq\CollectionFactory
+     * @var \Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory
      */
     
     public $collection;
@@ -70,13 +70,13 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         foreach ($items as $model) {
             $this->loadedData[$model->getId()] = $model->getData();
         }
-        $data = $this->dataPersistor->get('prince_faq_faq');
+        $data = $this->dataPersistor->get('mageprince_faq_faq');
         
         if (!empty($data)) {
             $model = $this->collection->getNewEmptyItem();
             $model->setData($data);
             $this->loadedData[$model->getId()] = $model->getData();
-            $this->dataPersistor->clear('prince_faq_faq');
+            $this->dataPersistor->clear('mageprince_faq_faq');
         }
         
         return $this->loadedData;

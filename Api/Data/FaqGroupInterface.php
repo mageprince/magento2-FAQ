@@ -4,13 +4,13 @@
  * MagePrince
  * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Prince_Faq
+ * @package Mageprince_Faq
  * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
  * @author MagePrince <info@mageprince.com>
  */
 
-namespace Prince\Faq\Api\Data;
+namespace Mageprince\Faq\Api\Data;
 
 interface FaqGroupInterface
 {
@@ -33,7 +33,7 @@ interface FaqGroupInterface
     /**
      * Set faqgroup_id
      * @param string $faqgroup_id
-     * @return \Prince\Faq\Api\Data\FaqGroupInterface
+     * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
      */
     
     public function setFaqgroupId($faqgroupId);
@@ -48,7 +48,7 @@ interface FaqGroupInterface
     /**
      * Set groupname
      * @param string $groupname
-     * @return \Prince\Faq\Api\Data\FaqGroupInterface
+     * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
      */
     
     public function setGroupname($groupname);
@@ -63,7 +63,7 @@ interface FaqGroupInterface
     /**
      * Set groupcode
      * @param string $groupcode
-     * @return \Prince\Faq\Api\Data\FaqGroupInterface
+     * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
      */
     
     public function setGroupcode($groupcode);
@@ -78,7 +78,7 @@ interface FaqGroupInterface
     /**
      * Set icon
      * @param string $icon
-     * @return \Prince\Faq\Api\Data\FaqGroupInterface
+     * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
      */
     
     public function setIcon($icon);
@@ -93,7 +93,7 @@ interface FaqGroupInterface
     /**
      * Set width
      * @param string $width
-     * @return \Prince\Faq\Api\Data\FaqGroupInterface
+     * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
      */
     
     public function setWidth($width);
@@ -108,7 +108,7 @@ interface FaqGroupInterface
     /**
      * Set faqids
      * @param string $faqids
-     * @return \Prince\Faq\Api\Data\FaqGroupInterface
+     * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
      */
     
     public function setFaqids($faqids);
@@ -123,7 +123,7 @@ interface FaqGroupInterface
     /**
      * Set status
      * @param string $status
-     * @return \Prince\Faq\Api\Data\FaqGroupInterface
+     * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
      */
     
     public function setStatus($status);

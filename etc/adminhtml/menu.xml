@@ -1,9 +1,53 @@
 <?xml version="1.0" ?>
+<!--
+/**
+ * MagePrince
+ * Copyright (C) 2020 Mageprince <info@mageprince.com>
+ *
+ * @package Mageprince_Faq
+ * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MagePrince <info@mageprince.com>
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
 	<menu>
-		<add id="Prince::top_level" module="Prince_Faq" resource="Prince_Faq::Faq" sortOrder="11" title="FAQ"/>
-		<add action="prince_faq/faqgroup/index" id="Prince::prince_faqgroup" module="Prince_Faq" parent="Prince::top_level" resource="Prince_Faq::Faq" sortOrder="10" title="Manage FAQGroup"/>
-		<add action="prince_faq/faq/index" id="Prince::prince_faq" module="Prince_Faq" parent="Prince::top_level" resource="Prince_Faq::Faq" sortOrder="20" title="Manage FAQ"/>
-        <add action="adminhtml/system_config/edit/section/faqtab" id="Prince::prince_faqgroup_settings" module="Prince_Faq" parent="Prince::top_level" resource="Prince_Faq::FaqGroup" sortOrder="30" title="Settings"/>
+		<add id="MageprinceMenu_Base::menu"
+			 module="Mageprince_Faq"
+			 resource="Mageprince_Base::menu"
+			 sortOrder="11"
+			 translate="title"
+			 title="MagePrince"/>
+		<add id="Mageprince_Faq::menu"
+			 module="Mageprince_Faq"
+			 parent="MageprinceMenu_Base::menu"
+			 resource="Mageprince_Faq::Faq"
+			 sortOrder="10"
+			 translate="title"
+			 title="FAQ"/>
+		<add id="Mageprince::mageprince_faqgroup"
+			 action="mageprince_faq/faqgroup/index"
+			 module="Mageprince_Faq"
+			 parent="Mageprince_Faq::menu"
+			 resource="Mageprince_Faq::FaqGroup"
+			 sortOrder="10"
+			 translate="title"
+			 title="Manage FAQGroup"/>
+		<add id="Mageprince::mageprince_faq"
+			 action="mageprince_faq/faq/index"
+			 module="Mageprince_Faq"
+			 parent="Mageprince_Faq::menu"
+			 resource="Mageprince_Faq::Faq"
+			 sortOrder="20"
+			 translate="title"
+			 title="Manage FAQ"/>
+        <add id="Mageprince::mageprince_settings"
+			 action="adminhtml/system_config/edit/section/faqtab"
+			 module="Mageprince_Faq"
+			 parent="Mageprince_Faq::menu"
+			 resource="Mageprince_Faq::Settings"
+			 sortOrder="30"
+			 translate="title"
+			 title="Settings"/>
 	</menu>
 </config>

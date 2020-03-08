@@ -4,21 +4,21 @@
  * MagePrince
  * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Prince_Faq
+ * @package Mageprince_Faq
  * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
  * @author MagePrince <info@mageprince.com>
  */
 
-namespace Prince\Faq\Ui\Component\Listing\Column;
+namespace Mageprince\Faq\Ui\Component\Listing\Column;
 
 class FaqActions extends \Magento\Ui\Component\Listing\Columns\Column
 {
 
-    const URL_PATH_EDIT = 'prince_faq/faq/edit';
+    const URL_PATH_EDIT = 'mageprince_faq/faq/edit';
     private $urlBuilder;
-    const URL_PATH_DELETE = 'prince_faq/faq/delete';
-    const URL_PATH_DETAILS = 'prince_faq/faq/details';
+    const URL_PATH_DELETE = 'mageprince_faq/faq/delete';
+    const URL_PATH_DETAILS = 'mageprince_faq/faq/details';
 
     /**
      * @param \Magento\Framework\View\Element\UiComponent\ContextInterface $context

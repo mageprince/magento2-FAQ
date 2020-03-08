@@ -4,15 +4,15 @@
  * MagePrince
  * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Prince_Faq
+ * @package Mageprince_Faq
  * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
  * @author MagePrince <info@mageprince.com>
  */
 
-namespace Prince\Faq\Controller\Adminhtml\FaqGroup;
+namespace Mageprince\Faq\Controller\Adminhtml\FaqGroup;
 
-class Edit extends \Prince\Faq\Controller\Adminhtml\FaqGroup
+class Edit extends \Mageprince\Faq\Controller\Adminhtml\FaqGroup
 {
 
     /**
@@ -21,7 +21,7 @@ class Edit extends \Prince\Faq\Controller\Adminhtml\FaqGroup
     private $resultPageFactory;
 
     /**
-     * @var \Prince\Faq\Model\FaqGroup
+     * @var \Mageprince\Faq\Model\FaqGroup
      */
     private $faqGroupModel;
 
@@ -34,7 +34,7 @@ class Edit extends \Prince\Faq\Controller\Adminhtml\FaqGroup
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Registry $coreRegistry,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Prince\Faq\Model\FaqGroup $faqGroupModel
+        \Mageprince\Faq\Model\FaqGroup $faqGroupModel
     ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->faqGroupModel = $faqGroupModel;

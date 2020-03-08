@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <!--
 /**
  * MagePrince
@@ -10,10 +10,8 @@
  * @author MagePrince <info@mageprince.com>
  */
 -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
-	<router id="admin">
-		<route frontName="mageprince_faq" id="mageprince_faq">
-			<module before="Magento_Backend" name="Mageprince_Faq"/>
-		</route>
-	</router>
-</config>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Mageprince_Faq::css/main.css"/>
+    </head>
+</page>

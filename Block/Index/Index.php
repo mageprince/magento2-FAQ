@@ -4,13 +4,13 @@
  * MagePrince
  * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Prince_Faq
+ * @package Mageprince_Faq
  * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
  * @author MagePrince <info@mageprince.com>
  */
 
-namespace Prince\Faq\Block\Index;
+namespace Mageprince\Faq\Block\Index;
 
 use Magento\Customer\Model\Session;
 
@@ -30,9 +30,9 @@ class Index extends \Magento\Framework\View\Element\Template
 
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
-        \Prince\Faq\Model\ResourceModel\Faq\CollectionFactory $faqCollectionFactory,
-        \Prince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory $faqGroupCollectionFactory,
-        \Prince\Faq\Model\FaqGroupFactory $faqGroupFactory,
+        \Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory $faqCollectionFactory,
+        \Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory $faqGroupCollectionFactory,
+        \Mageprince\Faq\Model\FaqGroupFactory $faqGroupFactory,
         Session $customerSession,
         \Zend_Filter_Interface $templateProcessor
     ) {

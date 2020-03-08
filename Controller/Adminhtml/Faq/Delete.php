@@ -4,15 +4,15 @@
  * MagePrince
  * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Prince_Faq
+ * @package Mageprince_Faq
  * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
  * @author MagePrince <info@mageprince.com>
  */
 
-namespace Prince\Faq\Controller\Adminhtml\Faq;
+namespace Mageprince\Faq\Controller\Adminhtml\Faq;
 
-class Delete extends \Prince\Faq\Controller\Adminhtml\Faq
+class Delete extends \Mageprince\Faq\Controller\Adminhtml\Faq
 {
     /**
      * Delete action
@@ -28,7 +28,7 @@ class Delete extends \Prince\Faq\Controller\Adminhtml\Faq
         if ($id) {
             try {
                 // init model and delete
-                $model = $this->_objectManager->create('Prince\Faq\Model\Faq');
+                $model = $this->_objectManager->create('Mageprince\Faq\Model\Faq');
                 $model->load($id);
                 $model->delete();
                 // display success message

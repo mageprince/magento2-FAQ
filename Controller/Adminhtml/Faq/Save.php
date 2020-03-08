@@ -4,13 +4,13 @@
  * MagePrince
  * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Prince_Faq
+ * @package Mageprince_Faq
  * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
  * @author MagePrince <info@mageprince.com>
  */
 
-namespace Prince\Faq\Controller\Adminhtml\Faq;
+namespace Mageprince\Faq\Controller\Adminhtml\Faq;
 
 use Magento\Framework\Exception\LocalizedException;
 
@@ -28,7 +28,7 @@ class Save extends \Magento\Backend\App\Action
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor,
-        \Prince\Faq\Model\Faq $faqModel
+        \Mageprince\Faq\Model\Faq $faqModel
     ) {
         $this->dataPersistor = $dataPersistor;
         $this->faqModel = $faqModel;

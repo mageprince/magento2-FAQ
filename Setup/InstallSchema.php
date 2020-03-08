@@ -4,13 +4,13 @@
  * MagePrince
  * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Prince_Faq
+ * @package Mageprince_Faq
  * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
  * @author MagePrince <info@mageprince.com>
  */
 
-namespace Prince\Faq\Setup;
+namespace Mageprince\Faq\Setup;
 
 use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
@@ -29,7 +29,7 @@ class InstallSchema implements InstallSchemaInterface
         $installer = $setup;
         $installer->startSetup();
 
-        $table_prince_faqgroup = $setup->getConnection()->newTable($setup->getTable('prince_faqgroup'));
+        $table_prince_faqgroup = $setup->getConnection()->newTable($setup->getTable('mageprince_faqgroup'));
 
         $table_prince_faqgroup->addColumn(
             'faqgroup_id',
@@ -92,7 +92,7 @@ class InstallSchema implements InstallSchemaInterface
             'status'
         );
         
-        $table_prince_faq = $setup->getConnection()->newTable($setup->getTable('prince_faq'));
+        $table_prince_faq = $setup->getConnection()->newTable($setup->getTable('mageprince_faq'));
  
         $table_prince_faq->addColumn(
             'faq_id',

@@ -4,27 +4,27 @@
  * MagePrince
  * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Prince_Faq
+ * @package Mageprince_Faq
  * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
  * @author MagePrince <info@mageprince.com>
  */
 
-namespace Prince\Faq\Api\Data;
+namespace Mageprince\Faq\Api\Data;
 
 interface FaqGroupSearchResultsInterface extends \Magento\Framework\Api\SearchResultsInterface
 {
 
     /**
      * Get FaqGroup list.
-     * @return \Prince\Faq\Api\Data\FaqGroupInterface[]
+     * @return \Mageprince\Faq\Api\Data\FaqGroupInterface[]
      */
     
     public function getItems();
 
     /**
      * Set groupname list.
-     * @param \Prince\Faq\Api\Data\FaqGroupInterface[] $items
+     * @param \Mageprince\Faq\Api\Data\FaqGroupInterface[] $items
      * @return $this
      */
     

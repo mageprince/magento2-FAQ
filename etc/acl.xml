@@ -1,19 +1,23 @@
 <?xml version="1.0" ?>
+<!--
+/**
+ * MagePrince
+ * Copyright (C) 2020 Mageprince <info@mageprince.com>
+ *
+ * @package Mageprince_Faq
+ * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MagePrince <info@mageprince.com>
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
 	<acl>
 		<resources>
 			<resource id="Magento_Backend::admin">
-				<resource id="Prince_Faq::Faq" sortOrder="10" title="Faq">
-					<resource id="Prince_Faq::Faq_save" sortOrder="10" title="Save Faq"/>
-					<resource id="Prince_Faq::Faq_delete" sortOrder="20" title="Delete Faq"/>
-					<resource id="Prince_Faq::Faq_update" sortOrder="30" title="Update Faq"/>
-					<resource id="Prince_Faq::Faq_view" sortOrder="40" title="View Faq"/>
-				</resource>
-				<resource id="Prince_Faq::FaqGroup" sortOrder="10" title="FaqGroup">
-					<resource id="Prince_Faq::FaqGroup_save" sortOrder="10" title="Save FaqGroup"/>
-					<resource id="Prince_Faq::FaqGroup_delete" sortOrder="20" title="Delete FaqGroup"/>
-					<resource id="Prince_Faq::FaqGroup_update" sortOrder="30" title="Update FaqGroup"/>
-					<resource id="Prince_Faq::FaqGroup_view" sortOrder="40" title="View FaqGroup"/>
+				<resource id="Mageprince_Base::menu" sortOrder="10" title="MagePrince">
+					<resource id="Mageprince_Faq::Faq" sortOrder="10" title="Faq"/>
+					<resource id="Mageprince_Faq::FaqGroup" sortOrder="20" title="FaqGroup"/>
+					<resource id="Mageprince_Faq::Settings" sortOrder="30" title="Settings" />
 				</resource>
 			</resource>
 		</resources>

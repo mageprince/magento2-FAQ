@@ -1,43 +1,54 @@
 <?xml version="1.0" ?>
+<!--
+/**
+ * MagePrince
+ * Copyright (C) 2020 Mageprince <info@mageprince.com>
+ *
+ * @package Mageprince_Faq
+ * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MagePrince <info@mageprince.com>
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-	<preference for="Prince\Faq\Api\FaqGroupRepositoryInterface" type="Prince\Faq\Model\FaqGroupRepository"/>
-	<preference for="Prince\Faq\Api\Data\FaqGroupInterface" type="Prince\Faq\Model\FaqGroup"/>
-	<preference for="Prince\Faq\Api\Data\FaqGroupSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
-	<virtualType name="Prince\Faq\Model\ResourceModel\FaqGroup\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+	<preference for="Mageprince\Faq\Api\FaqGroupRepositoryInterface" type="Mageprince\Faq\Model\FaqGroupRepository"/>
+	<preference for="Mageprince\Faq\Api\Data\FaqGroupInterface" type="Mageprince\Faq\Model\FaqGroup"/>
+	<preference for="Mageprince\Faq\Api\Data\FaqGroupSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Mageprince\Faq\Model\ResourceModel\FaqGroup\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
 		<arguments>
-			<argument name="mainTable" xsi:type="string">prince_faqgroup</argument>
-			<argument name="resourceModel" xsi:type="string">Prince\Faq\Model\ResourceModel\FaqGroup\Collection</argument>
+			<argument name="mainTable" xsi:type="string">mageprince_faqgroup</argument>
+			<argument name="resourceModel" xsi:type="string">Mageprince\Faq\Model\ResourceModel\FaqGroup\Collection</argument>
 		</arguments>
 	</virtualType>
 	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
 		<arguments>
 			<argument name="collections" xsi:type="array">
-				<item name="prince_faqgroup_grid_data_source" xsi:type="string">Prince\Faq\Model\ResourceModel\FaqGroup\Grid\Collection</item>
-				<item name="prince_faq_grid_data_source" xsi:type="string">Prince\Faq\Model\ResourceModel\Faq\Grid\Collection</item>
+				<item name="mageprince_faqgroup_grid_data_source" xsi:type="string">Mageprince\Faq\Model\ResourceModel\FaqGroup\Grid\Collection</item>
+				<item name="mageprince_faq_grid_data_source" xsi:type="string">Mageprince\Faq\Model\ResourceModel\Faq\Grid\Collection</item>
 			</argument>
 		</arguments>
 	</type>
-	<virtualType name="Prince\Faq\Model\ResourceModel\Faq\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+	<virtualType name="Mageprince\Faq\Model\ResourceModel\Faq\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
 		<arguments>
-			<argument name="mainTable" xsi:type="string">prince_faq</argument>
-			<argument name="resourceModel" xsi:type="string">Prince\Faq\Model\ResourceModel\Faq\Collection</argument>
+			<argument name="mainTable" xsi:type="string">mageprince_faq</argument>
+			<argument name="resourceModel" xsi:type="string">Mageprince\Faq\Model\ResourceModel\Faq\Collection</argument>
 		</arguments>
 	</virtualType>
-	<type name="Prince\Faq\Block\Index\Index">
-	    <arguments>
-	        <argument name="templateProcessor" xsi:type="object">Magento\Widget\Model\Template\Filter</argument>
-	    </arguments>
+	<type name="Mageprince\Faq\Block\Index\Index">
+		<arguments>
+			<argument name="templateProcessor" xsi:type="object">Magento\Widget\Model\Template\Filter</argument>
+		</arguments>
 	</type>
-	<type name="Prince\Faq\Model\ImageUploader">
-        <arguments>
-            <argument name="baseTmpPath" xsi:type="string">faq/tmp/icon</argument>
-            <argument name="basePath" xsi:type="string">faq/icon</argument>
-            <argument name="allowedExtensions" xsi:type="array">
-                <item name="jpg" xsi:type="string">jpg</item>
-                <item name="jpeg" xsi:type="string">jpeg</item>
-                <item name="gif" xsi:type="string">gif</item>
-                <item name="png" xsi:type="string">png</item>
-            </argument>
-        </arguments>
-    </type>
+	<type name="Mageprince\Faq\Model\ImageUploader">
+		<arguments>
+			<argument name="baseTmpPath" xsi:type="string">faq/tmp/icon</argument>
+			<argument name="basePath" xsi:type="string">faq/icon</argument>
+			<argument name="allowedExtensions" xsi:type="array">
+				<item name="jpg" xsi:type="string">jpg</item>
+				<item name="jpeg" xsi:type="string">jpeg</item>
+				<item name="gif" xsi:type="string">gif</item>
+				<item name="png" xsi:type="string">png</item>
+			</argument>
+		</arguments>
+	</type>
 </config>

@@ -4,13 +4,13 @@
  * MagePrince
  * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Prince_Faq
+ * @package Mageprince_Faq
  * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
  * @author MagePrince <info@mageprince.com>
  */
 
-namespace Prince\Faq\Controller\Index;
+namespace Mageprince\Faq\Controller\Index;
 
 class Ajax extends \Magento\Framework\App\Action\Action
 {
@@ -22,19 +22,19 @@ class Ajax extends \Magento\Framework\App\Action\Action
     protected $resultJsonFactory;
 
     /**
-     * @var \Prince\Faq\Helper\Data
+     * @var \Mageprince\Faq\Helper\Data
      */
     protected $helper;
 
     /**
      * Index constructor.
      * @param \Magento\Framework\App\Action\Context $context
-     * @param \Prince\Faq\Helper\Data $helper
+     * @param \Mageprince\Faq\Helper\Data $helper
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
-        \Prince\Faq\Helper\Data $helper,
+        \Mageprince\Faq\Helper\Data $helper,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
     ) {
@@ -54,8 +54,8 @@ class Ajax extends \Magento\Framework\App\Action\Action
         $resultPage = $this->resultPageFactory->create();
         $groupId = $this->getRequest()->getParam('groupId');
         $block = $resultPage->getLayout()
-            ->createBlock('Prince\Faq\Block\Index\Index')
-            ->setTemplate('Prince_Faq::faq_ajax.phtml')
+            ->createBlock('Mageprince\Faq\Block\Index\Index')
+            ->setTemplate('Mageprince_Faq::faq_ajax.phtml')
             ->setGroupId($groupId)
             ->toHtml();
 

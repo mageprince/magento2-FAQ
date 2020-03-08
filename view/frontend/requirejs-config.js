@@ -1,7 +1,7 @@
 var config = {
     map: {
         '*': {
-            'faq': 'Prince_Faq/js/faq'
+            'faq': 'Mageprince_Faq/js/faq'
         }
     }
 };

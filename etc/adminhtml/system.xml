@@ -1,8 +1,19 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * MagePrince
+ * Copyright (C) 2020 Mageprince <info@mageprince.com>
+ *
+ * @package Mageprince_Faq
+ * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MagePrince <info@mageprince.com>
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="mageprince" translate="label" sortOrder="110">
-            <label>MagePrince</label>
+        <tab id="mageprince" translate="label" sortOrder="110" class="mageprince-tab">
+            <label></label>
         </tab>
         <section id="faqtab" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
@@ -39,7 +50,7 @@
                 <label>Design</label>
                 <field id="page_type" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Page Style</label>
-                    <source_model>Prince\Faq\Model\Source\Config\PageType</source_model>
+                    <source_model>Mageprince\Faq\Model\Source\Config\PageType</source_model>
                 </field>
                 <field id="showgroup" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Show Group Icon</label>

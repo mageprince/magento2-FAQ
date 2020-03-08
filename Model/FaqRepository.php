@@ -4,24 +4,24 @@
  * MagePrince
  * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Prince_Faq
+ * @package Mageprince_Faq
  * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
  * @author MagePrince <info@mageprince.com>
  */
 
-namespace Prince\Faq\Model;
+namespace Mageprince\Faq\Model;
 
-use Prince\Faq\Api\Data\FaqSearchResultsInterfaceFactory;
+use Mageprince\Faq\Api\Data\FaqSearchResultsInterfaceFactory;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Api\DataObjectHelper;
-use Prince\Faq\Api\Data\FaqInterfaceFactory;
-use Prince\Faq\Api\FaqRepositoryInterface;
-use Prince\Faq\Model\ResourceModel\Faq\CollectionFactory as FaqCollectionFactory;
+use Mageprince\Faq\Api\Data\FaqInterfaceFactory;
+use Mageprince\Faq\Api\FaqRepositoryInterface;
+use Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory as FaqCollectionFactory;
 use Magento\Framework\Reflection\DataObjectProcessor;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Prince\Faq\Model\ResourceModel\Faq as ResourceFaq;
+use Mageprince\Faq\Model\ResourceModel\Faq as ResourceFaq;
 use Magento\Framework\Api\SortOrder;
 use Magento\Store\Model\StoreManagerInterface;
 
@@ -34,17 +34,17 @@ class FaqRepository implements FaqRepositoryInterface
     private $storeManager;
 
     /**
-     * @var \Prince\Faq\Model\ResourceModel\Faq
+     * @var \Mageprince\Faq\Model\ResourceModel\Faq
      */
     private $resource;
 
     /**
-     * @var \Prince\Faq\Model\ResourceModel\Faq
+     * @var \Mageprince\Faq\Model\ResourceModel\Faq
      */
     private $FaqFactory;
 
     /**
-     * @var \Prince\Faq\Model\ResourceModel\Faq\CollectionFactory
+     * @var \Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory
      */
     private $FaqCollectionFactory;
 
@@ -59,12 +59,12 @@ class FaqRepository implements FaqRepositoryInterface
     private $dataObjectHelper;
 
     /**
-     * @var \Prince\Faq\Api\Data\FaqInterfaceFactory
+     * @var \Mageprince\Faq\Api\Data\FaqInterfaceFactory
      */
     private $dataFaqFactory;
 
     /**
-     * @var \Prince\Faq\Api\Data\FaqSearchResultsInterfaceFactory
+     * @var \Mageprince\Faq\Api\Data\FaqSearchResultsInterfaceFactory
      */
     private $searchResultsFactory;
 
@@ -101,7 +101,7 @@ class FaqRepository implements FaqRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function save(\Prince\Faq\Api\Data\FaqInterface $faq)
+    public function save(\Mageprince\Faq\Api\Data\FaqInterface $faq)
     {
         try {
             $faq->getResource()->save($faq);
@@ -168,7 +168,7 @@ class FaqRepository implements FaqRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function delete(\Prince\Faq\Api\Data\FaqInterface $faq)
+    public function delete(\Mageprince\Faq\Api\Data\FaqInterface $faq)
     {
         try {
             $faq->getResource()->delete($faq);

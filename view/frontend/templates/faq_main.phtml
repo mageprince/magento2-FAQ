@@ -1,8 +1,21 @@
-<?php $isEnable = $block->getConfig('faqtab/general/enable') ?>
-<?php $showGroup = $block->getConfig('faqtab/design/showgroup') ?>
-<?php $showGroupTitle = $block->getConfig('faqtab/design/showgrouptitle') ?>
-<?php $pageType = $block->getConfig('faqtab/design/page_type') ?>
-<?php $faqGroupCollection = $block->getFaqGroupCollection() ?>
+<?php
+/**
+ * MagePrince
+ * Copyright (C) 2020 Mageprince <info@mageprince.com>
+ *
+ * @package Mageprince_Faq
+ * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MagePrince <info@mageprince.com>
+ */
+?>
+<?php
+$isEnable = $block->getConfig('faqtab/general/enable');
+$showGroup = $block->getConfig('faqtab/design/showgroup');
+$showGroupTitle = $block->getConfig('faqtab/design/showgrouptitle');
+$pageType = $block->getConfig('faqtab/design/page_type');
+$faqGroupCollection = $block->getFaqGroupCollection();
+?>
 <?php if ($faqGroupCollection->getSize()) : ?>
     <?php if ($isEnable) : ?>
     <div class="faq-collection">
@@ -18,7 +31,7 @@
                                          src="<?php /* @noEscape */ echo $block->getImageUrl($group->getIcon()); ?>" />
                                 <?php else : ?>
                                     <img class="group-image"
-                                         src="<?php /* @noEscape */ echo $block->getViewFileUrl('Prince_Faq::images/faq.png'); ?>" />
+                                         src="<?php /* @noEscape */ echo $block->getViewFileUrl('Mageprince_Faq::images/faq.png'); ?>" />
                                 <?php endif; ?>
                                 </a>
                             </div>

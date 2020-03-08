@@ -4,16 +4,16 @@
  * MagePrince
  * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Prince_Faq
+ * @package Mageprince_Faq
  * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
  * @author MagePrince <info@mageprince.com>
  */
 
-namespace Prince\Faq\Model\FaqGroup;
+namespace Mageprince\Faq\Model\FaqGroup;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
-use Prince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory;
+use Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory;
 use Magento\Store\Model\StoreManagerInterface;
 
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
@@ -27,7 +27,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     private $dataPersistor;
 
     /**
-     * @var \Prince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory
+     * @var \Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory
      */
     public $collection;
 

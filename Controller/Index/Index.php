@@ -4,13 +4,13 @@
  * MagePrince
  * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Prince_Faq
+ * @package Mageprince_Faq
  * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
  * @author MagePrince <info@mageprince.com>
  */
 
-namespace Prince\Faq\Controller\Index;
+namespace Mageprince\Faq\Controller\Index;
 
 class Index extends \Magento\Framework\App\Action\Action
 {
@@ -20,19 +20,19 @@ class Index extends \Magento\Framework\App\Action\Action
     private $resultPageFactory;
 
     /**
-     * @var \Prince\Faq\Helper\Data
+     * @var \Mageprince\Faq\Helper\Data
      */
     protected $helper;
 
     /**
      * Index constructor.
      * @param \Magento\Framework\App\Action\Context $context
-     * @param \Prince\Faq\Helper\Data $helper
+     * @param \Mageprince\Faq\Helper\Data $helper
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
-        \Prince\Faq\Helper\Data $helper,
+        \Mageprince\Faq\Helper\Data $helper,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory
     ) {
         $this->helper = $helper;

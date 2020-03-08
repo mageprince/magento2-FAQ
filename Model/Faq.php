@@ -4,15 +4,15 @@
  * MagePrince
  * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Prince_Faq
+ * @package Mageprince_Faq
  * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
  * @author MagePrince <info@mageprince.com>
  */
 
-namespace Prince\Faq\Model;
+namespace Mageprince\Faq\Model;
 
-use Prince\Faq\Api\Data\FaqInterface;
+use Mageprince\Faq\Api\Data\FaqInterface;
 
 class Faq extends \Magento\Framework\Model\AbstractModel implements FaqInterface
 {
@@ -22,7 +22,7 @@ class Faq extends \Magento\Framework\Model\AbstractModel implements FaqInterface
      */
     public function _construct()
     {
-        $this->_init('Prince\Faq\Model\ResourceModel\Faq');
+        $this->_init('Mageprince\Faq\Model\ResourceModel\Faq');
     }
 
     /**
@@ -37,7 +37,7 @@ class Faq extends \Magento\Framework\Model\AbstractModel implements FaqInterface
     /**
      * Set faq_id
      * @param string $faqId
-     * @return \Prince\Faq\Api\Data\FaqInterface
+     * @return \Mageprince\Faq\Api\Data\FaqInterface
      */
     public function setFaqId($faqId)
     {
@@ -56,7 +56,7 @@ class Faq extends \Magento\Framework\Model\AbstractModel implements FaqInterface
     /**
      * Set title
      * @param string $title
-     * @return \Prince\Faq\Api\Data\FaqInterface
+     * @return \Mageprince\Faq\Api\Data\FaqInterface
      */
     public function setTitle($title)
     {
@@ -75,7 +75,7 @@ class Faq extends \Magento\Framework\Model\AbstractModel implements FaqInterface
     /**
      * Set content
      * @param string $content
-     * @return \Prince\Faq\Api\Data\FaqInterface
+     * @return \Mageprince\Faq\Api\Data\FaqInterface
      */
     public function setContent($content)
     {
@@ -94,7 +94,7 @@ class Faq extends \Magento\Framework\Model\AbstractModel implements FaqInterface
     /**
      * Set sortorder
      * @param string $sortorder
-     * @return \Prince\Faq\Api\Data\FaqInterface
+     * @return \Mageprince\Faq\Api\Data\FaqInterface
      */
     public function setSortorder($sortorder)
     {
@@ -113,7 +113,7 @@ class Faq extends \Magento\Framework\Model\AbstractModel implements FaqInterface
     /**
      * Set status
      * @param string $status
-     * @return \Prince\Faq\Api\Data\FaqInterface
+     * @return \Mageprince\Faq\Api\Data\FaqInterface
      */
     public function setStatus($status)
     {
