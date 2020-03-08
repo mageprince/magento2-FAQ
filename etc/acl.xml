@@ -14,10 +14,10 @@
 	<acl>
 		<resources>
 			<resource id="Magento_Backend::admin">
-				<resource id="Mageprince_Base::menu" sortOrder="10" title="MagePrince">
-					<resource id="Mageprince_Faq::Faq" sortOrder="10" title="Faq"/>
-					<resource id="Mageprince_Faq::FaqGroup" sortOrder="20" title="FaqGroup"/>
-					<resource id="Mageprince_Faq::Settings" sortOrder="30" title="Settings" />
+				<resource id="Mageprince_Faq::menu" sortOrder="10" title="FAQ">
+					<resource id="Mageprince_Faq::Faq" sortOrder="10" title="Faq Management"/>
+					<resource id="Mageprince_Faq::FaqGroup" sortOrder="20" title="Faq Group Management"/>
+					<resource id="Mageprince_Faq::Configuration" sortOrder="30" title="Configuration" />
 				</resource>
 			</resource>
 		</resources>

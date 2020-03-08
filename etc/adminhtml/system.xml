@@ -19,7 +19,7 @@
             <class>separator-top</class>
             <label>FAQ</label>
             <tab>mageprince</tab>
-            <resource>Magento_Backend::content</resource>
+            <resource>Mageprince_Faq::Configuration</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General Configuration</label>
                 <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">

@@ -12,20 +12,13 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
 	<menu>
-		<add id="MageprinceMenu_Base::menu"
-			 module="Mageprince_Faq"
-			 resource="Mageprince_Base::menu"
-			 sortOrder="11"
-			 translate="title"
-			 title="MagePrince"/>
 		<add id="Mageprince_Faq::menu"
 			 module="Mageprince_Faq"
-			 parent="MageprinceMenu_Base::menu"
-			 resource="Mageprince_Faq::Faq"
-			 sortOrder="10"
+			 resource="Mageprince_Faq::menu"
+			 sortOrder="11"
 			 translate="title"
 			 title="FAQ"/>
-		<add id="Mageprince::mageprince_faqgroup"
+		<add id="Mageprince_Faq::faqgroup"
 			 action="mageprince_faq/faqgroup/index"
 			 module="Mageprince_Faq"
 			 parent="Mageprince_Faq::menu"
@@ -33,7 +26,7 @@
 			 sortOrder="10"
 			 translate="title"
 			 title="Manage FAQGroup"/>
-		<add id="Mageprince::mageprince_faq"
+		<add id="Mageprince_Faq::faq"
 			 action="mageprince_faq/faq/index"
 			 module="Mageprince_Faq"
 			 parent="Mageprince_Faq::menu"
@@ -41,13 +34,13 @@
 			 sortOrder="20"
 			 translate="title"
 			 title="Manage FAQ"/>
-        <add id="Mageprince::mageprince_settings"
+        <add id="Mageprince_Faq::configuration"
 			 action="adminhtml/system_config/edit/section/faqtab"
 			 module="Mageprince_Faq"
 			 parent="Mageprince_Faq::menu"
-			 resource="Mageprince_Faq::Settings"
+			 resource="Mageprince_Faq::Configuration"
 			 sortOrder="30"
 			 translate="title"
-			 title="Settings"/>
+			 title="Configuration"/>
 	</menu>
 </config>
