@@ -22,6 +22,6 @@ class Faq extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      */
     public function _construct()
     {
-        $this->_init('mageprince_faq', 'faq_id');
+        $this->_init('prince_faq', 'faq_id');
     }
 }

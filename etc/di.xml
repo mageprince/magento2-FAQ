@@ -16,7 +16,7 @@
 	<preference for="Mageprince\Faq\Api\Data\FaqGroupSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 	<virtualType name="Mageprince\Faq\Model\ResourceModel\FaqGroup\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
 		<arguments>
-			<argument name="mainTable" xsi:type="string">mageprince_faqgroup</argument>
+			<argument name="mainTable" xsi:type="string">prince_faqgroup</argument>
 			<argument name="resourceModel" xsi:type="string">Mageprince\Faq\Model\ResourceModel\FaqGroup\Collection</argument>
 		</arguments>
 	</virtualType>
@@ -30,7 +30,7 @@
 	</type>
 	<virtualType name="Mageprince\Faq\Model\ResourceModel\Faq\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
 		<arguments>
-			<argument name="mainTable" xsi:type="string">mageprince_faq</argument>
+			<argument name="mainTable" xsi:type="string">prince_faq</argument>
 			<argument name="resourceModel" xsi:type="string">Mageprince\Faq\Model\ResourceModel\Faq\Collection</argument>
 		</arguments>
 	</virtualType>

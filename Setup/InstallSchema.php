@@ -29,7 +29,7 @@ class InstallSchema implements InstallSchemaInterface
         $installer = $setup;
         $installer->startSetup();
 
-        $table_prince_faqgroup = $setup->getConnection()->newTable($setup->getTable('mageprince_faqgroup'));
+        $table_prince_faqgroup = $setup->getConnection()->newTable($setup->getTable('prince_faqgroup'));
 
         $table_prince_faqgroup->addColumn(
             'faqgroup_id',
@@ -92,7 +92,7 @@ class InstallSchema implements InstallSchemaInterface
             'status'
         );
         
-        $table_prince_faq = $setup->getConnection()->newTable($setup->getTable('mageprince_faq'));
+        $table_prince_faq = $setup->getConnection()->newTable($setup->getTable('prince_faq'));
  
         $table_prince_faq->addColumn(
             'faq_id',
