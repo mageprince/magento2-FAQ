@@ -16,6 +16,14 @@ use Magento\Customer\Model\Session;
 
 class Index extends \Magento\Framework\View\Element\Template
 {
+    const CONFIG_PATH_IS_ENABLE = 'faqtab/general/enable';
+
+    const CONFIG_PATH_IS_SHOW_GROUP = 'faqtab/design/showgroup';
+
+    const CONFIG_PATH_IS_SHOW_GROUP_TITLE = 'faqtab/design/showgrouptitle';
+
+    const CONFIG_PATH_PAGE_TYPE = 'faqtab/design/page_type';
+
     private $faqCollectionFactory;
 
     private $faqGroupCollectionFactory;
@@ -48,6 +56,9 @@ class Index extends \Magento\Framework\View\Element\Template
 
     public function getFaqCollection($group)
     {
+        if ($this->getGroupId()) {
+            $group = $this->getGroupId();
+        }
         $faqCollection = $this->faqCollectionFactory->create();
         $faqCollection->addFieldToFilter('group', ['like' => '%'.$group.'%']);
         $faqCollection->addFieldToFilter('status', 1);
@@ -128,5 +139,50 @@ class Index extends \Magento\Framework\View\Element\Template
     public function getCurrentStore()
     {
         return $this->storeManager->getStore()->getId();
+    }
+
+    public function isEnable()
+    {
+        return $this->getConfig(self::CONFIG_PATH_IS_ENABLE);
+    }
+
+    public function isShowGroup()
+    {
+        if ($this->getShowGroup() != null) {
+            return $this->checkBlockData($this->getShowGroup());
+        } else {
+            return $this->getConfig(self::CONFIG_PATH_IS_SHOW_GROUP);
+        }
+    }
+
+    public function isShowGroupTitle()
+    {
+        if ($this->getShowGroupTitle() != null) {
+            return $this->checkBlockData($this->getShowGroupTitle());
+        } else {
+            return $this->getConfig(self::CONFIG_PATH_IS_SHOW_GROUP_TITLE);
+        }
+    }
+
+    private function checkBlockData($data)
+    {
+        if ($data == '1') {
+            return true;
+        } else if ($data == '0') {
+            return false;
+        }
+    }
+
+    public function getPageTypeAction()
+    {
+        if ($this->getPageType() == 'ajax') {
+            $pageType = 'ajax';
+        } else if ($this->getPageType() == 'scroll') {
+            $pageType = 'scroll';
+        } else {
+            $pageType = $this->getConfig(self::CONFIG_PATH_PAGE_TYPE);
+        }
+
+        return $pageType;
     }
 }

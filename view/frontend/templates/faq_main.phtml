@@ -10,94 +10,110 @@
  */
 ?>
 <?php
-$isEnable = $block->getConfig('faqtab/general/enable');
-$showGroup = $block->getConfig('faqtab/design/showgroup');
-$showGroupTitle = $block->getConfig('faqtab/design/showgrouptitle');
-$pageType = $block->getConfig('faqtab/design/page_type');
+/** @var $block \Mageprince\Faq\Block\Index\Index */
+$pageType = $block->getPageTypeAction();
 $faqGroupCollection = $block->getFaqGroupCollection();
 ?>
 <?php if ($faqGroupCollection->getSize()) : ?>
-    <?php if ($isEnable) : ?>
+    <?php if ($block->isEnable()) : ?>
     <div class="faq-collection">
-        <?php if ($showGroup || $pageType == 'ajax') : ?>
-            <div class="faq-groups">
-                <?php foreach ($faqGroupCollection as $group) : ?>
-                    <div class="faq-group">
-                        <?php if ($showGroup || $pageType == 'ajax') : ?>
-                            <div id="faq-group-image" class="faq-group-image">
-                                <a href="#group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>" class="group-link" groupId="<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">
-                                <?php if ($group->getIcon()) : ?>
-                                    <img class="group-image"
-                                         src="<?php /* @noEscape */ echo $block->getImageUrl($group->getIcon()); ?>" />
-                                <?php else : ?>
-                                    <img class="group-image"
-                                         src="<?php /* @noEscape */ echo $block->getViewFileUrl('Mageprince_Faq::images/faq.png'); ?>" />
-                                <?php endif; ?>
-                                </a>
-                            </div>
-                        <?php endif; ?>
-                        <?php if ($showGroupTitle) : ?>
-                            <div class="faq-groupname">
-                                <a href="#group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>" class="group-link" groupId="<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">
-                                    <?php /* @noEscape */ echo $group->getGroupName(); ?>
-                                </a>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
-        <div id="faq-content" class="faq-content">
-            <?php if ($pageType == 'scroll') : ?>
-                <?php foreach ($faqGroupCollection as $group) : ?>
-                    <div id="group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">
-                        <?php if ($showGroupTitle) : ?>
-                            <div class="group-title">
-                                <i></i><?php /* @noEscape */ echo $group->getGroupName(); ?>
-                            </div>
-                        <?php endif; ?>
-                        <div class="faq-accordion">
-                        <?php $faqCollection = $block->getFaqCollection($group->getId()); ?>
-                            <?php if ($faqCollection->getSize()) : ?>
-                                <?php foreach ($faqCollection as $faq) : ?>
-                                    <h3><?php /* @noEscape */ echo $faq->getTitle(); ?></h3>
-                                    <div>
-                                        <p><?php /* @noEscape */ echo $block->filterOutputHtml($faq->getContent()); ?></p>
-                                    </div>
-                                <?php endforeach; ?>
-                            <?php else : ?>
-                                <div><?php /* @noEscape */ echo __('No FAQ available'); ?></div>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            <?php else :?>
-                <?php $group = $faqGroupCollection->getFirstItem(); ?>
-                <?php if ($showGroupTitle) : ?>
-                    <div class="group-title" id="group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">
-                        <i></i><?php /* @noEscape */ echo $group->getGroupName(); ?>
+        <?php if ($block->getGroupId()) : ?>
+            <div id="faq-content" class="faq-content">
+                <?php if ($block->isShowGroupTitle()) : ?>
+                <?php $groupData = $block->getGroupById($block->getGroupId()); ?>
+                    <div class="group-title">
+                        <?= /* @noEscape */ __($groupData->getGroupName()) ?>
                     </div>
                 <?php endif; ?>
                 <div class="faq-accordion">
-                    <?php $faqCollection = $block->getFaqCollection($group->getId()); ?>
+                    <?php $faqCollection = $block->getFaqCollection($block->getGroupId()); ?>
                     <?php if ($faqCollection->getSize()) : ?>
                         <?php foreach ($faqCollection as $faq) : ?>
-                            <h3><?php /* @noEscape */ echo $faq->getTitle(); ?></h3>
+                            <h3><?= /* @noEscape */ __($faq->getTitle()) ?></h3>
                             <div>
                                 <p><?php /* @noEscape */ echo $block->filterOutputHtml($faq->getContent()); ?></p>
                             </div>
                         <?php endforeach; ?>
-                    <?php else : ?>
-                        <div><?php /* @noEscape */ echo __('No FAQ available'); ?></div>
                     <?php endif; ?>
                 </div>
+            </div>
+        <?php else: ?>
+            <?php if ($block->isShowGroup() || $pageType == 'ajax') : ?>
+                <div class="faq-groups">
+                    <?php foreach ($faqGroupCollection as $group) : ?>
+                        <div class="faq-group">
+                            <?php if ($block->isShowGroup() || $pageType == 'ajax') : ?>
+                                <div id="faq-group-image" class="faq-group-image">
+                                    <a href="#group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>" class="group-link" groupId="<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">
+                                    <?php if ($group->getIcon()) : ?>
+                                        <img class="group-image"
+                                             src="<?php /* @noEscape */ echo $block->getImageUrl($group->getIcon()); ?>" />
+                                    <?php else : ?>
+                                        <img class="group-image"
+                                             src="<?php /* @noEscape */ echo $block->getViewFileUrl('Mageprince_Faq::images/faq.png'); ?>" />
+                                    <?php endif; ?>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
+                            <?php if ($block->isShowGroupTitle()) : ?>
+                                <div class="faq-groupname">
+                                    <a href="#group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>" class="group-link" groupId="<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">
+                                        <?php /* @noEscape */ echo $group->getGroupName(); ?>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             <?php endif; ?>
-        </div>
+            <div id="faq-content" class="faq-content">
+                <?php if ($pageType == 'scroll') : ?>
+                    <?php foreach ($faqGroupCollection as $group) : ?>
+                        <div id="group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">
+                            <?php if ($block->isShowGroupTitle()) : ?>
+                                <div class="group-title">
+                                    <i></i><?php /* @noEscape */ echo $group->getGroupName(); ?>
+                                </div>
+                            <?php endif; ?>
+                            <div class="faq-accordion">
+                            <?php $faqCollection = $block->getFaqCollection($group->getId()); ?>
+                                <?php if ($faqCollection->getSize()) : ?>
+                                    <?php foreach ($faqCollection as $faq) : ?>
+                                        <h3><?= /* @noEscape */ __($faq->getTitle()) ?></h3>
+                                        <div>
+                                            <p><?php /* @noEscape */ echo $block->filterOutputHtml($faq->getContent()); ?></p>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else :?>
+                    <?php $group = $faqGroupCollection->getFirstItem(); ?>
+                    <?php if ($block->isShowGroupTitle()) : ?>
+                        <div class="group-title" id="group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">
+                            <i></i><?php /* @noEscape */ echo $group->getGroupName(); ?>
+                        </div>
+                    <?php endif; ?>
+                    <div class="faq-accordion">
+                        <?php $faqCollection = $block->getFaqCollection($group->getId()); ?>
+                        <?php if ($faqCollection->getSize()) : ?>
+                            <?php foreach ($faqCollection as $faq) : ?>
+                                <h3><?= /* @noEscape */ __($faq->getTitle()) ?></h3>
+                                <div>
+                                    <p><?php /* @noEscape */ echo $block->filterOutputHtml($faq->getContent()); ?></p>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
     </div>
     <?php endif; ?>
 <?php else : ?>
     <div>
-        <h1><?php /* @noEscape */ echo __('No FAQ Group available'); ?></h1>
+        <h1><?= /* @noEscape */ __('No FAQ Group available') ?></h1>
     </div>
 <?php endif; ?>
 <script type="text/x-magento-init">

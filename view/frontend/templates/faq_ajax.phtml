@@ -10,13 +10,12 @@
  */
 ?>
 <?php
-$showGroup = $block->getConfig('faqtab/design/showgroup');
-$showGroupTitle = $block->getConfig('faqtab/design/showgrouptitle');
+/** @var $block \Mageprince\Faq\Block\Index\Index */
 $faqGroupCollection = $block->getFaqGroupCollection();
 $faqCollection = $block->getFaqCollection($block->getGroupId());
 $group = $block->getGroupById($block->getGroupId());
 ?>
-<?php if ($showGroupTitle) : ?>
+<?php if ($block->isShowGroupTitle()) : ?>
     <div class="group-title" id="group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">
         <i></i><?php /* @noEscape */ echo $group->getGroupName(); ?>
     </div>
@@ -30,7 +29,5 @@ $group = $block->getGroupById($block->getGroupId());
                 <p><?php /* @noEscape */ echo $block->filterOutputHtml($faq->getContent()); ?></p>
             </div>
         <?php endforeach; ?>
-    <?php else : ?>
-        <div><?php /* @noEscape */ echo __('No FAQ available'); ?></div>
     <?php endif; ?>
 </div>
