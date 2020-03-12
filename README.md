@@ -6,6 +6,7 @@ This module adds an easy way to use FAQ section to your Magento store with jQuer
 
 https://marketplace.magento.com/mageprince-module-faq.html
 
+
 # New Features
 
 - Show all FAQ on CMS page and static block
@@ -13,32 +14,17 @@ https://marketplace.magento.com/mageprince-module-faq.html
 - Load FAQ by ajax on group selection on the frontend
 - Custom FAQ URL
 
-# Features
+<b>Check full description and user guid on <a href="https://marketplace.magento.com/mageprince-module-faq.html">Magento Marketplace</a></b>
 
-- Can add any numbers of FAQs from admin
-- Manage categories and edit them anytime from admin
-- Add FAQ title and answers with detailed description (of any length) on the front end
-- Add FAQ with store view visibility
-- Add FAQ group with store view visibility
-- Add FAQ with customer group visibility
-- Add FAQ group with customer group visibility
-- Filter and group FAQs by categories
-- Easy and quick to install and configure causing no issues to the website functioning
-- Multistore compatibility
-- The content displayed in a simple accordion style occupies minimum space on the front end
-- Fully responsive as per Magento theme
-- Collapsible pull-out panel display user-friendly interface
-- Easy to navigate to any category and search by category
-- Enable/Disable FAQ category with a single click
-- Can add an icon for the group from admin.
-- Editor for adding FAQs.
-- Can add images, static blocks, widgets in FAQ in FAQ edit page from admin
-- Inline edit for FAQ and FAQ groups
-- Filter the FAQ with id, name, and group
-- Delete multiple FAQ and FAQ groups with the mass delete action
-- View all FAQs on the FAQ page
-- Support collapse/expand view mode
-- Smooth scrolling on group selection on the frontend
+# Use below code for CMS page and Static Block
+
+<b>1. To show all FAQ</b>
+
+<code>{{block class="Mageprince\Faq\Block\Index\Index" template="Mageprince_Faq::faq_main.phtml" show_group_title=1 show_group=1 page_type="scroll"}}</code>
+
+<b>2. To show FAQ by group</b>
+
+<code>{{block class="Mageprince\Faq\Block\Index\Index" template="Mageprince_Faq::faq_main.phtml" group_id=1 show_group_title=1}}</code>
 
 # Installation Instruction
 
@@ -48,6 +34,7 @@ https://marketplace.magento.com/mageprince-module-faq.html
 * Run Command:
 <b>php bin/magento setup:static-content:deploy</b>
 * Now Flush Cache: <b>php bin/magento cache:flush</b>
+
 
 # Contribution
 
