@@ -2,9 +2,43 @@
 
 This module adds an easy way to use FAQ section to your Magento store with jQuery Accordion. In this module, admin can add and update FAQ. Admin can also create FAQ group with group icon. Admin can add widgets, blocks, images etc. in FAQ answer with wyswing editor.
 
-Please donate if you enjoy my extension.
+# Magento Marketplace
 
-[![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TKAKY4KP65Z4A)
+https://marketplace.magento.com/mageprince-module-faq.html
+
+# New Features
+
+- Show all FAQ on CMS page and static block
+- Show FAQ by group on CMS page and static block
+- Load FAQ by ajax on group selection on the frontend
+- Custom FAQ URL
+
+# Features
+
+- Can add any numbers of FAQs from admin
+- Manage categories and edit them anytime from admin
+- Add FAQ title and answers with detailed description (of any length) on the front end
+- Add FAQ with store view visibility
+- Add FAQ group with store view visibility
+- Add FAQ with customer group visibility
+- Add FAQ group with customer group visibility
+- Filter and group FAQs by categories
+- Easy and quick to install and configure causing no issues to the website functioning
+- Multistore compatibility
+- The content displayed in a simple accordion style occupies minimum space on the front end
+- Fully responsive as per Magento theme
+- Collapsible pull-out panel display user-friendly interface
+- Easy to navigate to any category and search by category
+- Enable/Disable FAQ category with a single click
+- Can add an icon for the group from admin.
+- Editor for adding FAQs.
+- Can add images, static blocks, widgets in FAQ in FAQ edit page from admin
+- Inline edit for FAQ and FAQ groups
+- Filter the FAQ with id, name, and group
+- Delete multiple FAQ and FAQ groups with the mass delete action
+- View all FAQs on the FAQ page
+- Support collapse/expand view mode
+- Smooth scrolling on group selection on the frontend
 
 # Installation Instruction
 
@@ -26,19 +60,19 @@ If you encounter any problems or bugs, please <a href="https://github.com/magepr
 
 # Frontend
 
-<img src="https://image.ibb.co/nOOP25/faq.jpg" alt="faq" border="0">
+<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Faq/front-page.jpeg"/>
 
-<img src="https://image.ibb.co/fGfOUk/FAQ_2.png" alt="FAQ_2" border="0">
+# FAQ Content
+<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Faq/font-page-faq.png"/>
 
-# Admin FAQ New/Edit
+# FAQ on CMS page
 
-<img src="https://image.ibb.co/b8QqeQ/This_is_test_FAQ_question_FAQs_Magento_Admin.png" border="0" />
+<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Faq/CMS-page.png"/>
 
-# Admin FAQ Group Grid
+# Configration
 
-<img src="https://image.ibb.co/e2N9kQ/FAQGroup_Grid_Inline_Edit.png" alt="FAQGroup Grid Inline Edit" border="0" />
+<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Faq/configuration.png"/>
 
-# Admin FAQ Group New/Edit
+# Code to display FAQ on CMS page and Static Block
 
-<img src="https://image.ibb.co/gjoyYk/New_FAQGroup_FAQgroups_Magento_Admin.png" alt="New FAQGroup" border="0" />
-
+<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Faq/configuration-cms.png"/>
