@@ -60,18 +60,18 @@ If you encounter any problems or bugs, please <a href="https://github.com/magepr
 
 # Frontend
 
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Faq/front-page.jpeg"/>
+<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Faq/front-page.jpeg" height="400"/>
 
 # FAQ Content
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Faq/font-page-faq.png"/>
+<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Faq/font-page-faq.png" height="800"/>
 
 # FAQ on CMS page
 
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Faq/CMS-page.png"/>
+<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Faq/CMS-page.png" height="400"/>
 
 # Configration
 
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Faq/configuration.png"/>
+<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Faq/configuration.png" height="400"/>
 
 # Code to display FAQ on CMS page and Static Block
 
