@@ -1,0 +1,83 @@
+<?php
+// @codingStandardsIgnoreFile
+/**
+ * @see \Mageprince\Faq\Block\Adminhtml\System\Config\Field\FaqBlockInfo
+ * @var \Mageprince\Faq\Block\Adminhtml\System\Config\Field\FaqBlockInfo $block
+ */
+
+?>
+<div class="faq-info-block">
+    <div class="attachment-note"><?= __('Use below code to show FAQ on CMS or Static Blocks') ?></div>
+    <div class="userguide-container">
+        <div id="messages">
+            <ul class="messages">
+                <li class="message message-notice notice" style="list-style: none;">
+                    <ul>
+                        <li style="list-style: none;">
+                            Use this code to show all FAQ
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <code>
+            {{block class="Mageprince\Faq\Block\Index\Index" template="Mageprince_Faq::faq_main.phtml" show_group_title=1 show_group=1 page_type="scroll"}}
+        </code>
+    </div>
+    <div class="userguide-container">
+        <div id="messages">
+            <ul class="messages">
+                <li class="message message-notice notice" style="list-style: none;">
+                    <ul>
+                        <li style="list-style: none;">
+                            Use <b>group_id</b> to show FAQ by group
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <code>
+            {{block class="Mageprince\Faq\Block\Index\Index" template="Mageprince_Faq::faq_main.phtml" group_id=1 show_group_title=1}}
+        </code>
+    </div>
+    <div class="userguide-container">
+        <div id="messages">
+            <ul class="messages">
+                <li class="message message-notice notice" style="list-style: none;">
+                    <ul>
+                        <li style="list-style: none;">
+                            Parameters
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <ul class="faq-parameters">
+            <li><b>1.show_group_title:</b> Show/Hide group title. Value must be 0 or 1</li>
+            <li><b>2.show_group:</b> Show/Hide group icon. Value must be 0 or 1</li>
+            <li><b>3.page_type:</b> Page type to show. Value must be “scroll” or “ajax”</li>
+            <li><b>4.group_id:</b> You can find group if from FAQ->Manage FAQGroups</li>
+        </ul>
+    </div>
+</div>
+<style type="text/css">
+    .faq-info-block .userguide-container {
+        border: dotted 1px #ccc;
+        padding: 20px;
+        margin-top: 25px;
+    }
+
+    .faq-info-block .attachment-note {
+        font-weight: bold;
+        margin-top: 30px;
+        text-align: center;
+        font-size: 16px;
+    }
+    ul.faq-parameters {
+        list-style: none;
+    }
+    ul.faq-parameters li {
+        padding: 5px;
+    }
+</style>
+

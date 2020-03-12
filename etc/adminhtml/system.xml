@@ -72,6 +72,12 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
+            <group id="faq_info" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Code for CMS Page and Static block</label>
+                <field id="faq_block_info" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1">
+                    <frontend_model>Mageprince\Faq\Block\Adminhtml\System\Config\Field\FaqBlockInfo</frontend_model>
+                </field>
+            </group>
         </section>
     </system>
 </config>
