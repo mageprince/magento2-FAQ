@@ -16,6 +16,10 @@ https://marketplace.magento.com/mageprince-module-faq.html
 
 <b>Check full description and user guid on <a href="https://marketplace.magento.com/mageprince-module-faq.html">Magento Marketplace</a></b>
 
+# Demo
+
+<b><a href="http://demo.mageprince.com/">Frontend</a>   |   <a href="http://demo.mageprince.com/admin">Backend</a></b>
+
 # Use below code for CMS page and Static Block
 
 <b>1. To show all FAQ</b>
