@@ -32,6 +32,14 @@ class NewAction extends \Mageprince\Faq\Controller\Adminhtml\Faq
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Mageprince_Faq::Faq');
+    }
+
+    /**
      * New action
      *
      * @return \Magento\Framework\Controller\ResultInterface

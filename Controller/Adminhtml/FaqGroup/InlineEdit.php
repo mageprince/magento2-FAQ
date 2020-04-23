@@ -40,6 +40,14 @@ class InlineEdit extends \Magento\Backend\App\Action
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Mageprince_Faq::FaqGroup');
+    }
+
+    /**
      * Inline edit action
      *
      * @return \Magento\Framework\Controller\ResultInterface

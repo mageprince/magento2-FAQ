@@ -15,6 +15,14 @@ namespace Mageprince\Faq\Controller\Adminhtml\Faq;
 class Delete extends \Mageprince\Faq\Controller\Adminhtml\Faq
 {
     /**
+     * {@inheritdoc}
+     */
+    public function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Mageprince_Faq::Faq');
+    }
+
+    /**
      * Delete action
      *
      * @return \Magento\Framework\Controller\ResultInterface

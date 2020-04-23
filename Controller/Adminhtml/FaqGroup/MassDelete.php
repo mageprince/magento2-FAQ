@@ -24,7 +24,13 @@ class MassDelete extends \Magento\Backend\App\Action
      * @var \Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory
      */
     private $collectionFactory;
-    
+
+    /**
+     * MassDelete constructor.
+     * @param \Magento\Ui\Component\MassAction\Filter $filter
+     * @param \Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory $collectionFactory
+     * @param \Magento\Backend\App\Action\Context $context
+     */
     public function __construct(
         \Magento\Ui\Component\MassAction\Filter $filter,
         \Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory $collectionFactory,
@@ -33,6 +39,14 @@ class MassDelete extends \Magento\Backend\App\Action
         $this->filter = $filter;
         $this->collectionFactory = $collectionFactory;
         parent::__construct($context);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Mageprince_Faq::FaqGroup');
     }
 
     public function execute()

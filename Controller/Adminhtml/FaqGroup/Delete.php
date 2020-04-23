@@ -14,6 +14,13 @@ namespace Mageprince\Faq\Controller\Adminhtml\FaqGroup;
 
 class Delete extends \Mageprince\Faq\Controller\Adminhtml\FaqGroup
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Mageprince_Faq::FaqGroup');
+    }
 
     /**
      * Delete action

@@ -43,6 +43,14 @@ class Edit extends \Mageprince\Faq\Controller\Adminhtml\FaqGroup
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Mageprince_Faq::FaqGroup');
+    }
+
+    /**
      * Edit action
      *
      * @return \Magento\Framework\Controller\ResultInterface
