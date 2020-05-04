@@ -4,7 +4,7 @@ This module adds an easy way to use FAQ section to your Magento store with jQuer
 
 # Magento Marketplace
 
-https://marketplace.magento.com/mageprince-module-faq.html
+https://marketplace.magento.com/prince-module-faq.html
 
 
 # New Features
