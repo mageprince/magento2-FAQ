@@ -42,5 +42,29 @@
 			 sortOrder="30"
 			 translate="title"
 			 title="Configuration"/>
+		<add id="Mageprince_Faq::menu_useful"
+			 module="Mageprince_Faq"
+			 parent="Mageprince_Faq::menu"
+			 resource="Mageprince_Faq::menu"
+			 sortOrder="40"
+			 translate="title"
+			 title="Useful Links"/>
+		<add id="Mageprince_Faq::faq_user_guid"
+			 action="mageprince_faq/faq/index"
+			 module="Mageprince_Faq"
+			 parent="Mageprince_Faq::menu_useful"
+			 resource="Mageprince_Faq::menu"
+			 sortOrder="50"
+			 target="_blank"
+			 translate="title"
+			 title="FAQ User Guid"/>
+		<add id="Mageprince_Faq::other_modules"
+			 module="Mageprince_Faq"
+			 parent="Mageprince_Faq::menu_useful"
+			 resource="Mageprince_Faq::menu"
+			 sortOrder="60"
+			 target="_blank"
+			 translate="title"
+			 title="Mageprince Modules"/>
 	</menu>
 </config>
