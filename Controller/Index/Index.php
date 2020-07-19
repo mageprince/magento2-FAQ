@@ -12,28 +12,36 @@
 
 namespace Mageprince\Faq\Controller\Index;
 
-class Index extends \Magento\Framework\App\Action\Action
+use Magento\Framework\App\Action\Action;
+use Magento\Framework\App\Action\Context;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\View\Result\PageFactory;
+use Magento\Theme\Block\Html\Title as HtmlTitle;
+use Mageprince\Faq\Helper\Data;
+
+class Index extends Action
 {
     /**
-     * @var \Magento\Framework\View\Result\PageFactory
+     * @var PageFactory
      */
     private $resultPageFactory;
 
     /**
-     * @var \Mageprince\Faq\Helper\Data
+     * @var Data
      */
     protected $helper;
 
     /**
      * Index constructor.
-     * @param \Magento\Framework\App\Action\Context $context
-     * @param \Mageprince\Faq\Helper\Data $helper
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     *
+     * @param Context $context
+     * @param Data $helper
+     * @param PageFactory $resultPageFactory
      */
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Mageprince\Faq\Helper\Data $helper,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory
+        Context $context,
+        Data $helper,
+        PageFactory $resultPageFactory
     ) {
         $this->helper = $helper;
         $this->resultPageFactory = $resultPageFactory;
@@ -43,7 +51,7 @@ class Index extends \Magento\Framework\App\Action\Action
     /**
      * Execute view action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {
@@ -51,11 +59,11 @@ class Index extends \Magento\Framework\App\Action\Action
         $pageMainTitle = $resultPage->getLayout()->getBlock('page.main.title');
         $pageTitle = $this->helper->getConfig('faqtab/general/page_title');
 
-        if ($pageMainTitle && $pageMainTitle instanceof \Magento\Theme\Block\Html\Title) {
+        if ($pageMainTitle && $pageMainTitle instanceof HtmlTitle) {
             $pageMainTitle->setPageTitle($pageTitle);
         }
 
-        if(!$this->helper->getConfig('faqtab/general/enable')) {
+        if (!$this->helper->getConfig('faqtab/general/enable')) {
             $pageMainTitle->setPageTitle('FAQ Disabled');
             return $resultPage;
         }

@@ -50,7 +50,7 @@
                 <label>Design</label>
                 <field id="page_type" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Page Style</label>
-                    <source_model>Mageprince\Faq\Model\Source\Config\PageType</source_model>
+                    <source_model>Mageprince\Faq\Model\Config\Source\PageType</source_model>
                 </field>
                 <field id="showgroup" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Show Group Icon</label>

@@ -12,25 +12,35 @@
 
 namespace Mageprince\Faq\Ui\Component\Listing\Column;
 
-class FaqActions extends \Magento\Ui\Component\Listing\Columns\Column
+use Magento\Framework\UrlInterface;
+use Magento\Framework\View\Element\UiComponent\ContextInterface;
+use Magento\Framework\View\Element\UiComponentFactory;
+use Magento\Ui\Component\Listing\Columns\Column;
+
+class FaqActions extends Column
 {
+    /**
+     * @var UrlInterface
+     */
+    private $urlBuilder;
 
     const URL_PATH_EDIT = 'mageprince_faq/faq/edit';
-    private $urlBuilder;
+
     const URL_PATH_DELETE = 'mageprince_faq/faq/delete';
-    const URL_PATH_DETAILS = 'mageprince_faq/faq/details';
 
     /**
-     * @param \Magento\Framework\View\Element\UiComponent\ContextInterface $context
-     * @param \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory
-     * @param \Magento\Framework\UrlInterface $urlBuilder
+     * FaqActions constructor.
+     *
+     * @param ContextInterface $context
+     * @param UiComponentFactory $uiComponentFactory
+     * @param UrlInterface $urlBuilder
      * @param array $components
      * @param array $data
      */
     public function __construct(
-        \Magento\Framework\View\Element\UiComponent\ContextInterface $context,
-        \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory,
-        \Magento\Framework\UrlInterface $urlBuilder,
+        ContextInterface $context,
+        UiComponentFactory $uiComponentFactory,
+        UrlInterface $urlBuilder,
         array $components = [],
         array $data = []
     ) {

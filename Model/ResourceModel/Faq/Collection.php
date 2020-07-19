@@ -12,9 +12,12 @@
 
 namespace Mageprince\Faq\Model\ResourceModel\Faq;
 
-class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
-{
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
+use Mageprince\Faq\Model\Faq as FaqModel;
+use Mageprince\Faq\Model\ResourceModel\Faq as FaqResourceModel;
 
+class Collection extends AbstractCollection
+{
     public $_idFieldName = 'faq_id';
     
     /**
@@ -25,8 +28,8 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
     public function _construct()
     {
         $this->_init(
-            'Mageprince\Faq\Model\Faq',
-            'Mageprince\Faq\Model\ResourceModel\Faq'
+            FaqModel::class,
+            FaqResourceModel::class
         );
     }
 }

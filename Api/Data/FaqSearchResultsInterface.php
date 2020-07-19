@@ -12,7 +12,9 @@
 
 namespace Mageprince\Faq\Api\Data;
 
-interface FaqSearchResultsInterface extends \Magento\Framework\Api\SearchResultsInterface
+use Magento\Framework\Api\SearchResultsInterface;
+
+interface FaqSearchResultsInterface extends SearchResultsInterface
 {
     
     /**

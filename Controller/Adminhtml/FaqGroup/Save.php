@@ -12,30 +12,37 @@
 
 namespace Mageprince\Faq\Controller\Adminhtml\FaqGroup;
 
+use Magento\Backend\App\Action;
+use Magento\Backend\Model\View\Result\Redirect;
+use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
+use Mageprince\Faq\Model\FaqGroup;
 
-class Save extends \Magento\Backend\App\Action
+class Save extends Action
 {
 
     /**
-     * @var \Magento\Framework\App\Request\DataPersistorInterface
+     * @var DataPersistorInterface
      */
     private $dataPersistor;
 
     /**
-     * @var \Mageprince\Faq\Model\FaqGroup
+     * @var FaqGroup
      */
     private $faqModel;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Mageprince\Faq\Model\FaqGroup
-     * @param \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
+     * Save constructor.
+     *
+     * @param Action\Context $context
+     * @param FaqGroup $faqModel
+     * @param DataPersistorInterface $dataPersistor
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Mageprince\Faq\Model\FaqGroup $faqModel,
-        \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
+        Action\Context $context,
+        FaqGroup $faqModel,
+        DataPersistorInterface $dataPersistor
     ) {
         $this->dataPersistor = $dataPersistor;
         $this->faqModel = $faqModel;
@@ -53,11 +60,11 @@ class Save extends \Magento\Backend\App\Action
     /**
      * Save action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         $data = $this->getRequest()->getPostValue();
 
@@ -101,7 +108,8 @@ class Save extends \Magento\Backend\App\Action
             }
         
             $this->dataPersistor->set('prince_faq_faqgroup', $data);
-            return $resultRedirect->setPath('*/*/edit',
+            return $resultRedirect->setPath(
+                '*/*/edit',
                 [
                     'faqgroup_id' => $this->getRequest()->getParam('faqgroup_id')
                 ]

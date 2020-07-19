@@ -12,9 +12,31 @@
 
 namespace Mageprince\Faq\Helper;
 
-class Data extends \Magento\Framework\App\Helper\AbstractHelper
+use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Helper\Context;
+use Mageprince\Faq\Model\Config\DefaultConfig;
+use Magento\Customer\Model\Session as CustomerSession;
+
+class Data extends AbstractHelper
 {
-    const FAQ_URL_CONFIG_PATH = 'faqtab/seo/faq_url';
+    /**
+     * @var CustomerSession
+     */
+    protected $customerSession;
+
+    /**
+     * Data constructor.
+     *
+     * @param Context $context
+     * @param CustomerSession $customerSession
+     */
+    public function __construct(
+        Context $context,
+        CustomerSession $customerSession
+    ) {
+        parent::__construct($context);
+        $this->customerSession = $customerSession;
+    }
 
     /**
      * Get config path
@@ -35,6 +57,31 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getFaqUrl()
     {
-        return $this->getConfig(self::FAQ_URL_CONFIG_PATH);
+        return $this->getConfig(DefaultConfig::FAQ_URL_CONFIG_PATH);
+    }
+
+    /**
+     * Get current customer group id
+     *
+     * @return int
+     */
+    public function getCurrentCustomer()
+    {
+        return $this->customerSession->getCustomer()->getGroupId();
+    }
+
+    /**
+     * Check is block data
+     *
+     * @param $data
+     * @return bool
+     */
+    public function checkBlockData($data)
+    {
+        if ($data == '1') {
+            return true;
+        } elseif ($data == '0') {
+            return false;
+        }
     }
 }

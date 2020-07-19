@@ -12,32 +12,36 @@
 
 namespace Mageprince\Faq\Ui\Component\Listing\Column;
 
+use Magento\Backend\Model\UrlInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\View\Asset\Repository;
+use Magento\Ui\Component\Listing\Columns\Column;
 
-class GroupIcon extends \Magento\Ui\Component\Listing\Columns\Column
+class GroupIcon extends Column
 {
     private $storeManager;
 
     /**
-     * @var \Magento\Framework\View\Asset\Repository
+     * @var Repository
      */
     private $assetRepo;
 
     /**
-     * @var \Magento\Backend\Model\UrlInterface
+     * @var UrlInterface
      */
     private $_backendUrl;
 
     /**
      * GroupIcon constructor.
+     *
      * @param ContextInterface $context
      * @param UiComponentFactory $uiComponentFactory
      * @param StoreManagerInterface $storeManager
      * @param Repository $assetRepo
-     * @param \Magento\Backend\Model\UrlInterface $backendUrl
+     * @param UrlInterface $backendUrl
      * @param array $components
      * @param array $data
      */
@@ -46,7 +50,7 @@ class GroupIcon extends \Magento\Ui\Component\Listing\Columns\Column
         UiComponentFactory $uiComponentFactory,
         StoreManagerInterface $storeManager,
         Repository $assetRepo,
-        \Magento\Backend\Model\UrlInterface $backendUrl,
+        UrlInterface $backendUrl,
         array $components = [],
         array $data = []
     ) {
@@ -61,6 +65,7 @@ class GroupIcon extends \Magento\Ui\Component\Listing\Columns\Column
      *
      * @param array $dataSource
      * @return array
+     * @throws NoSuchEntityException
      */
     public function prepareDataSource(array $dataSource)
     {

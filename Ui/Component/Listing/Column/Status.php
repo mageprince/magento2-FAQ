@@ -12,7 +12,9 @@
 
 namespace Mageprince\Faq\Ui\Component\Listing\Column;
 
-class Status implements \Magento\Framework\Option\ArrayInterface
+use Magento\Framework\Data\OptionSourceInterface;
+
+class Status implements OptionSourceInterface
 {
     /**
      * Options getter

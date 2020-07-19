@@ -12,12 +12,23 @@
 
 namespace Mageprince\Faq\Ui\Component\Listing\Column;
 
-class FaqGroup implements \Magento\Framework\Option\ArrayInterface
+use Magento\Framework\Data\OptionSourceInterface;
+use Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory;
+
+class FaqGroup implements OptionSourceInterface
 {
+    /**
+     * @var CollectionFactory
+     */
     private $groupCollection;
 
+    /**
+     * FaqGroup constructor.
+     *
+     * @param CollectionFactory $groupCollection
+     */
     public function __construct(
-        \Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory $groupCollection
+        CollectionFactory $groupCollection
     ) {
         $this->groupCollection = $groupCollection;
     }

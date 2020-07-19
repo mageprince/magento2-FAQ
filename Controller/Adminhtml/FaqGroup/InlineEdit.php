@@ -12,27 +12,35 @@
 
 namespace Mageprince\Faq\Controller\Adminhtml\FaqGroup;
 
-class InlineEdit extends \Magento\Backend\App\Action
-{
+use Magento\Backend\App\Action;
+use Magento\Framework\Controller\Result\Json;
+use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Framework\Controller\ResultInterface;
+use Mageprince\Faq\Model\FaqGroup;
 
+class InlineEdit extends Action
+{
     /**
-     * @var \Magento\Framework\Controller\Result\JsonFactory
+     * @var JsonFactory
      */
     private $jsonFactory;
 
     /**
-     * @var \Magento\Framework\Controller\Result\JsonFactory
+     * @var JsonFactory
      */
     private $faqGroupModel;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
+     * InlineEdit constructor.
+     *
+     * @param Action\Context $context
+     * @param FaqGroup $faqGroupModel
+     * @param JsonFactory $jsonFactory
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Mageprince\Faq\Model\FaqGroup $faqGroupModel,
-        \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
+        Action\Context $context,
+        FaqGroup $faqGroupModel,
+        JsonFactory $jsonFactory
     ) {
         parent::__construct($context);
         $this->faqGroupModel = $faqGroupModel;
@@ -50,11 +58,11 @@ class InlineEdit extends \Magento\Backend\App\Action
     /**
      * Inline edit action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {
-        /** @var \Magento\Framework\Controller\Result\Json $resultJson */
+        /** @var Json $resultJson */
         $resultJson = $this->jsonFactory->create();
         $error = false;
         $messages = [];

@@ -34,11 +34,6 @@
 			<argument name="resourceModel" xsi:type="string">Mageprince\Faq\Model\ResourceModel\Faq\Collection</argument>
 		</arguments>
 	</virtualType>
-	<type name="Mageprince\Faq\Block\Index\Index">
-		<arguments>
-			<argument name="templateProcessor" xsi:type="object">Magento\Widget\Model\Template\Filter</argument>
-		</arguments>
-	</type>
 	<type name="Mageprince\Faq\Model\ImageUploader">
 		<arguments>
 			<argument name="baseTmpPath" xsi:type="string">faq/tmp/icon</argument>

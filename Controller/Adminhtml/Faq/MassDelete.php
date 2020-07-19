@@ -12,31 +12,35 @@
 
 namespace Mageprince\Faq\Controller\Adminhtml\Faq;
 
-class MassDelete extends \Magento\Backend\App\Action
-{
+use Magento\Backend\App\Action;
+use Magento\Ui\Component\MassAction\Filter;
+use Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory;
 
+class MassDelete extends Action
+{
     /**
-     * @var \Magento\Ui\Component\MassAction\Filter $filter
+     * @var Filter
      */
     protected $filter;
 
     /**
-     * @var \Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory
+     * @var CollectionFactory
      */
     protected $collectionFactory;
 
     /**
      * MassDelete constructor.
-     * @param \Magento\Ui\Component\MassAction\Filter $filter
-     * @param \Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory $collectionFactory
-     * @param \Magento\Backend\App\Action\Context $context
+     *
+     * @param Filter $filter
+     * @param CollectionFactory $collectionFactory
+     * @param Action\Context $context
      */
     public function __construct(
-        \Magento\Ui\Component\MassAction\Filter $filter,
-        \Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory $collectionFactory,
-        \Magento\Backend\App\Action\Context $context
+        Filter $filter,
+        CollectionFactory $collectionFactory,
+        Action\Context $context
     ) {
-        $this->filter            = $filter;
+        $this->filter = $filter;
         $this->collectionFactory = $collectionFactory;
         parent::__construct($context);
     }
