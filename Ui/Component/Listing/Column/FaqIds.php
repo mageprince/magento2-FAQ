@@ -12,12 +12,23 @@
 
 namespace Mageprince\Faq\Ui\Component\Listing\Column;
 
-class FaqIds implements \Magento\Framework\Option\ArrayInterface
+use Magento\Framework\Data\OptionSourceInterface;
+use Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory;
+
+class FaqIds implements OptionSourceInterface
 {
+    /**
+     * @var CollectionFactory
+     */
     private $faqCollection;
 
+    /**
+     * FaqIds constructor.
+     *
+     * @param CollectionFactory $faqCollection
+     */
     public function __construct(
-        \Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory $faqCollection
+        CollectionFactory $faqCollection
     ) {
         $this->faqCollection = $faqCollection;
     }

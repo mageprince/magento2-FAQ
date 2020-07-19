@@ -12,7 +12,12 @@
 
 namespace Mageprince\Faq\Controller\Adminhtml\FaqGroup;
 
-class Delete extends \Mageprince\Faq\Controller\Adminhtml\FaqGroup
+use Magento\Backend\Model\View\Result\Redirect;
+use Magento\Framework\Controller\ResultInterface;
+use Mageprince\Faq\Controller\Adminhtml\FaqGroup;
+use Mageprince\Faq\Model\FaqGroup as FaqGroupModel;
+
+class Delete extends FaqGroup
 {
     /**
      * {@inheritdoc}
@@ -25,18 +30,18 @@ class Delete extends \Mageprince\Faq\Controller\Adminhtml\FaqGroup
     /**
      * Delete action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         // check if we know what should be deleted
         $id = $this->getRequest()->getParam('faqgroup_id');
         if ($id) {
             try {
                 // init model and delete
-                $model = $this->_objectManager->create('Mageprince\Faq\Model\FaqGroup');
+                $model = $this->_objectManager->create(FaqGroupModel::class);
                 $model->load($id);
                 $model->delete();
                 // display success message

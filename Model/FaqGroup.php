@@ -12,17 +12,18 @@
 
 namespace Mageprince\Faq\Model;
 
+use Magento\Framework\Model\AbstractModel;
 use Mageprince\Faq\Api\Data\FaqGroupInterface;
+use Mageprince\Faq\Model\ResourceModel\FaqGroup as FaqGroupResourceModel;
 
-class FaqGroup extends \Magento\Framework\Model\AbstractModel implements FaqGroupInterface
+class FaqGroup extends AbstractModel implements FaqGroupInterface
 {
-
     /**
      * @return void
      */
     public function _construct()
     {
-        $this->_init('Mageprince\Faq\Model\ResourceModel\FaqGroup');
+        $this->_init(FaqGroupResourceModel::class);
     }
 
     /**

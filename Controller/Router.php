@@ -39,6 +39,7 @@ class Router implements RouterInterface
 
     /**
      * Router constructor.
+     *
      * @param ActionFactory $actionFactory
      * @param ResponseInterface $response
      * @param ScopeConfigInterface $scopeConfig

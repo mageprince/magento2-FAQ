@@ -13,32 +13,40 @@
 namespace Mageprince\Faq\Model\FaqGroup;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Ui\DataProvider\AbstractDataProvider;
 use Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory;
 use Magento\Store\Model\StoreManagerInterface;
 
-class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
+class DataProvider extends AbstractDataProvider
 {
 
     private $loadedData;
     
     /**
-     * @var \Magento\Framework\App\Request\DataPersistorInterface
+     * @var DataPersistorInterface
      */
     private $dataPersistor;
 
     /**
-     * @var \Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory
+     * @var CollectionFactory
      */
     public $collection;
 
     /**
-     * Constructor
+     * @var StoreManagerInterface
+     */
+    protected $storeManager;
+
+    /**
+     * DataProvider constructor.
      *
-     * @param string $name
-     * @param string $primaryFieldName
-     * @param string $requestFieldName
-     * @param CollectionFactory $blockCollectionFactory
+     * @param $name
+     * @param $primaryFieldName
+     * @param $requestFieldName
+     * @param CollectionFactory $collectionFactory
      * @param DataPersistorInterface $dataPersistor
+     * @param StoreManagerInterface $storeManager
      * @param array $meta
      * @param array $data
      */
@@ -62,6 +70,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      * Get data
      *
      * @return array
+     * @throws NoSuchEntityException
      */
     public function getData()
     {
@@ -93,6 +102,12 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         return $this->loadedData;
     }
 
+    /**
+     * Get media url
+     *
+     * @return string
+     * @throws NoSuchEntityException
+     */
     public function getMediaUrl()
     {
         $mediaUrl = $this->storeManager->getStore()

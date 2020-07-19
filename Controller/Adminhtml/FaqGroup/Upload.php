@@ -12,27 +12,29 @@
 
 namespace Mageprince\Faq\Controller\Adminhtml\FaqGroup;
 
+use Magento\Backend\App\Action;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Controller\ResultInterface;
+use Mageprince\Faq\Model\ImageUploader;
 
-/**
- * Class Upload
- */
-class Upload extends \Magento\Backend\App\Action
+class Upload extends Action
 {
     /**
      * Image uploader
      *
-     * @var \Mageprince\Faq\Model\ImageUploader
+     * @var ImageUploader
      */
     public $imageUploader;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Mageprince\Faq\Model\ImageUploader $imageUploader
+     * Upload constructor.
+     *
+     * @param Action\Context $context
+     * @param ImageUploader $imageUploader
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Mageprince\Faq\Model\ImageUploader $imageUploader
+        Action\Context $context,
+        ImageUploader $imageUploader
     ) {
         parent::__construct($context);
         $this->imageUploader = $imageUploader;
@@ -51,7 +53,7 @@ class Upload extends \Magento\Backend\App\Action
     /**
      * Upload file controller action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {

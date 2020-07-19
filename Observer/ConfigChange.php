@@ -43,6 +43,7 @@ class ConfigChange implements ObserverInterface
 
     /**
      * ConfigChange constructor.
+     *
      * @param RequestInterface $request
      * @param WriterInterface $configWriter
      * @param UrlRewriteFactory $urlRewriteFactory
@@ -64,7 +65,7 @@ class ConfigChange implements ObserverInterface
     {
         $faqParams = $this->request->getParam('groups');
         $faqUrlVal = $faqParams['seo']['fields'];
-        if(key_exists('faq_url', $faqUrlVal)) {
+        if (key_exists('faq_url', $faqUrlVal)) {
             $urlKey = str_replace(' ', '-', $faqUrlVal['faq_url']['value']);
             $filterUrlKey = preg_replace('/[^A-Za-z0-9\-]/', '', $urlKey);
             $this->configWriter->save('faqtab/seo/faq_url', $filterUrlKey);
@@ -75,7 +76,7 @@ class ConfigChange implements ObserverInterface
                 ->addFieldToFilter('store_id', $storeId)
                 ->getFirstItem();
             $urlRewriteModel->load($rewritecollection->getId());
-            if($filterUrlKey == self::REQUEST_PATH) {
+            if ($filterUrlKey == self::REQUEST_PATH) {
                 $urlRewriteModel->delete();
             } else {
                 $urlRewriteModel->setStoreId($storeId);

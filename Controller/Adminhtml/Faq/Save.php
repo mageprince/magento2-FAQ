@@ -12,23 +12,36 @@
 
 namespace Mageprince\Faq\Controller\Adminhtml\Faq;
 
+use Magento\Backend\App\Action;
+use Magento\Backend\Model\View\Result\Redirect;
+use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
+use Mageprince\Faq\Model\Faq as FaqModel;
 
-class Save extends \Magento\Backend\App\Action
+class Save extends Action
 {
-
+    /**
+     * @var DataPersistorInterface
+     */
     private $dataPersistor;
 
+    /**
+     * @var FaqModel
+     */
     private $faqModel;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
+     * Save constructor.
+     *
+     * @param Action\Context $context
+     * @param DataPersistorInterface $dataPersistor
+     * @param FaqModel $faqModel
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor,
-        \Mageprince\Faq\Model\Faq $faqModel
+        Action\Context $context,
+        DataPersistorInterface $dataPersistor,
+        FaqModel $faqModel
     ) {
         $this->dataPersistor = $dataPersistor;
         $this->faqModel = $faqModel;
@@ -46,11 +59,11 @@ class Save extends \Magento\Backend\App\Action
     /**
      * Save action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         $data = $this->getRequest()->getPostValue();
         $group = $this->getGroups($data['group']);

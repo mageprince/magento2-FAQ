@@ -13,31 +13,32 @@
 namespace Mageprince\Faq\Model\Faq;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Ui\DataProvider\AbstractDataProvider;
 use Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory;
 
-class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
+class DataProvider extends AbstractDataProvider
 {
 
     private $loadedData;
 
     /**
-     * @var \Magento\Framework\App\Request\DataPersistorInterface
+     * @var DataPersistorInterface
      */
     private $dataPersistor;
 
     /**
-     * @var \Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory
+     * @var CollectionFactory
      */
     
     public $collection;
 
     /**
-     * Constructor
+     * DataProvider constructor.
      *
-     * @param string $name
-     * @param string $primaryFieldName
-     * @param string $requestFieldName
-     * @param CollectionFactory $blockCollectionFactory
+     * @param $name
+     * @param $primaryFieldName
+     * @param $requestFieldName
+     * @param CollectionFactory $collectionFactory
      * @param DataPersistorInterface $dataPersistor
      * @param array $meta
      * @param array $data

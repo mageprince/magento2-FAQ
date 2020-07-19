@@ -12,7 +12,11 @@
 
 namespace Mageprince\Faq\Controller\Adminhtml\Faq;
 
-class Delete extends \Mageprince\Faq\Controller\Adminhtml\Faq
+use Magento\Framework\Controller\ResultInterface;
+use Mageprince\Faq\Controller\Adminhtml\Faq;
+use Mageprince\Faq\Model\Faq as FaqModel;
+
+class Delete extends Faq
 {
     /**
      * {@inheritdoc}
@@ -25,7 +29,7 @@ class Delete extends \Mageprince\Faq\Controller\Adminhtml\Faq
     /**
      * Delete action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {
@@ -36,7 +40,7 @@ class Delete extends \Mageprince\Faq\Controller\Adminhtml\Faq
         if ($id) {
             try {
                 // init model and delete
-                $model = $this->_objectManager->create('Mageprince\Faq\Model\Faq');
+                $model = $this->_objectManager->create(FaqModel::class);
                 $model->load($id);
                 $model->delete();
                 // display success message

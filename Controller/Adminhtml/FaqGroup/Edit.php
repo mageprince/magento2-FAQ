@@ -12,29 +12,39 @@
 
 namespace Mageprince\Faq\Controller\Adminhtml\FaqGroup;
 
-class Edit extends \Mageprince\Faq\Controller\Adminhtml\FaqGroup
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Registry;
+use Magento\Framework\View\Result\PageFactory;
+use Mageprince\Faq\Controller\Adminhtml\FaqGroup;
+use Mageprince\Faq\Model\FaqGroup as FaqGroupModel;
+
+class Edit extends FaqGroup
 {
 
     /**
-     * @var \Magento\Framework\View\Result\PageFactory
+     * @var PageFactory
      */
     private $resultPageFactory;
 
     /**
-     * @var \Mageprince\Faq\Model\FaqGroup
+     * @var FaqGroupModel
      */
     private $faqGroupModel;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Registry $coreRegistry
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * Edit constructor.
+     *
+     * @param Context $context
+     * @param Registry $coreRegistry
+     * @param PageFactory $resultPageFactory
+     * @param FaqGroupModel $faqGroupModel
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Mageprince\Faq\Model\FaqGroup $faqGroupModel
+        Context $context,
+        Registry $coreRegistry,
+        PageFactory $resultPageFactory,
+        FaqGroupModel $faqGroupModel
     ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->faqGroupModel = $faqGroupModel;
@@ -53,7 +63,7 @@ class Edit extends \Mageprince\Faq\Controller\Adminhtml\FaqGroup
     /**
      * Edit action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {

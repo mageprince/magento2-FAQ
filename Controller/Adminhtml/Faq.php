@@ -12,19 +12,28 @@
 
 namespace Mageprince\Faq\Controller\Adminhtml;
 
-abstract class Faq extends \Magento\Backend\App\Action
-{
+use Magento\Backend\App\Action;
+use Magento\Backend\Model\View\Result\Page;
+use Magento\Framework\Registry;
 
+abstract class Faq extends Action
+{
     const ADMIN_RESOURCE = 'Mageprince_Faq::top_level';
+
+    /**
+     * @var Registry
+     */
     private $coreRegistry;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Registry $coreRegistry
+     * Faq constructor.
+     *
+     * @param Action\Context $context
+     * @param Registry $coreRegistry
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry
+        Action\Context $context,
+        Registry $coreRegistry
     ) {
         $this->coreRegistry = $coreRegistry;
         parent::__construct($context);
@@ -33,7 +42,8 @@ abstract class Faq extends \Magento\Backend\App\Action
     /**
      * Init page
      *
-     * @param \Magento\Backend\Model\View\Result\Page $resultPage
+     * @param Page $resultPage
+     * @return Page
      */
     public function initPage($resultPage)
     {

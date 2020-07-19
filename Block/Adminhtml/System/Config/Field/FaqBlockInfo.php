@@ -12,7 +12,10 @@
 
 namespace Mageprince\Faq\Block\Adminhtml\System\Config\Field;
 
-class FaqBlockInfo extends \Magento\Config\Block\System\Config\Form\Field
+use Magento\Config\Block\System\Config\Form\Field;
+use Magento\Framework\Data\Form\Element\AbstractElement;
+
+class FaqBlockInfo extends Field
 {
     /**
      * Template path
@@ -24,10 +27,10 @@ class FaqBlockInfo extends \Magento\Config\Block\System\Config\Form\Field
     /**
      * Render fieldset html
      *
-     * @param \Magento\Framework\Data\Form\Element\AbstractElement $element
+     * @param AbstractElement $element
      * @return string
      */
-    public function render(\Magento\Framework\Data\Form\Element\AbstractElement $element)
+    public function render(AbstractElement $element)
     {
         return $this->_decorateRowHtml($element, "<td colspan='2'>" . $this->toHtml() . '</td>');
     }

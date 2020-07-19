@@ -12,9 +12,10 @@
 
 namespace Mageprince\Faq\Model\ResourceModel;
 
-class Faq extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
-{
+use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
+class Faq extends AbstractDb
+{
     /**
      * Define resource model
      *

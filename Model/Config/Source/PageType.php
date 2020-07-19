@@ -10,20 +10,25 @@
  * @author MagePrince <info@mageprince.com>
  */
 
-namespace Mageprince\Faq\Model\Source\Config;
+namespace Mageprince\Faq\Model\Config\Source;
 
-class PageType implements \Magento\Framework\Data\OptionSourceInterface
+use Magento\Framework\Data\OptionSourceInterface;
+
+class PageType implements OptionSourceInterface
 {
     const SCROLL = 'scroll';
     const AJAX = 'ajax';
 
+    /**
+     * Get page type
+     *
+     * @return array
+     */
     public function toOptionArray()
     {
-        $options = [
+        return  [
             ['value' => self::SCROLL, 'label' => 'Scroll'],
             ['value' => self::AJAX, 'label' => 'Ajax']
         ];
-
-        return $options;
     }
 }

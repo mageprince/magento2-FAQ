@@ -12,48 +12,114 @@
 
 namespace Mageprince\Faq\Block\Index;
 
-use Magento\Customer\Model\Session;
+use Magento\Cms\Model\Template\FilterProvider;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\UrlInterface;
+use Magento\Framework\View\Element\Template;
+use Magento\Store\Model\ScopeInterface;
+use Magento\Store\Model\StoreManagerInterface;
+use Mageprince\Faq\Api\Data\FaqGroupInterface;
+use Mageprince\Faq\Api\FaqGroupRepositoryInterface;
+use Mageprince\Faq\Model\FaqGroupFactory;
+use Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory;
+use Mageprince\Faq\Model\ResourceModel\FaqGroup\Collection as FaqGroupCollection;
+use Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory as FaqGroupCollectionFactory;
+use Mageprince\Faq\Model\Config\DefaultConfig;
+use Mageprince\Faq\Helper\Data as HelperData;
 
-class Index extends \Magento\Framework\View\Element\Template
+class Index extends Template
 {
-    const CONFIG_PATH_IS_ENABLE = 'faqtab/general/enable';
+    /**
+     * Default faq template
+     * @var string
+     */
+    protected $_template = 'Mageprince_Faq::faq_main.phtml';
 
-    const CONFIG_PATH_IS_SHOW_GROUP = 'faqtab/design/showgroup';
+    /**
+     * @var CollectionFactory
+     */
+    protected $faqCollectionFactory;
 
-    const CONFIG_PATH_IS_SHOW_GROUP_TITLE = 'faqtab/design/showgrouptitle';
+    /**
+     * @var FaqGroupCollectionFactory
+     */
+    protected $faqGroupCollectionFactory;
 
-    const CONFIG_PATH_PAGE_TYPE = 'faqtab/design/page_type';
+    /**
+     * @var FaqGroupFactory
+     */
+    protected $faqGroupFactory;
 
-    private $faqCollectionFactory;
+    /**
+     * @var StoreManagerInterface
+     */
+    protected $storeManager;
 
-    private $faqGroupCollectionFactory;
+    /**
+     * @var HelperData
+     */
+    protected $customerSession;
 
-    private $faqGroupFactory;
+    /**
+     * @var ScopeConfigInterface
+     */
+    protected $scopeConfig;
 
-    private $storeManager;
+    /**
+     * @var HelperData
+     */
+    protected $helper;
 
-    private $customerSession;
-    
-    private $templateProcessor;
+    /**
+     * @var FaqGroupRepositoryInterface
+     */
+    protected $faqGroupRepository;
 
+    /**
+     * @var FilterProvider
+     */
+    protected $filterProvider;
+
+    /**
+     * Index constructor.
+     *
+     * @param Template\Context $context
+     * @param CollectionFactory $faqCollectionFactory
+     * @param FaqGroupRepositoryInterface $faqGroupRepository
+     * @param FaqGroupCollectionFactory $faqGroupCollectionFactory
+     * @param FaqGroupFactory $faqGroupFactory
+     * @param FilterProvider $filterProvider
+     * @param HelperData $helper
+     */
     public function __construct(
-        \Magento\Framework\View\Element\Template\Context $context,
-        \Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory $faqCollectionFactory,
-        \Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory $faqGroupCollectionFactory,
-        \Mageprince\Faq\Model\FaqGroupFactory $faqGroupFactory,
-        Session $customerSession,
-        \Zend_Filter_Interface $templateProcessor
+        Template\Context $context,
+        CollectionFactory $faqCollectionFactory,
+        FaqGroupRepositoryInterface $faqGroupRepository,
+        FaqGroupCollectionFactory $faqGroupCollectionFactory,
+        FaqGroupFactory $faqGroupFactory,
+        FilterProvider $filterProvider,
+        HelperData $helper
     ) {
         $this->faqCollectionFactory = $faqCollectionFactory;
         $this->faqGroupCollectionFactory = $faqGroupCollectionFactory;
+        $this->faqGroupRepository = $faqGroupRepository;
         $this->faqGroupFactory = $faqGroupFactory;
         $this->storeManager = $context->getStoreManager();
-        $this->customerSession = $customerSession;
-        $this->templateProcessor = $templateProcessor;
         $this->scopeConfig = $context->getScopeConfig();
+        $this->helper = $helper;
+        $this->filterProvider = $filterProvider;
         parent::__construct($context);
     }
 
+    /**
+     * Get faq collection
+     *
+     * @param $group
+     * @return \Mageprince\Faq\Model\ResourceModel\Faq\Collection
+     * @throws NoSuchEntityException
+     */
     public function getFaqCollection($group)
     {
         if ($this->getGroupId()) {
@@ -61,128 +127,166 @@ class Index extends \Magento\Framework\View\Element\Template
         }
         $faqCollection = $this->faqCollectionFactory->create();
         $faqCollection->addFieldToFilter('group', ['like' => '%'.$group.'%']);
-        $faqCollection->addFieldToFilter('status', 1);
-        $faqCollection->addFieldToFilter(
-            'customer_group',
-            [
-                ['null' => true],
-                ['finset' => $this->getCurrentCustomer()]
-            ]
-        );
-        $faqCollection->addFieldToFilter(
-            'storeview',
-            [
-                ['eq' => 0],
-                ['finset' => $this->getCurrentStore()]
-            ]
-        );
-        $faqCollection->setOrder('sortorder', 'ASC');
+        $this->filterCollectionData($faqCollection);
         return $faqCollection;
     }
 
+    /**
+     * Get faq group collection
+     *
+     * @return FaqGroupCollection
+     * @throws NoSuchEntityException
+     */
     public function getFaqGroupCollection()
     {
         $faqGroupCollection = $this->faqGroupCollectionFactory->create();
-        $faqGroupCollection->addFieldToFilter('status', 1);
-        $faqGroupCollection->addFieldToFilter(
+        $this->filterCollectionData($faqGroupCollection);
+        return $faqGroupCollection;
+    }
+
+    /**
+     * Filter collection data
+     *
+     * @param $collection
+     * @throws NoSuchEntityException
+     */
+    private function filterCollectionData($collection)
+    {
+        $collection->addFieldToFilter('status', 1);
+        $collection->addFieldToFilter(
             'customer_group',
             [
                 ['null' => true],
-                ['finset' => $this->getCurrentCustomer()]
+                ['finset' => $this->helper->getCurrentCustomer()]
             ]
         );
-        $faqGroupCollection->addFieldToFilter(
+        $collection->addFieldToFilter(
             'storeview',
             [
                 ['eq' => 0],
                 ['finset' => $this->getCurrentStore()]
             ]
         );
-        $faqGroupCollection->setOrder('sortorder', 'ASC');
-        return $faqGroupCollection;
+        $collection->setOrder('sortorder', 'ASC');
     }
 
+    /**
+     * Get group by id
+     *
+     * @param $groupId
+     * @return FaqGroupInterface
+     * @throws LocalizedException
+     */
     public function getGroupById($groupId)
     {
-        $faqGroup = $this->faqGroupFactory->create();
-        $faqGroup->load($groupId);
-        return $faqGroup;
+        return $this->faqGroupRepository->getById($groupId);
     }
 
+    /**
+     * Filter faq content
+     *
+     * @param $string
+     * @return string
+     * @throws \Exception
+     */
     public function filterOutputHtml($string)
     {
-        return $this->templateProcessor->filter($string);
+        return $this->filterProvider->getPageFilter()->filter($string);
     }
 
+    /**
+     * Get icon image url
+     *
+     * @param $icon
+     * @return string
+     * @throws NoSuchEntityException
+     */
     public function getImageUrl($icon)
     {
         $mediaUrl = $this->storeManager
-                         ->getStore()
-                         ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+            ->getStore()
+            ->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
         $imageUrl = $mediaUrl.'faq/tmp/icon/'.$icon;
         return $imageUrl;
     }
 
+    /**
+     * Get config value
+     *
+     * @param $config
+     * @return mixed
+     */
     public function getConfig($config)
     {
         return $this->scopeConfig->getValue(
             $config,
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+            ScopeInterface::SCOPE_STORE
         );
     }
 
-    public function getCurrentCustomer()
-    {
-        return $this->customerSession->getCustomer()->getGroupId();
-    }
-
+    /**
+     * Get current store id
+     *
+     * @return int
+     * @throws NoSuchEntityException
+     */
     public function getCurrentStore()
     {
         return $this->storeManager->getStore()->getId();
     }
 
+    /**
+     * Check is module enabled
+     *
+     * @return bool
+     */
     public function isEnable()
     {
-        return $this->getConfig(self::CONFIG_PATH_IS_ENABLE);
+        return $this->getConfig(DefaultConfig::CONFIG_PATH_IS_ENABLE);
     }
 
+    /**
+     * Check is group enabled
+     *
+     * @return bool
+     */
     public function isShowGroup()
     {
         if ($this->getShowGroup() != null) {
-            return $this->checkBlockData($this->getShowGroup());
+            return $this->helper->checkBlockData($this->getShowGroup());
         } else {
-            return $this->getConfig(self::CONFIG_PATH_IS_SHOW_GROUP);
+            return $this->getConfig(DefaultConfig::CONFIG_PATH_IS_SHOW_GROUP);
         }
     }
 
+    /**
+     * Check is group title enabled
+     *
+     * @return bool
+     */
     public function isShowGroupTitle()
     {
         if ($this->getShowGroupTitle() != null) {
-            return $this->checkBlockData($this->getShowGroupTitle());
+            return $this->helper->checkBlockData($this->getShowGroupTitle());
         } else {
-            return $this->getConfig(self::CONFIG_PATH_IS_SHOW_GROUP_TITLE);
+            return $this->getConfig(DefaultConfig::CONFIG_PATH_IS_SHOW_GROUP_TITLE);
         }
     }
 
-    private function checkBlockData($data)
-    {
-        if ($data == '1') {
-            return true;
-        } else if ($data == '0') {
-            return false;
-        }
-    }
-
+    /**
+     * Get faq page type action
+     *
+     * @return string
+     */
     public function getPageTypeAction()
     {
         if ($this->getPageType() == 'ajax') {
             $pageType = 'ajax';
-        } else if ($this->getPageType() == 'scroll') {
+        } elseif ($this->getPageType() == 'scroll') {
             $pageType = 'scroll';
         } else {
-            $pageType = $this->getConfig(self::CONFIG_PATH_PAGE_TYPE);
+            $pageType = $this->getConfig(DefaultConfig::CONFIG_PATH_PAGE_TYPE);
         }
-
         return $pageType;
     }
 }

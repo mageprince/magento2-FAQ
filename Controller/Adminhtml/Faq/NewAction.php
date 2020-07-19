@@ -12,20 +12,28 @@
 
 namespace Mageprince\Faq\Controller\Adminhtml\Faq;
 
-class NewAction extends \Mageprince\Faq\Controller\Adminhtml\Faq
-{
+use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\ForwardFactory;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Registry;
+use Mageprince\Faq\Controller\Adminhtml\Faq;
 
+class NewAction extends Faq
+{
+    /**
+     * @var ForwardFactory
+     */
     private $resultForwardFactory;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Registry $coreRegistry
-     * @param \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory
+     * @param Context $context
+     * @param Registry $coreRegistry
+     * @param ForwardFactory $resultForwardFactory
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry,
-        \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory
+        Context $context,
+        Registry $coreRegistry,
+        ForwardFactory $resultForwardFactory
     ) {
         $this->resultForwardFactory = $resultForwardFactory;
         parent::__construct($context, $coreRegistry);
@@ -42,7 +50,7 @@ class NewAction extends \Mageprince\Faq\Controller\Adminhtml\Faq
     /**
      * New action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {

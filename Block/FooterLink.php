@@ -12,12 +12,13 @@
 
 namespace Mageprince\Faq\Block;
 
-class FooterLink extends \Magento\Framework\View\Element\Html\Link
+use Magento\Framework\View\Element\Html\Link;
+
+class FooterLink extends Link
 {
-    public function _toHtml() 
+    public function _toHtml()
     {
-        if (
-            !$this->_scopeConfig->isSetFlag('faqtab/general/enable') ||
+        if (!$this->_scopeConfig->isSetFlag('faqtab/general/enable') ||
             !$this->_scopeConfig->isSetFlag('faqtab/design/footerlink')
         ) {
             return '';

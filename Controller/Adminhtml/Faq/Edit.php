@@ -12,7 +12,9 @@
 
 namespace Mageprince\Faq\Controller\Adminhtml\Faq;
 
-class Edit extends \Mageprince\Faq\Controller\Adminhtml\Faq
+use Mageprince\Faq\Controller\Adminhtml\Faq;
+
+class Edit extends Faq
 {
 
     private $resultPageFactory;

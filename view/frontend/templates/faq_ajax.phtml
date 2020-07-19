@@ -15,18 +15,18 @@ $faqGroupCollection = $block->getFaqGroupCollection();
 $faqCollection = $block->getFaqCollection($block->getGroupId());
 $group = $block->getGroupById($block->getGroupId());
 ?>
-<?php if ($block->isShowGroupTitle()) : ?>
-    <div class="group-title" id="group<?php /* @noEscape */ echo $group->getFaqgroupId(); ?>">
-        <i></i><?php /* @noEscape */ echo $group->getGroupName(); ?>
+<?php if ($block->isShowGroupTitle()): ?>
+    <div class="group-title" id="group<?= /* @noEscape */ $group->getFaqgroupId(); ?>">
+        <i></i><?= /* @noEscape */ $group->getGroupName(); ?>
     </div>
 <?php endif; ?>
 <div class="faq-accordion">
     <?php $faqCollection = $block->getFaqCollection($group->getId()); ?>
-    <?php if ($faqCollection->getSize()) : ?>
-        <?php foreach ($faqCollection as $faq) : ?>
-            <h3><?php /* @noEscape */ echo $faq->getTitle(); ?></h3>
+    <?php if ($faqCollection->getSize()): ?>
+        <?php foreach ($faqCollection as $faq): ?>
+            <h3><?= /* @noEscape */ $faq->getTitle(); ?></h3>
             <div>
-                <p><?php /* @noEscape */ echo $block->filterOutputHtml($faq->getContent()); ?></p>
+                <p><?= /* @noEscape */ $block->filterOutputHtml($faq->getContent()); ?></p>
             </div>
         <?php endforeach; ?>
     <?php endif; ?>

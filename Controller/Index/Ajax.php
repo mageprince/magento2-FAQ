@@ -12,31 +12,44 @@
 
 namespace Mageprince\Faq\Controller\Index;
 
-class Ajax extends \Magento\Framework\App\Action\Action
+use Magento\Framework\App\Action\Action;
+use Magento\Framework\App\Action\Context;
+use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\View\Result\PageFactory;
+use Mageprince\Faq\Block\Index\Index as FaqBlock;
+use Mageprince\Faq\Helper\Data;
+
+class Ajax extends Action
 {
     /**
-     * @var \Magento\Framework\View\Result\PageFactory
+     * @var PageFactory
      */
     private $resultPageFactory;
 
+    /**
+     * @var JsonFactory
+     */
     protected $resultJsonFactory;
 
     /**
-     * @var \Mageprince\Faq\Helper\Data
+     * @var Data
      */
     protected $helper;
 
     /**
-     * Index constructor.
-     * @param \Magento\Framework\App\Action\Context $context
-     * @param \Mageprince\Faq\Helper\Data $helper
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * Ajax constructor.
+     *
+     * @param Context $context
+     * @param Data $helper
+     * @param PageFactory $resultPageFactory
+     * @param JsonFactory $resultJsonFactory
      */
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Mageprince\Faq\Helper\Data $helper,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
+        Context $context,
+        Data $helper,
+        PageFactory $resultPageFactory,
+        JsonFactory $resultJsonFactory
     ) {
         $this->helper = $helper;
         $this->resultPageFactory = $resultPageFactory;
@@ -47,14 +60,14 @@ class Ajax extends \Magento\Framework\App\Action\Action
     /**
      * Execute view action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
         $groupId = $this->getRequest()->getParam('groupId');
         $block = $resultPage->getLayout()
-            ->createBlock('Mageprince\Faq\Block\Index\Index')
+            ->createBlock(FaqBlock::class)
             ->setTemplate('Mageprince_Faq::faq_ajax.phtml')
             ->setGroupId($groupId)
             ->toHtml();
