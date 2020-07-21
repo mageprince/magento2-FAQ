@@ -67,7 +67,12 @@ class Data extends AbstractHelper
      */
     public function getCurrentCustomer()
     {
-        return $this->customerSession->getCustomer()->getGroupId();
+        $customerGroupId = 0;
+        if ($this->customerSession->isLoggedIn()) {
+            $customerGroupId = $this->customerSession->getCustomer()->getGroupId();
+        }
+
+        return $customerGroupId;
     }
 
     /**
