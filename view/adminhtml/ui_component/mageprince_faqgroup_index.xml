@@ -70,7 +70,15 @@
 		        </argument>
 		    </action>
 		</massaction>
-		<bookmark name="bookmark"/>
+        <bookmark name="bookmarks">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="namespace" xsi:type="string">mageprince_faqgroup_index</item>
+                    </item>
+                </item>
+            </argument>
+        </bookmark>
 		<columnsControls name="columns_controls"/>
 		<filters name="listing_filters"/>
 		<paging name="listing_paging"/>
