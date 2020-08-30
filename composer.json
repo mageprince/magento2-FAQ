@@ -3,7 +3,7 @@
     "description": "Magento2 FAQ Module",
     "homepage": "https://github.com/mageprince/magento2-FAQ",
     "type": "magento2-module",
-    "version": "2.0.3",
+    "version": "2.0.4",
     "license": "GPL-3.0-or-later",
     "authors": [
         {
