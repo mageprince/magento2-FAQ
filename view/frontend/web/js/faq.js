@@ -8,6 +8,9 @@ define([
 
         setAccordian();
 
+        $('#faq-collection').show();
+        $('#faq-loader').hide();
+
         function setAccordian() {
             $(".faq-accordion").accordion({
                 collapsible: true,

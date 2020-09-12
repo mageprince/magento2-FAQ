@@ -11,6 +11,9 @@
  */
 -->
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Mageprince_Faq::css/font-awesome.css"/>
+    </head>
     <body>
 		<referenceContainer name="content">
 			<block class="Mageprince\Faq\Block\Index\Index" name="faq.main" />
