@@ -79,7 +79,7 @@ $faqGroupCollection = $block->getFaqGroupCollection();
                             <div id="group<?= /* @noEscape */  $group->getFaqgroupId(); ?>">
                                 <?php if ($block->isShowGroupTitle()): ?>
                                     <div class="group-title">
-                                        <i></i><?= /* @noEscape */  $group->getGroupName(); ?>
+                                        <?= /* @noEscape */  $group->getGroupName(); ?>
                                     </div>
                                 <?php endif; ?>
                                 <div class="faq-accordion">
@@ -101,7 +101,7 @@ $faqGroupCollection = $block->getFaqGroupCollection();
                         <?php $group = $faqGroupCollection->getFirstItem(); ?>
                         <?php if ($block->isShowGroupTitle()): ?>
                             <div class="group-title" id="group<?= /* @noEscape */  $group->getFaqgroupId(); ?>">
-                                <i></i><?= /* @noEscape */  $group->getGroupName(); ?>
+                                <?= /* @noEscape */  $group->getGroupName(); ?>
                             </div>
                         <?php endif; ?>
                         <div class="faq-accordion">

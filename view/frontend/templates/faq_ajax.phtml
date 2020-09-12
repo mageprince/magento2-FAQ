@@ -17,7 +17,7 @@ $group = $block->getGroupById($block->getGroupId());
 ?>
 <?php if ($block->isShowGroupTitle()): ?>
     <div class="group-title" id="group<?= /* @noEscape */ $group->getFaqgroupId(); ?>">
-        <i></i><?= /* @noEscape */ $group->getGroupName(); ?>
+        <?= /* @noEscape */ $group->getGroupName(); ?>
     </div>
 <?php endif; ?>
 <div class="faq-accordion">
