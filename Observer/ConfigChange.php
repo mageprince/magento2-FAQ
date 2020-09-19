@@ -69,21 +69,25 @@ class ConfigChange implements ObserverInterface
             $urlKey = str_replace(' ', '-', $faqUrlVal['faq_url']['value']);
             $filterUrlKey = preg_replace('/[^A-Za-z0-9\-]/', '', $urlKey);
             $this->configWriter->save('faqtab/seo/faq_url', $filterUrlKey);
-            $storeId = $this->storeManager->getStore()->getId();
-            $urlRewriteModel = $this->urlRewriteFactory->create();
-            $rewritecollection = $urlRewriteModel->getCollection()
-                ->addFieldToFilter('request_path', self::REQUEST_PATH)
-                ->addFieldToFilter('store_id', $storeId)
-                ->getFirstItem();
-            $urlRewriteModel->load($rewritecollection->getId());
-            if ($filterUrlKey == self::REQUEST_PATH) {
-                $urlRewriteModel->delete();
-            } else {
-                $urlRewriteModel->setStoreId($storeId);
-                $urlRewriteModel->setTargetPath($filterUrlKey);
-                $urlRewriteModel->setRequestPath(self::REQUEST_PATH);
-                $urlRewriteModel->setredirectType(301);
-                $urlRewriteModel->save();
+            $stores = $this->storeManager->getStores();
+            foreach ($stores as $store) {
+                $urlRewriteModel = $this->urlRewriteFactory->create();
+                $rewriteCollection = $urlRewriteModel->getCollection()
+                    ->addFieldToFilter('request_path', self::REQUEST_PATH)
+                    ->addFieldToFilter('store_id', $store->getId())
+                    ->getFirstItem();
+                $urlRewriteModel->load($rewriteCollection->getId());
+                if ($filterUrlKey == self::REQUEST_PATH) {
+                    if ($urlRewriteModel->getId()) {
+                        $urlRewriteModel->delete();
+                    }
+                } else {
+                    $urlRewriteModel->setStoreId($store->getId());
+                    $urlRewriteModel->setTargetPath($filterUrlKey);
+                    $urlRewriteModel->setRequestPath(self::REQUEST_PATH);
+                    $urlRewriteModel->setredirectType(301);
+                    $urlRewriteModel->save();
+                }
             }
         }
         return $this;

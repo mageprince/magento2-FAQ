@@ -62,12 +62,9 @@ class Router implements RouterInterface
     {
         $identifier = trim($request->getPathInfo(), '/');
 
-        $faqUrl = $this->scopeConfig->getValue(
-            'faqtab/seo/faq_url',
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-        );
+        $faqUrl = $this->scopeConfig->getValue('faqtab/seo/faq_url');
 
-        if (strpos($identifier, $faqUrl) !== false) {
+        if ($identifier == $faqUrl) {
             $request->setModuleName('faq');
             $request->setControllerName('index');
             $request->setActionName('index');

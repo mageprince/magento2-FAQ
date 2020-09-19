@@ -57,7 +57,7 @@ class Data extends AbstractHelper
      */
     public function getFaqUrl()
     {
-        return $this->getConfig(DefaultConfig::FAQ_URL_CONFIG_PATH);
+        return $this->scopeConfig->getValue(DefaultConfig::FAQ_URL_CONFIG_PATH);
     }
 
     /**
@@ -88,5 +88,15 @@ class Data extends AbstractHelper
         } elseif ($data == '0') {
             return false;
         }
+    }
+
+    /**
+     * Check is module enabled
+     *
+     * @return bool
+     */
+    public function isEnable()
+    {
+        return $this->scopeConfig->getValue(DefaultConfig::CONFIG_PATH_IS_ENABLE);
     }
 }
