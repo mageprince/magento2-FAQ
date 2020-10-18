@@ -14,6 +14,7 @@ namespace Mageprince\Faq\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
+use Magento\Store\Model\ScopeInterface;
 use Mageprince\Faq\Model\Config\DefaultConfig;
 use Magento\Customer\Model\Session as CustomerSession;
 
@@ -47,7 +48,7 @@ class Data extends AbstractHelper
     {
         return $this->scopeConfig->getValue(
             $config,
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+            ScopeInterface::SCOPE_STORE
         );
     }
 

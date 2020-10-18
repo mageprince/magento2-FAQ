@@ -17,7 +17,7 @@ use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Mageprince\Faq\Model\ImageUploader;
 
-class Upload extends Action
+class Upload extends FaqGroup
 {
     /**
      * Image uploader
@@ -38,16 +38,6 @@ class Upload extends Action
     ) {
         parent::__construct($context);
         $this->imageUploader = $imageUploader;
-    }
-
-    /**
-     * Check admin permissions for this controller
-     *
-     * @return boolean
-     */
-    public function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Mageprince_Faq::Faq');
     }
 
     /**

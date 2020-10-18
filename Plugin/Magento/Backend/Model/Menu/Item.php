@@ -22,13 +22,13 @@ class Item
     public function afterGetUrl($subject, $result)
     {
         $menuId = $subject->getId();
-        
+
         if ($menuId == 'Mageprince_Faq::faq_user_guid') {
-            $result = 'https://marketplace.magento.com/media/catalog/product/prince-module-faq-2-0-1-ce/user_guides.pdf';
+            $result = 'https://marketplace.magento.com/media/catalog/product/prince-module-faq-2-0-6-ce/user_guides.pdf';
         } elseif ($menuId == 'Mageprince_Faq::other_modules') {
             $result = 'http://mageprince.com/blog/modules';
         }
-        
+
         return $result;
     }
 }

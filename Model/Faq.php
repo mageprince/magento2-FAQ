@@ -27,8 +27,7 @@ class Faq extends AbstractModel implements FaqInterface
     }
 
     /**
-     * Get faq_id
-     * @return string
+     * @inheridoc
      */
     public function getFaqId()
     {
@@ -36,9 +35,7 @@ class Faq extends AbstractModel implements FaqInterface
     }
 
     /**
-     * Set faq_id
-     * @param string $faqId
-     * @return \Mageprince\Faq\Api\Data\FaqInterface
+     * @inheridoc
      */
     public function setFaqId($faqId)
     {
@@ -46,8 +43,7 @@ class Faq extends AbstractModel implements FaqInterface
     }
 
     /**
-     * Get title
-     * @return string
+     * @inheridoc
      */
     public function getTitle()
     {
@@ -55,9 +51,7 @@ class Faq extends AbstractModel implements FaqInterface
     }
 
     /**
-     * Set title
-     * @param string $title
-     * @return \Mageprince\Faq\Api\Data\FaqInterface
+     * @inheridoc
      */
     public function setTitle($title)
     {
@@ -65,8 +59,7 @@ class Faq extends AbstractModel implements FaqInterface
     }
 
     /**
-     * Get content
-     * @return string
+     * @inheridoc
      */
     public function getContent()
     {
@@ -74,9 +67,7 @@ class Faq extends AbstractModel implements FaqInterface
     }
 
     /**
-     * Set content
-     * @param string $content
-     * @return \Mageprince\Faq\Api\Data\FaqInterface
+     * @inheridoc
      */
     public function setContent($content)
     {
@@ -84,27 +75,23 @@ class Faq extends AbstractModel implements FaqInterface
     }
 
     /**
-     * Get sortorder
-     * @return string
+     * @inheridoc
      */
-    public function getSortorder()
+    public function getSortOrder()
     {
         return $this->getData(self::SORTORDER);
     }
 
     /**
-     * Set sortorder
-     * @param string $sortorder
-     * @return \Mageprince\Faq\Api\Data\FaqInterface
+     * @inheridoc
      */
-    public function setSortorder($sortorder)
+    public function setSortOrder($sortOrder)
     {
-        return $this->setData(self::SORTORDER, $sortorder);
+        return $this->setData(self::SORTORDER, $sortOrder);
     }
 
     /**
-     * Get status
-     * @return string
+     * @inheridoc
      */
     public function getStatus()
     {
@@ -112,9 +99,7 @@ class Faq extends AbstractModel implements FaqInterface
     }
 
     /**
-     * Set status
-     * @param string $status
-     * @return \Mageprince\Faq\Api\Data\FaqInterface
+     * @inheridoc
      */
     public function setStatus($status)
     {

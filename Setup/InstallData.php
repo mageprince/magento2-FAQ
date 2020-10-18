@@ -26,16 +26,28 @@ class InstallData implements InstallDataInterface
      */
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
-        $table_prince_faqgroup = $setup->getTable('prince_faqgroup');
-        $table_prince_faq = $setup->getTable('prince_faq');
+        $faqGroupData = [
+            'groupname' => 'General',
+            'sortorder' => '1',
+            'storeview' => '1',
+            'customer_group' => '0,1,2,3,4',
+            'status' => '1'
+        ];
 
-        $setup->getConnection()
-            ->query(
-                "INSERT INTO $table_prince_faqgroup (`groupname`, `sortorder`, `storeview`, `customer_group`, `status`) VALUES('General', '1', '0,1,2,3,4', '0,1,2,3,4', '1')"
-            );
-        $setup->getConnection()
-            ->query(
-                "INSERT INTO $table_prince_faq (`title`, `content`, `group`, `storeview`, `customer_group`, `sortorder`, `status`) VALUES ('This is test FAQ question', 'This is test FAQ answer', '1', '1', '0,1,2,3,4', '0', '1')"
-            );
+        $faqData = [
+            'title' => 'This is a test FAQ question',
+            'content' => 'This is a test FAQ answer',
+            'group' => '1',
+            'storeview' => '1',
+            'customer_group' => '0,1,2,3,4',
+            'sortorder' => '0',
+            'status' => '1'
+        ];
+
+        $faqGroupTable = $setup->getTable('prince_faqgroup');
+        $faqTable = $setup->getTable('prince_faq');
+
+        $setup->getConnection()->insert($faqGroupTable, $faqGroupData);
+        $setup->getConnection()->insert($faqTable, $faqData);
     }
 }

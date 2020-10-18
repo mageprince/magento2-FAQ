@@ -13,8 +13,8 @@
 namespace Mageprince\Faq\Setup;
 
 use Magento\Framework\Setup\InstallSchemaInterface;
-use Magento\Framework\Setup\SchemaSetupInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
+use Magento\Framework\Setup\SchemaSetupInterface;
 
 class InstallSchema implements InstallSchemaInterface
 {
@@ -50,7 +50,7 @@ class InstallSchema implements InstallSchemaInterface
             [],
             'groupname'
         );
-        
+
         $table_prince_faqgroup->addColumn(
             'icon',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -66,7 +66,7 @@ class InstallSchema implements InstallSchemaInterface
             [],
             'storeview'
         );
-        
+
         $table_prince_faqgroup->addColumn(
             'customer_group',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -82,7 +82,7 @@ class InstallSchema implements InstallSchemaInterface
             [],
             'sortorder'
         );
-        
+
         $table_prince_faqgroup->addColumn(
             'status',
             \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
@@ -90,9 +90,9 @@ class InstallSchema implements InstallSchemaInterface
             [],
             'status'
         );
-        
+
         $table_prince_faq = $setup->getConnection()->newTable($setup->getTable('prince_faq'));
- 
+
         $table_prince_faq->addColumn(
             'faq_id',
             \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
@@ -105,7 +105,7 @@ class InstallSchema implements InstallSchemaInterface
             ],
             'Entity ID'
         );
-        
+
         $table_prince_faq->addColumn(
             'title',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -113,7 +113,7 @@ class InstallSchema implements InstallSchemaInterface
             [],
             'title'
         );
-        
+
         $table_prince_faq->addColumn(
             'content',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -121,7 +121,7 @@ class InstallSchema implements InstallSchemaInterface
             [],
             'content'
         );
-        
+
         $table_prince_faq->addColumn(
             'group',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -129,7 +129,7 @@ class InstallSchema implements InstallSchemaInterface
             [],
             'group'
         );
-        
+
         $table_prince_faq->addColumn(
             'storeview',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -137,7 +137,7 @@ class InstallSchema implements InstallSchemaInterface
             [],
             'storeview'
         );
-        
+
         $table_prince_faq->addColumn(
             'customer_group',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -145,7 +145,7 @@ class InstallSchema implements InstallSchemaInterface
             [],
             'customer_group'
         );
-        
+
         $table_prince_faq->addColumn(
             'sortorder',
             \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
@@ -153,7 +153,7 @@ class InstallSchema implements InstallSchemaInterface
             [],
             'sortorder'
         );
-        
+
         $table_prince_faq->addColumn(
             'status',
             \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
@@ -161,7 +161,7 @@ class InstallSchema implements InstallSchemaInterface
             [],
             'status'
         );
-        
+
         $setup->getConnection()->createTable($table_prince_faq);
         $setup->getConnection()->createTable($table_prince_faqgroup);
         $setup->endSetup();

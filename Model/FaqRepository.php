@@ -12,99 +12,64 @@
 
 namespace Mageprince\Faq\Model;
 
-use Mageprince\Faq\Api\Data\FaqSearchResultsInterfaceFactory;
-use Magento\Framework\Exception\CouldNotSaveException;
-use Magento\Framework\Api\DataObjectHelper;
-use Mageprince\Faq\Api\Data\FaqInterfaceFactory;
-use Mageprince\Faq\Api\FaqRepositoryInterface;
-use Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory as FaqCollectionFactory;
-use Magento\Framework\Reflection\DataObjectProcessor;
-use Magento\Framework\Exception\CouldNotDeleteException;
-use Magento\Framework\Exception\NoSuchEntityException;
-use Mageprince\Faq\Model\ResourceModel\Faq as ResourceFaq;
 use Magento\Framework\Api\SortOrder;
-use Magento\Store\Model\StoreManagerInterface;
+use Magento\Framework\Exception\CouldNotDeleteException;
+use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Mageprince\Faq\Api\Data\FaqInterface;
+use Mageprince\Faq\Api\Data\FaqSearchResultsInterfaceFactory;
+use Mageprince\Faq\Api\FaqRepositoryInterface;
+use Mageprince\Faq\Model\ResourceModel\Faq as ResourceFaq;
+use Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory as FaqCollectionFactory;
 
 class FaqRepository implements FaqRepositoryInterface
 {
-
-    /**
-     * @var \Magento\Store\Model\StoreManagerInterface
-     */
-    private $storeManager;
-
     /**
      * @var \Mageprince\Faq\Model\ResourceModel\Faq
      */
-    private $resource;
-
-    /**
-     * @var \Mageprince\Faq\Model\ResourceModel\Faq
-     */
-    private $FaqFactory;
-
-    /**
-     * @var \Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory
-     */
-    private $FaqCollectionFactory;
-
-    /**
-     * @var \Magento\Framework\Reflection\DataObjectProcessor
-     */
-    private $dataObjectProcessor;
-
-    /**
-     * @var \Magento\Framework\Api\DataObjectHelper
-     */
-    private $dataObjectHelper;
-
-    /**
-     * @var \Mageprince\Faq\Api\Data\FaqInterfaceFactory
-     */
-    private $dataFaqFactory;
+    protected $resource;
 
     /**
      * @var \Mageprince\Faq\Api\Data\FaqSearchResultsInterfaceFactory
      */
-    private $searchResultsFactory;
+    protected $searchResultsFactory;
 
     /**
+     * @var FaqCollectionFactory
+     */
+    protected $faqCollectionFactory;
+
+    /**
+     * @var FaqFactory
+     */
+    protected $faqFactory;
+
+    /**
+     * FaqRepository constructor.
      * @param ResourceFaq $resource
      * @param FaqFactory $faqFactory
-     * @param FaqInterfaceFactory $dataFaqFactory
      * @param FaqCollectionFactory $faqCollectionFactory
      * @param FaqSearchResultsInterfaceFactory $searchResultsFactory
-     * @param DataObjectHelper $dataObjectHelper
-     * @param DataObjectProcessor $dataObjectProcessor
-     * @param StoreManagerInterface $storeManager
      */
     public function __construct(
         ResourceFaq $resource,
         FaqFactory $faqFactory,
-        FaqInterfaceFactory $dataFaqFactory,
         FaqCollectionFactory $faqCollectionFactory,
-        FaqSearchResultsInterfaceFactory $searchResultsFactory,
-        DataObjectHelper $dataObjectHelper,
-        DataObjectProcessor $dataObjectProcessor,
-        StoreManagerInterface $storeManager
+        FaqSearchResultsInterfaceFactory $searchResultsFactory
     ) {
         $this->resource = $resource;
         $this->faqFactory = $faqFactory;
         $this->faqCollectionFactory = $faqCollectionFactory;
         $this->searchResultsFactory = $searchResultsFactory;
-        $this->dataObjectHelper = $dataObjectHelper;
-        $this->dataFaqFactory = $dataFaqFactory;
-        $this->dataObjectProcessor = $dataObjectProcessor;
-        $this->storeManager = $storeManager;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function save(\Mageprince\Faq\Api\Data\FaqInterface $faq)
+    public function save(FaqInterface $faq)
     {
         try {
-            $faq->getResource()->save($faq);
+            $this->resource->save($faq);
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(__(
                 'Could not save the faq: %1',
@@ -144,7 +109,7 @@ class FaqRepository implements FaqRepositoryInterface
                 $collection->addFieldToFilter($filter->getField(), [$condition => $filter->getValue()]);
             }
         }
-        
+
         $sortOrders = $criteria->getSortOrders();
         if ($sortOrders) {
             /** @var SortOrder $sortOrder */
@@ -157,7 +122,7 @@ class FaqRepository implements FaqRepositoryInterface
         }
         $collection->setCurPage($criteria->getCurrentPage());
         $collection->setPageSize($criteria->getPageSize());
-        
+
         $searchResults = $this->searchResultsFactory->create();
         $searchResults->setSearchCriteria($criteria);
         $searchResults->setTotalCount($collection->getSize());
@@ -168,10 +133,10 @@ class FaqRepository implements FaqRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function delete(\Mageprince\Faq\Api\Data\FaqInterface $faq)
+    public function delete(FaqInterface $faq)
     {
         try {
-            $faq->getResource()->delete($faq);
+            $this->resource->delete($faq);
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(__(
                 'Could not delete the Faq: %1',

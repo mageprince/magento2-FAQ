@@ -11,6 +11,9 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Mageprince\Faq\Api\FaqRepositoryInterface" type="Mageprince\Faq\Model\FaqRepository"/>
+    <preference for="Mageprince\Faq\Api\Data\FaqInterface" type="Mageprince\Faq\Model\Faq"/>
+    <preference for="Mageprince\Faq\Api\Data\FaqSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 	<preference for="Mageprince\Faq\Api\FaqGroupRepositoryInterface" type="Mageprince\Faq\Model\FaqGroupRepository"/>
 	<preference for="Mageprince\Faq\Api\Data\FaqGroupInterface" type="Mageprince\Faq\Model\FaqGroup"/>
 	<preference for="Mageprince\Faq\Api\Data\FaqGroupSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>

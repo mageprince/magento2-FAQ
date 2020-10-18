@@ -12,18 +12,29 @@
 
 namespace Mageprince\Faq\Controller\Adminhtml\Faq;
 
+use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\Controller\ResultInterface;
-use Mageprince\Faq\Controller\Adminhtml\Faq;
-use Mageprince\Faq\Model\Faq as FaqModel;
+use Mageprince\Faq\Model\FaqRepository;
 
 class Delete extends Faq
 {
     /**
-     * {@inheritdoc}
+     * @var FaqRepository
      */
-    public function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Mageprince_Faq::Faq');
+    protected $faqRepository;
+
+    /**
+     * Delete constructor.
+     * @param Context $context
+     * @param FaqRepository $faqRepository
+     */
+    public function __construct(
+        Context $context,
+        FaqRepository $faqRepository
+    ) {
+        $this->faqRepository = $faqRepository;
+        parent::__construct($context);
     }
 
     /**
@@ -33,30 +44,20 @@ class Delete extends Faq
      */
     public function execute()
     {
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
-        // check if we know what should be deleted
         $id = $this->getRequest()->getParam('faq_id');
         if ($id) {
             try {
-                // init model and delete
-                $model = $this->_objectManager->create(FaqModel::class);
-                $model->load($id);
-                $model->delete();
-                // display success message
+                $this->faqRepository->deleteById($id);
                 $this->messageManager->addSuccessMessage(__('You deleted the Faq.'));
-                // go to grid
                 return $resultRedirect->setPath('*/*/');
             } catch (\Exception $e) {
-                // display error message
                 $this->messageManager->addErrorMessage($e->getMessage());
-                // go back to edit form
                 return $resultRedirect->setPath('*/*/edit', ['faq_id' => $id]);
             }
         }
-        // display error message
         $this->messageManager->addErrorMessage(__('We can\'t find a Faq to delete.'));
-        // go to grid
         return $resultRedirect->setPath('*/*/');
     }
 }

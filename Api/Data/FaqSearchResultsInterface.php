@@ -16,12 +16,10 @@ use Magento\Framework\Api\SearchResultsInterface;
 
 interface FaqSearchResultsInterface extends SearchResultsInterface
 {
-    
     /**
      * Get Faq list.
      * @return \Mageprince\Faq\Api\Data\FaqInterface[]
      */
-    
     public function getItems();
 
     /**
@@ -29,6 +27,5 @@ interface FaqSearchResultsInterface extends SearchResultsInterface
      * @param \Mageprince\Faq\Api\Data\FaqInterface[] $items
      * @return $this
      */
-    
     public function setItems(array $items);
 }

@@ -27,65 +27,39 @@ class FaqGroup extends AbstractModel implements FaqGroupInterface
     }
 
     /**
-     * Get faqgroup_id
-     * @return string
+     * @inheridoc
      */
-    public function getFaqgroupId()
+    public function getFaqGroupId()
     {
         return $this->getData(self::FAQGROUP_ID);
     }
 
     /**
-     * Set faqgroup_id
-     * @param string $faqgroupId
-     * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
+     * @inheridoc
      */
-    public function setFaqgroupId($faqgroupId)
+    public function setFaqGroupId($faqGroupId)
     {
-        return $this->setData(self::FAQGROUP_ID, $faqgroupId);
+        return $this->setData(self::FAQGROUP_ID, $faqGroupId);
     }
 
     /**
-     * Get groupname
-     * @return string
+     * @inheridoc
      */
-    public function getGroupname()
+    public function getGroupName()
     {
         return $this->getData(self::GROUPNAME);
     }
 
     /**
-     * Set groupname
-     * @param string $groupname
-     * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
+     * @inheridoc
      */
-    public function setGroupname($groupname)
+    public function setGroupName($groupName)
     {
-        return $this->setData(self::GROUPNAME, $groupname);
+        return $this->setData(self::GROUPNAME, $groupName);
     }
 
     /**
-     * Get groupcode
-     * @return string
-     */
-    public function getGroupcode()
-    {
-        return $this->getData(self::GROUPCODE);
-    }
-
-    /**
-     * Set groupcode
-     * @param string $groupcode
-     * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
-     */
-    public function setGroupcode($groupcode)
-    {
-        return $this->setData(self::GROUPCODE, $groupcode);
-    }
-
-    /**
-     * Get icon
-     * @return string
+     * @inheridoc
      */
     public function getIcon()
     {
@@ -93,9 +67,7 @@ class FaqGroup extends AbstractModel implements FaqGroupInterface
     }
 
     /**
-     * Set icon
-     * @param string $icon
-     * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
+     * @inheridoc
      */
     public function setIcon($icon)
     {
@@ -103,46 +75,39 @@ class FaqGroup extends AbstractModel implements FaqGroupInterface
     }
 
     /**
-     * Get width
-     * @return string
+     * @inheridoc
      */
-    public function getWidth()
-    {
-        return $this->getData(self::WIDTH);
-    }
-
-    /**
-     * Set width
-     * @param string $width
-     * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
-     */
-    public function setWidth($width)
-    {
-        return $this->setData(self::WIDTH, $width);
-    }
-
-    /**
-     * Get faqids
-     * @return string
-     */
-    public function getFaqids()
+    public function getFaqIds()
     {
         return $this->getData(self::FAQIDS);
     }
 
     /**
-     * Set faqids
-     * @param string $faqids
-     * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
+     * @inheridoc
      */
-    public function setFaqids($faqids)
+    public function setFaqIds($faqIds)
     {
-        return $this->setData(self::FAQIDS, $faqids);
+        return $this->setData(self::FAQIDS, $faqIds);
     }
 
     /**
-     * Get status
-     * @return string
+     * @inheridoc
+     */
+    public function getSortOrder()
+    {
+        return $this->getData(self::SORTORDER);
+    }
+
+    /**
+     * @inheridoc
+     */
+    public function setSortOrder($sortOrder)
+    {
+        return $this->setData(self::SORTORDER, $sortOrder);
+    }
+
+    /**
+     * @inheridoc
      */
     public function getStatus()
     {
@@ -150,9 +115,7 @@ class FaqGroup extends AbstractModel implements FaqGroupInterface
     }
 
     /**
-     * Set status
-     * @param string $status
-     * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
+     * @inheridoc
      */
     public function setStatus($status)
     {

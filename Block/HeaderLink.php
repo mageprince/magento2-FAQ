@@ -13,14 +13,21 @@
 namespace Mageprince\Faq\Block;
 
 use Magento\Framework\View\Element\Html\Link;
+use Magento\Store\Model\ScopeInterface;
 
 class HeaderLink extends Link
 {
     public function _toHtml()
     {
-        if (!$this->_scopeConfig->isSetFlag('faqtab/general/enable') ||
-            !$this->_scopeConfig->isSetFlag('faqtab/design/headerlink')
-        ) {
+        $isEnable = $this->_scopeConfig->isSetFlag(
+            'faqtab/general/enable',
+            ScopeInterface::SCOPE_STORE
+        );
+        $isHeaderLinkEnable = $this->_scopeConfig->isSetFlag(
+            'faqtab/design/headerlink',
+            ScopeInterface::SCOPE_STORE
+        );
+        if (!$isEnable || !$isHeaderLinkEnable) {
             return '';
         }
         return parent::_toHtml();

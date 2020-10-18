@@ -16,19 +16,16 @@ use Magento\Framework\Api\SearchResultsInterface;
 
 interface FaqGroupSearchResultsInterface extends SearchResultsInterface
 {
-
     /**
      * Get FaqGroup list.
      * @return \Mageprince\Faq\Api\Data\FaqGroupInterface[]
      */
-    
     public function getItems();
 
     /**
-     * Set groupname list.
+     * Set FaqGroup list.
      * @param \Mageprince\Faq\Api\Data\FaqGroupInterface[] $items
      * @return $this
      */
-    
     public function setItems(array $items);
 }

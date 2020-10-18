@@ -12,81 +12,59 @@
 
 namespace Mageprince\Faq\Controller\Adminhtml\Faq;
 
-use Mageprince\Faq\Controller\Adminhtml\Faq;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\View\Result\PageFactory;
+use Mageprince\Faq\Model\FaqRepository;
 
 class Edit extends Faq
 {
-
-    private $resultPageFactory;
-
     /**
-     * @var \Mageprince\Faq\Model\Faq
+     * @var PageFactory
      */
-    private $faqModel;
+    protected $resultPageFactory;
 
     /**
-     * @var \Magento\Framework\Registry
+     * @var FaqRepository
      */
-    private $coreRegistry;
+    protected $faqRepository;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Registry $coreRegistry
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
-     * @param \Mageprince\Faq\Model\Faq $faqModel
+     * Index constructor.
+     *
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
+     * @param FaqRepository $faqRepository
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Mageprince\Faq\Model\Faq $faqModel
+        Context $context,
+        PageFactory $resultPageFactory,
+        FaqRepository $faqRepository
     ) {
         $this->resultPageFactory = $resultPageFactory;
-        $this->faqModel = $faqModel;
-        $this->coreRegistry = $coreRegistry;
-        parent::__construct($context, $coreRegistry);
+        $this->faqRepository = $faqRepository;
+        parent::__construct($context);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Mageprince_Faq::Faq');
-    }
-
-    /**
-     * Edit action
-     *
-     * @return \Magento\Framework\Controller\ResultInterface
-     */
     public function execute()
     {
-        // 1. Get ID and create model
-        $id = $this->getRequest()->getParam('faq_id');
-        $model = $this->faqModel;
-        
-        // 2. Initial checking
-        if ($id) {
-            $model->load($id);
-            if (!$model->getId()) {
-                $this->messageManager->addErrorMessage(__('This FAQ no longer exists.'));
-                /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
-                $resultRedirect = $this->resultRedirectFactory->create();
-                return $resultRedirect->setPath('*/*/');
-            }
-        }
-        $this->coreRegistry->register('prince_faq_faq', $model);
-        
-        // 5. Build edit form
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
-        $resultPage = $this->resultPageFactory->create();
-        $this->initPage($resultPage)->addBreadcrumb(
-            $id ? __('Edit Faq') : __('New FAQ'),
-            $id ? __('Edit Faq') : __('New FAQ')
-        );
-        $resultPage->getConfig()->getTitle()->prepend(__('FAQs'));
-        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? $model->getTitle() : __('New Faq'));
+        $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+        $resultPage->setActiveMenu('Mageprince_Faq::menu');
+
+        if ($faqGroupId = (int) $this->getRequest()->getParam('faq_id')) {
+            try {
+                $faq = $this->faqRepository->getById($faqGroupId);
+                $resultPage->getConfig()->getTitle()->prepend(__($faq->getTitle()));
+            } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
+                $this->messageManager->addErrorMessage(__('This FAQ no longer exists.'));
+
+                return $this->_redirect('*/*/index');
+            }
+        } else {
+            $resultPage->getConfig()->getTitle()->prepend(__('New FAQ'));
+        }
+
         return $resultPage;
     }
 }

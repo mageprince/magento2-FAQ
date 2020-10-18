@@ -17,43 +17,43 @@ use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
-use Mageprince\Faq\Model\Faq as FaqModel;
+use Mageprince\Faq\Api\FaqRepositoryInterface;
+use Mageprince\Faq\Model\FaqFactory;
 
-class Save extends Action
+class Save extends Faq
 {
     /**
      * @var DataPersistorInterface
      */
-    private $dataPersistor;
+    protected $dataPersistor;
 
     /**
-     * @var FaqModel
+     * @var FaqFactory
      */
-    private $faqModel;
+    protected $faqFactory;
+
+    /**
+     * @var FaqRepositoryInterface
+     */
+    protected $faqRepository;
 
     /**
      * Save constructor.
-     *
      * @param Action\Context $context
      * @param DataPersistorInterface $dataPersistor
-     * @param FaqModel $faqModel
+     * @param FaqFactory $faqFactory
+     * @param FaqRepositoryInterface $faqRepository
      */
     public function __construct(
         Action\Context $context,
         DataPersistorInterface $dataPersistor,
-        FaqModel $faqModel
+        FaqFactory $faqFactory,
+        FaqRepositoryInterface $faqRepository
     ) {
         $this->dataPersistor = $dataPersistor;
-        $this->faqModel = $faqModel;
+        $this->faqFactory = $faqFactory;
+        $this->faqRepository = $faqRepository;
         parent::__construct($context);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Mageprince_Faq::Faq');
     }
 
     /**
@@ -65,9 +65,49 @@ class Save extends Action
     {
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
-        $data = $this->getRequest()->getPostValue();
-        $group = $this->getGroups($data['group']);
-        $data['group'] = $group;
+        if ($data = $this->getRequest()->getPostValue()) {
+            $model = $this->faqFactory->create();
+            try {
+                if ($id = (int) $this->getRequest()->getParam('faq_id')) {
+                    $model = $this->faqRepository->getById($id);
+                    if ($id != $model->getFaqId()) {
+                        $this->messageManager->addErrorMessage(__('This FAQ no longer exists.'));
+                        return $resultRedirect->setPath('*/*/');
+                    }
+                }
+
+                $data = $this->_filterFaqData($data);
+                $model->addData($data);
+                $this->faqRepository->save($model);
+                $this->messageManager->addSuccessMessage(__('You saved the FAQ.'));
+                $this->dataPersistor->clear('prince_faq_faq');
+
+                if ($this->getRequest()->getParam('back')) {
+                    return $resultRedirect->setPath('*/*/edit', ['faq_id' => $model->getId()]);
+                }
+                return $resultRedirect->setPath('*/*/');
+            } catch (LocalizedException $e) {
+                $this->messageManager->addErrorMessage($e->getMessage());
+            } catch (\Exception $e) {
+                $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the FAQ.'));
+            }
+
+            $this->dataPersistor->set('prince_faq_faq', $data);
+            return $resultRedirect->setPath('*/*/edit', ['faq_id' => $this->getRequest()->getParam('faq_id')]);
+        }
+        return $resultRedirect->setPath('*/*/');
+    }
+
+    /**
+     * Filter faq data
+     *
+     * @param $data
+     * @return mixed
+     */
+    protected function _filterFaqData($data)
+    {
+        $groups = implode(',', $data['group']);
+        $data['group'] = $groups;
         $cGroup = $data['customer_group'];
         if (isset($cGroup)) {
             $customerGroup = implode(',', $data['customer_group']);
@@ -78,42 +118,6 @@ class Save extends Action
             $store = implode(',', $data['storeview']);
             $data['storeview'] = $store;
         }
-
-        if ($data) {
-            $id = $this->getRequest()->getParam('faq_id');
-        
-            $model = $this->faqModel->load($id);
-            if (!$model->getId() && $id) {
-                $this->messageManager->addErrorMessage(__('This FAQ no longer exists.'));
-                return $resultRedirect->setPath('*/*/');
-            }
-        
-            $model->setData($data);
-        
-            try {
-                $model->save();
-                $this->messageManager->addSuccessMessage(__('You saved the FAQ.'));
-                $this->dataPersistor->clear('prince_faq_faq');
-        
-                if ($this->getRequest()->getParam('back')) {
-                    return $resultRedirect->setPath('*/*/edit', ['faq_id' => $model->getId()]);
-                }
-                return $resultRedirect->setPath('*/*/');
-            } catch (LocalizedException $e) {
-                $this->messageManager->addErrorMessage($e->getMessage());
-            } catch (\Exception $e) {
-                $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the FAQ.'));
-            }
-        
-            $this->dataPersistor->set('prince_faq_faq', $data);
-            return $resultRedirect->setPath('*/*/edit', ['faq_id' => $this->getRequest()->getParam('faq_id')]);
-        }
-        return $resultRedirect->setPath('*/*/');
-    }
-
-    public function getGroups($groups)
-    {
-        $groups = implode(',', $groups);
-        return $groups;
+        return $data;
     }
 }

@@ -16,7 +16,7 @@ use Magento\Backend\App\Action;
 use Magento\Ui\Component\MassAction\Filter;
 use Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory;
 
-class MassDelete extends Action
+class MassDelete extends Faq
 {
     /**
      * @var Filter
@@ -62,9 +62,9 @@ class MassDelete extends Action
                 $item->delete();
                 $itemsDeleted++;
             }
-            $this->messageManager->addSuccess(__('A total of %1 FAQ(s) were deleted.', $itemsDeleted));
+            $this->messageManager->addSuccessMessage(__('A total of %1 FAQ(s) were deleted.', $itemsDeleted));
         } catch (\Exception $e) {
-            $this->messageManager->addError($e->getMessage());
+            $this->messageManager->addErrorMessage($e->getMessage());
         }
         $resultRedirect = $this->resultRedirectFactory->create();
         return $resultRedirect->setPath('mageprince_faq/faq');

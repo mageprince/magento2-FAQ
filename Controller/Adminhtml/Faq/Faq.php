@@ -1,5 +1,5 @@
-<?xml version="1.0" ?>
-<!--
+<?php
+
 /**
  * MagePrince
  * Copyright (C) 2020 Mageprince <info@mageprince.com>
@@ -9,7 +9,17 @@
  * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
  * @author MagePrince <info@mageprince.com>
  */
--->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-	<module name="Mageprince_Faq" setup_version="2.0.7"/>
-</config>
+
+namespace Mageprince\Faq\Controller\Adminhtml\Faq;
+
+use Magento\Backend\App\Action;
+
+abstract class Faq extends Action
+{
+    /**
+     * Authorization level of a basic admin session
+     *
+     * @see _isAllowed()
+     */
+    const ADMIN_RESOURCE = 'Mageprince_Faq::Faq';
+}

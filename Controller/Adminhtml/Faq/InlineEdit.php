@@ -13,39 +13,38 @@
 namespace Mageprince\Faq\Controller\Adminhtml\Faq;
 
 use Magento\Backend\App\Action;
-use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Controller\ResultInterface;
-use Mageprince\Faq\Model\Faq as FaqModel;
+use Mageprince\Faq\Model\FaqRepository;
 
 class InlineEdit extends Action
 {
     /**
      * @var JsonFactory
      */
-    private $jsonFactory;
+    protected $jsonFactory;
 
     /**
-     * @var FaqModel
+     * @var FaqRepository
      */
-    private $faqModel;
+    protected $faqRepository;
 
     /**
      * InlineEdit constructor.
      *
-     * @param Context $context
+     * @param Action\Context $context
      * @param JsonFactory $jsonFactory
-     * @param FaqModel $faqModel
+     * @param FaqRepository $faqRepository
      */
     public function __construct(
-        Context $context,
+        Action\Context $context,
         JsonFactory $jsonFactory,
-        FaqModel $faqModel
+        FaqRepository $faqRepository
     ) {
-        parent::__construct($context);
-        $this->faqModel = $faqModel;
         $this->jsonFactory = $jsonFactory;
+        $this->faqRepository = $faqRepository;
+        parent::__construct($context);
     }
 
     /**
@@ -67,27 +66,26 @@ class InlineEdit extends Action
         $resultJson = $this->jsonFactory->create();
         $error = false;
         $messages = [];
-        
+
         if ($this->getRequest()->getParam('isAjax')) {
             $postItems = $this->getRequest()->getParam('items', []);
             if (empty($postItems)) {
                 $messages[] = __('Please correct the data sent.');
                 $error = true;
             } else {
-                foreach (array_keys($postItems) as $modelid) {
-                    /** @var \Magento\Cms\Model\Block $block */
-                    $model = $this->faqModel->load($modelid);
+                foreach (array_keys($postItems) as $faqId) {
                     try {
-                        $model->setData(array_merge($model->getData(), $postItems[$modelid]));
-                        $model->save();
+                        $model = $this->faqRepository->getById($faqId);
+                        $model->setData(array_merge($model->getData(), $postItems[$faqId]));
+                        $this->faqRepository->save($model);
                     } catch (\Exception $e) {
-                        $messages[] = "[Faq ID: {$modelid}]  {$e->getMessage()}";
+                        $messages[] = "[Faq ID: {$faqId}]  {$e->getMessage()}";
                         $error = true;
                     }
                 }
             }
         }
-        
+
         return $resultJson->setData([
             'messages' => $messages,
             'error' => $error

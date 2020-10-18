@@ -16,17 +16,17 @@ use Magento\Backend\App\Action;
 use Magento\Ui\Component\MassAction\Filter;
 use Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory;
 
-class MassDelete extends Action
+class MassDelete extends FaqGroup
 {
     /**
      * @var Filter
      */
-    private $filter;
+    protected $filter;
 
     /**
      * @var CollectionFactory
      */
-    private $collectionFactory;
+    protected $collectionFactory;
 
     /**
      * MassDelete constructor.
@@ -45,14 +45,6 @@ class MassDelete extends Action
         parent::__construct($context);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Mageprince_Faq::FaqGroup');
-    }
-
     public function execute()
     {
         try {
@@ -62,9 +54,9 @@ class MassDelete extends Action
                 $item->delete();
                 $itemsDeleted++;
             }
-            $this->messageManager->addSuccess(__('A total of %1 FAQGroup(s) were deleted.', $itemsDeleted));
+            $this->messageManager->addSuccessMessage(__('A total of %1 FAQ Group(s) were deleted.', $itemsDeleted));
         } catch (\Exception $e) {
-            $this->messageManager->addError($e->getMessage());
+            $this->messageManager->addErrorMessage($e->getMessage());
         }
         $resultRedirect = $this->resultRedirectFactory->create();
         return $resultRedirect->setPath('mageprince_faq/faqgroup');

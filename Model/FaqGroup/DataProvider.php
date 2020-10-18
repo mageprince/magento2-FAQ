@@ -14,13 +14,12 @@ namespace Mageprince\Faq\Model\FaqGroup;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Store\Model\StoreManagerInterface;
 use Magento\Ui\DataProvider\AbstractDataProvider;
 use Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory;
-use Magento\Store\Model\StoreManagerInterface;
 
 class DataProvider extends AbstractDataProvider
 {
-
     private $loadedData;
 
     /**
@@ -84,21 +83,21 @@ class DataProvider extends AbstractDataProvider
             $this->loadedData[$model->getId()] = $model->getData();
             if ($model->getIcon()) {
                 $m['icon'][0]['name'] = $model->getIcon();
-                $m['icon'][0]['url'] = $this->getMediaUrl().$model->getIcon();
+                $m['icon'][0]['url'] = $this->getMediaUrl() . $model->getIcon();
                 $fullData = $this->loadedData;
                 $this->loadedData[$model->getId()] = array_merge($fullData[$model->getId()], $m);
             }
         }
 
         $data = $this->dataPersistor->get('prince_faq_faqgroup');
-        
+
         if (!empty($data)) {
             $model = $this->collection->getNewEmptyItem();
             $model->setData($data);
             $this->loadedData[$model->getId()] = $model->getData();
             $this->dataPersistor->clear('prince_faq_faqgroup');
         }
-        
+
         return $this->loadedData;
     }
 
@@ -111,7 +110,7 @@ class DataProvider extends AbstractDataProvider
     public function getMediaUrl()
     {
         $mediaUrl = $this->storeManager->getStore()
-            ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA).'faq/tmp/icon/';
+            ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'faq/tmp/icon/';
         return $mediaUrl;
     }
 }

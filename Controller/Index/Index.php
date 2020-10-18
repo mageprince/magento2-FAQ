@@ -12,19 +12,18 @@
 
 namespace Mageprince\Faq\Controller\Index;
 
-use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Theme\Block\Html\Title as HtmlTitle;
 use Mageprince\Faq\Helper\Data;
 
-class Index extends Action
+class Index extends \Magento\Framework\App\Action\Action
 {
     /**
      * @var PageFactory
      */
-    private $resultPageFactory;
+    protected $resultPageFactory;
 
     /**
      * @var Data
@@ -33,7 +32,6 @@ class Index extends Action
 
     /**
      * Index constructor.
-     *
      * @param Context $context
      * @param Data $helper
      * @param PageFactory $resultPageFactory
@@ -56,26 +54,22 @@ class Index extends Action
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
-        $pageMainTitle = $resultPage->getLayout()->getBlock('page.main.title');
-        $pageTitle = $this->helper->getConfig('faqtab/general/page_title');
+        if ($this->helper->getConfig('faqtab/general/enable')) {
+            $pageMainTitle = $resultPage->getLayout()->getBlock('page.main.title');
+            $pageTitle = $this->helper->getConfig('faqtab/general/page_title');
 
-        if ($pageMainTitle && $pageMainTitle instanceof HtmlTitle) {
-            $pageMainTitle->setPageTitle($pageTitle);
+            if ($pageMainTitle && $pageMainTitle instanceof HtmlTitle) {
+                $pageMainTitle->setPageTitle($pageTitle);
+            }
+
+            $metaTitleConfig = $this->helper->getConfig('faqtab/seo/meta_title');
+            $metaKeywordsConfig = $this->helper->getConfig('faqtab/seo/meta_keywords');
+            $metaDescriptionConfig = $this->helper->getConfig('faqtab/seo/meta_description');
+
+            $resultPage->getConfig()->getTitle()->set($metaTitleConfig);
+            $resultPage->getConfig()->setDescription($metaDescriptionConfig);
+            $resultPage->getConfig()->setKeywords($metaKeywordsConfig);
         }
-
-        if (!$this->helper->getConfig('faqtab/general/enable')) {
-            $pageMainTitle->setPageTitle('FAQ Disabled');
-            return $resultPage;
-        }
-
-        $metaTitleConfig = $this->helper->getConfig('faqtab/seo/meta_title');
-        $metaKeywordsConfig = $this->helper->getConfig('faqtab/seo/meta_keywords');
-        $metaDescriptionConfig = $this->helper->getConfig('faqtab/seo/meta_description');
-
-        $resultPage->getConfig()->getTitle()->set($metaTitleConfig);
-        $resultPage->getConfig()->setDescription($metaDescriptionConfig);
-        $resultPage->getConfig()->setKeywords($metaKeywordsConfig);
-
         return $resultPage;
     }
 }

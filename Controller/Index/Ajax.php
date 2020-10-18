@@ -12,20 +12,19 @@
 
 namespace Mageprince\Faq\Controller\Index;
 
-use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\Action;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Mageprince\Faq\Block\Index\Index as FaqBlock;
 use Mageprince\Faq\Helper\Data;
 
-class Ajax extends Action
+class Ajax extends Action\Action
 {
     /**
      * @var PageFactory
      */
-    private $resultPageFactory;
+    protected $resultPageFactory;
 
     /**
      * @var JsonFactory
@@ -39,14 +38,13 @@ class Ajax extends Action
 
     /**
      * Ajax constructor.
-     *
-     * @param Context $context
+     * @param Action\Context $context
      * @param Data $helper
      * @param PageFactory $resultPageFactory
      * @param JsonFactory $resultJsonFactory
      */
     public function __construct(
-        Context $context,
+        Action\Context $context,
         Data $helper,
         PageFactory $resultPageFactory,
         JsonFactory $resultJsonFactory

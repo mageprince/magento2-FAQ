@@ -15,42 +15,35 @@ namespace Mageprince\Faq\Controller;
 use Magento\Framework\App\Action\Forward;
 use Magento\Framework\App\ActionFactory;
 use Magento\Framework\App\ActionInterface;
-use Magento\Framework\App\RequestInterface;
-use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\App\RouterInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\App\RequestInterface;
+use Magento\Framework\App\RouterInterface;
+use Magento\Store\Model\ScopeInterface;
+use Mageprince\Faq\Model\Config\DefaultConfig;
 
 class Router implements RouterInterface
 {
     /**
      * @var ActionFactory
      */
-    private $actionFactory;
-
-    /**
-     * @var ResponseInterface
-     */
-    private $response;
+    protected $actionFactory;
 
     /**
      * @var ScopeConfigInterface
      */
-    private $scopeConfig;
+    protected $scopeConfig;
 
     /**
      * Router constructor.
      *
      * @param ActionFactory $actionFactory
-     * @param ResponseInterface $response
      * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
         ActionFactory $actionFactory,
-        ResponseInterface $response,
         ScopeConfigInterface $scopeConfig
     ) {
         $this->actionFactory = $actionFactory;
-        $this->response = $response;
         $this->scopeConfig = $scopeConfig;
     }
 
@@ -60,17 +53,22 @@ class Router implements RouterInterface
      */
     public function match(RequestInterface $request)
     {
-        $identifier = trim($request->getPathInfo(), '/');
-
-        $faqUrl = $this->scopeConfig->getValue('faqtab/seo/faq_url');
-
-        if ($identifier == $faqUrl) {
-            $request->setModuleName('faq');
-            $request->setControllerName('index');
-            $request->setActionName('index');
-            return $this->actionFactory->create(Forward::class, ['request' => $request]);
+        $isModuleEnabled = $this->scopeConfig->getValue(
+            DefaultConfig::CONFIG_PATH_IS_ENABLE,
+            ScopeInterface::SCOPE_STORE
+        );
+        if ($isModuleEnabled) {
+            $identifier = trim($request->getPathInfo(), '/');
+            $faqUrl = $this->scopeConfig->getValue(DefaultConfig::FAQ_URL_CONFIG_PATH);
+            if ($identifier == $faqUrl) {
+                $request->setModuleName('faq');
+                $request->setControllerName('index');
+                $request->setActionName('index');
+                return $this->actionFactory->create(
+                    Forward::class
+                );
+            }
         }
-
         return null;
     }
 }

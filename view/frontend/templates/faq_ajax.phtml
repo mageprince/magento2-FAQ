@@ -16,7 +16,7 @@ $faqCollection = $block->getFaqCollection($block->getGroupId());
 $group = $block->getGroupById($block->getGroupId());
 ?>
 <?php if ($block->isShowGroupTitle()): ?>
-    <div class="group-title" id="group<?= /* @noEscape */ $group->getFaqgroupId(); ?>">
+    <div class="group-title" id="group<?= /* @noEscape */ $group->getFaqGroupId(); ?>">
         <?= /* @noEscape */ $group->getGroupName(); ?>
     </div>
 <?php endif; ?>

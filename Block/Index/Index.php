@@ -22,12 +22,12 @@ use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Mageprince\Faq\Api\Data\FaqGroupInterface;
 use Mageprince\Faq\Api\FaqGroupRepositoryInterface;
+use Mageprince\Faq\Helper\Data as HelperData;
+use Mageprince\Faq\Model\Config\DefaultConfig;
 use Mageprince\Faq\Model\FaqGroupFactory;
 use Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory;
 use Mageprince\Faq\Model\ResourceModel\FaqGroup\Collection as FaqGroupCollection;
 use Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory as FaqGroupCollectionFactory;
-use Mageprince\Faq\Model\Config\DefaultConfig;
-use Mageprince\Faq\Helper\Data as HelperData;
 
 class Index extends Template
 {
@@ -126,7 +126,13 @@ class Index extends Template
             $group = $this->getGroupId();
         }
         $faqCollection = $this->faqCollectionFactory->create();
-        $faqCollection->addFieldToFilter('group', ['like' => '%'.$group.'%']);
+        $faqCollection->addFieldToFilter(
+            'group',
+            [
+                ['null' => true],
+                ['finset' => $group]
+            ]
+        );
         $this->filterCollectionData($faqCollection);
         return $faqCollection;
     }
@@ -206,7 +212,7 @@ class Index extends Template
         $mediaUrl = $this->storeManager
             ->getStore()
             ->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
-        $imageUrl = $mediaUrl.'faq/tmp/icon/'.$icon;
+        $imageUrl = $mediaUrl . 'faq/tmp/icon/' . $icon;
         return $imageUrl;
     }
 

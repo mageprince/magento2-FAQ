@@ -12,19 +12,29 @@
 
 namespace Mageprince\Faq\Controller\Adminhtml\FaqGroup;
 
+use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\Controller\ResultInterface;
-use Mageprince\Faq\Controller\Adminhtml\FaqGroup;
-use Mageprince\Faq\Model\FaqGroup as FaqGroupModel;
+use Mageprince\Faq\Model\FaqGroupRepository;
 
 class Delete extends FaqGroup
 {
     /**
-     * {@inheritdoc}
+     * @var FaqGroupRepository
      */
-    public function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Mageprince_Faq::FaqGroup');
+    protected $faqGroupRepository;
+
+    /**
+     * Delete constructor.
+     * @param Context $context
+     * @param FaqGroupRepository $faqGroupRepository
+     */
+    public function __construct(
+        Context $context,
+        FaqGroupRepository $faqGroupRepository
+    ) {
+        $this->faqGroupRepository = $faqGroupRepository;
+        parent::__construct($context);
     }
 
     /**
@@ -36,28 +46,18 @@ class Delete extends FaqGroup
     {
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
-        // check if we know what should be deleted
         $id = $this->getRequest()->getParam('faqgroup_id');
         if ($id) {
             try {
-                // init model and delete
-                $model = $this->_objectManager->create(FaqGroupModel::class);
-                $model->load($id);
-                $model->delete();
-                // display success message
-                $this->messageManager->addSuccessMessage(__('You deleted the Faqgroup.'));
-                // go to grid
+                $this->faqGroupRepository->deleteById($id);
+                $this->messageManager->addSuccessMessage(__('You deleted the Faq Group.'));
                 return $resultRedirect->setPath('*/*/');
             } catch (\Exception $e) {
-                // display error message
                 $this->messageManager->addErrorMessage($e->getMessage());
-                // go back to edit form
                 return $resultRedirect->setPath('*/*/edit', ['faqgroup_id' => $id]);
             }
         }
-        // display error message
-        $this->messageManager->addErrorMessage(__('We can\'t find a Faqgroup to delete.'));
-        // go to grid
+        $this->messageManager->addErrorMessage(__('We can\'t find a Faq Group to delete.'));
         return $resultRedirect->setPath('*/*/');
     }
 }

@@ -44,7 +44,7 @@ class FaqGroup implements OptionSourceInterface
         $groups = $this->groupCollection->create();
 
         foreach ($groups as $group) {
-            $groupArr[] = ['value' => $group->getFaqgroupId(), 'label' => __($group->getGroupname())];
+            $groupArr[] = ['value' => $group->getFaqGroupId(), 'label' => __($group->getGroupname())];
         }
 
         return $groupArr;

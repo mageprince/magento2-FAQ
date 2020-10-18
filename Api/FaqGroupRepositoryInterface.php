@@ -12,30 +12,25 @@
 
 namespace Mageprince\Faq\Api;
 
-use Magento\Framework\Api\SearchCriteriaInterface;
-
 interface FaqGroupRepositoryInterface
 {
-
     /**
      * Save FaqGroup
      * @param \Mageprince\Faq\Api\Data\FaqGroupInterface $faqGroup
      * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    
     public function save(
         \Mageprince\Faq\Api\Data\FaqGroupInterface $faqGroup
     );
 
     /**
      * Retrieve FaqGroup
-     * @param string $faqgroupId
+     * @param int $faqGroupId
      * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    
-    public function getById($faqgroupId);
+    public function getById($faqGroupId);
 
     /**
      * Retrieve FaqGroup matching the specified criteria.
@@ -43,7 +38,6 @@ interface FaqGroupRepositoryInterface
      * @return \Mageprince\Faq\Api\Data\FaqGroupSearchResultsInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    
     public function getList(
         \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
     );
@@ -54,18 +48,16 @@ interface FaqGroupRepositoryInterface
      * @return bool true on success
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    
     public function delete(
         \Mageprince\Faq\Api\Data\FaqGroupInterface $faqGroup
     );
 
     /**
      * Delete FaqGroup by ID
-     * @param string $faqgroupId
+     * @param int $faqGroupId
      * @return bool true on success
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    
-    public function deleteById($faqgroupId);
+    public function deleteById($faqGroupId);
 }

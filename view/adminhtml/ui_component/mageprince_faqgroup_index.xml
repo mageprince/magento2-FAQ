@@ -118,7 +118,7 @@
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">
 					<item name="sortOrder" xsi:type="number">10</item>
-					<item name="filter" xsi:type="string">text</item>
+					<item name="filter" xsi:type="string">textRange</item>
 					<item name="sorting" xsi:type="string">asc</item>
 					<item name="label" translate="true" xsi:type="string">ID</item>
 				</item>
@@ -183,10 +183,32 @@
                 </item>
             </argument>
         </column>
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">dateRange</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="label" xsi:type="string" translate="true">Created At</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                </item>
+            </argument>
+        </column>
+        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">dateRange</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="label" xsi:type="string" translate="true">Modified At</item>
+                    <item name="sortOrder" xsi:type="number">70</item>
+                </item>
+            </argument>
+        </column>
 		<actionsColumn class="Mageprince\Faq\Ui\Component\Listing\Column\FaqGroupActions" name="actions">
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">
-					<item name="sortOrder" xsi:type="number">60</item>
+					<item name="sortOrder" xsi:type="number">80</item>
 					<item name="indexField" xsi:type="string">faqgroup_id</item>
 				</item>
 			</argument>

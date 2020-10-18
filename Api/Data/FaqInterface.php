@@ -14,7 +14,6 @@ namespace Mageprince\Faq\Api\Data;
 
 interface FaqInterface
 {
-
     const TITLE = 'title';
     const SORTORDER = 'sortorder';
     const FAQ_ID = 'faq_id';
@@ -23,24 +22,21 @@ interface FaqInterface
 
     /**
      * Get faq_id
-     * @return string|null
+     * @return int
      */
-    
     public function getFaqId();
 
     /**
      * Set faq_id
-     * @param string $faq_id
+     * @param int $faqId
      * @return \Mageprince\Faq\Api\Data\FaqInterface
      */
-    
     public function setFaqId($faqId);
 
     /**
      * Get title
      * @return string|null
      */
-    
     public function getTitle();
 
     /**
@@ -48,14 +44,12 @@ interface FaqInterface
      * @param string $title
      * @return \Mageprince\Faq\Api\Data\FaqInterface
      */
-    
     public function setTitle($title);
 
     /**
      * Get content
      * @return string|null
      */
-    
     public function getContent();
 
     /**
@@ -63,29 +57,25 @@ interface FaqInterface
      * @param string $content
      * @return \Mageprince\Faq\Api\Data\FaqInterface
      */
-    
     public function setContent($content);
 
     /**
      * Get sortorder
      * @return string|null
      */
-    
-    public function getSortorder();
+    public function getSortOrder();
 
     /**
      * Set sortorder
-     * @param string $sortorder
+     * @param string $sortOrder
      * @return \Mageprince\Faq\Api\Data\FaqInterface
      */
-    
-    public function setSortorder($sortorder);
+    public function setSortOrder($sortOrder);
 
     /**
      * Get status
      * @return string|null
      */
-    
     public function getStatus();
 
     /**
@@ -93,6 +83,5 @@ interface FaqInterface
      * @param string $status
      * @return \Mageprince\Faq\Api\Data\FaqInterface
      */
-    
     public function setStatus($status);
 }

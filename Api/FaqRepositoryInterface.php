@@ -12,27 +12,22 @@
 
 namespace Mageprince\Faq\Api;
 
-use Magento\Framework\Api\SearchCriteriaInterface;
-
 interface FaqRepositoryInterface
 {
-    
     /**
      * Save Faq
      * @param \Mageprince\Faq\Api\Data\FaqInterface $faq
      * @return \Mageprince\Faq\Api\Data\FaqInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    
     public function save(\Mageprince\Faq\Api\Data\FaqInterface $faq);
 
     /**
      * Retrieve Faq
-     * @param string $faqId
+     * @param int $faqId
      * @return \Mageprince\Faq\Api\Data\FaqInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    
     public function getById($faqId);
 
     /**
@@ -41,7 +36,6 @@ interface FaqRepositoryInterface
      * @return \Mageprince\Faq\Api\Data\FaqSearchResultsInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    
     public function getList(
         \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
     );
@@ -52,16 +46,14 @@ interface FaqRepositoryInterface
      * @return bool true on success
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    
     public function delete(\Mageprince\Faq\Api\Data\FaqInterface $faq);
 
     /**
      * Delete Faq by ID
-     * @param string $faqId
+     * @param int $faqId
      * @return bool true on success
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    
     public function deleteById($faqId);
 }

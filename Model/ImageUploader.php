@@ -82,7 +82,6 @@ class ImageUploader
 
     /**
      * ImageUploader constructor.
-     *
      * @param Database $coreFileStorageDatabase
      * @param Filesystem $filesystem
      * @param UploaderFactory $uploaderFactory

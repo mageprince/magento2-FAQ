@@ -14,65 +14,43 @@ namespace Mageprince\Faq\Api\Data;
 
 interface FaqGroupInterface
 {
-
     const GROUPNAME = 'groupname';
     const FAQIDS = 'faqids';
     const FAQGROUP_ID = 'faqgroup_id';
     const ICON = 'icon';
+    const SORTORDER = 'sortorder';
     const STATUS = 'status';
-    const GROUPCODE = 'groupcode';
-    const WIDTH = 'width';
 
     /**
      * Get faqgroup_id
-     * @return string|null
+     * @return int
      */
-    
-    public function getFaqgroupId();
+    public function getFaqGroupId();
 
     /**
      * Set faqgroup_id
-     * @param string $faqgroup_id
+     * @param int $faqGroupId
      * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
      */
-    
-    public function setFaqgroupId($faqgroupId);
+    public function setFaqGroupId($faqGroupId);
 
     /**
      * Get groupname
-     * @return string|null
+     * @return int|null
      */
-    
-    public function getGroupname();
+    public function getGroupName();
 
     /**
      * Set groupname
-     * @param string $groupname
+     * @param string $groupName
      * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
      */
-    
-    public function setGroupname($groupname);
-
-    /**
-     * Get groupcode
-     * @return string|null
-     */
-    
-    public function getGroupcode();
-
-    /**
-     * Set groupcode
-     * @param string $groupcode
-     * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
-     */
-    
-    public function setGroupcode($groupcode);
+    public function setGroupName($groupName);
 
     /**
      * Get icon
      * @return string|null
      */
-    
     public function getIcon();
 
     /**
@@ -80,44 +58,38 @@ interface FaqGroupInterface
      * @param string $icon
      * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
      */
-    
     public function setIcon($icon);
 
     /**
-     * Get width
+     * Get faq ids
      * @return string|null
      */
-    
-    public function getWidth();
+    public function getFaqIds();
 
     /**
-     * Set width
-     * @param string $width
+     * Set faq ids
+     * @param string $faqIds
      * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
      */
-    
-    public function setWidth($width);
+    public function setFaqIds($faqIds);
 
     /**
-     * Get faqids
+     * Get sort order
      * @return string|null
      */
-    
-    public function getFaqids();
+    public function getSortOrder();
 
     /**
-     * Set faqids
-     * @param string $faqids
+     * Set sort order
+     * @param int $sortOrder
      * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
      */
-    
-    public function setFaqids($faqids);
+    public function setSortOrder($sortOrder);
 
     /**
      * Get status
      * @return string|null
      */
-    
     public function getStatus();
 
     /**
@@ -125,6 +97,5 @@ interface FaqGroupInterface
      * @param string $status
      * @return \Mageprince\Faq\Api\Data\FaqGroupInterface
      */
-    
     public function setStatus($status);
 }

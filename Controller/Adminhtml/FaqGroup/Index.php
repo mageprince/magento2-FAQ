@@ -12,18 +12,16 @@
 
 namespace Mageprince\Faq\Controller\Adminhtml\FaqGroup;
 
-use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\PageFactory;
 
-class Index extends Action
+class Index extends FaqGroup
 {
-
     /**
      * @var PageFactory
      */
-    private $resultPageFactory;
+    protected $resultPageFactory;
 
     /**
      * Index constructor.
@@ -39,13 +37,6 @@ class Index extends Action
         parent::__construct($context);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Mageprince_Faq::FaqGroup');
-    }
 
     /**
      * Index action
@@ -55,7 +46,8 @@ class Index extends Action
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
-            $resultPage->getConfig()->getTitle()->prepend(__("FAQGroup"));
-            return $resultPage;
+        $resultPage->getConfig()->getTitle()->prepend(__("FAQ Group"));
+        $resultPage->setActiveMenu('Mageprince_Faq::menu');
+        return $resultPage;
     }
 }

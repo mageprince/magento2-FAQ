@@ -12,100 +12,64 @@
 
 namespace Mageprince\Faq\Model;
 
+use Mageprince\Faq\Api\Data\FaqGroupInterface;
 use Mageprince\Faq\Model\ResourceModel\FaqGroup as ResourceFaqGroup;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Mageprince\Faq\Api\Data\FaqGroupSearchResultsInterfaceFactory;
-use Magento\Framework\Api\DataObjectHelper;
-use Mageprince\Faq\Api\Data\FaqGroupInterfaceFactory;
 use Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory as FaqGroupCollectionFactory;
-use Magento\Framework\Reflection\DataObjectProcessor;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\Api\SortOrder;
 use Mageprince\Faq\Api\FaqGroupRepositoryInterface;
 
 class FaqGroupRepository implements FaqGroupRepositoryInterface
 {
-
-    /**
-     * @var \Magento\Store\Model\StoreManagerInterface
-     */
-    private $storeManager;
-
     /**
      * @var \Mageprince\Faq\Model\ResourceModel\FaqGroup
      */
-    private $resource;
-
-    /**
-     * @var \Mageprince\Faq\Api\Data\FaqGroupFactory
-     */
-    private $FaqGroupFactory;
-
-    /**
-     * @var \Mageprince\Faq\Api\Data\FaqGroupInterfaceFactory
-     */
-    private $dataFaqGroupFactory;
-
-    /**
-     * @var \Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory
-     */
-    private $FaqGroupCollectionFactory;
-
-    /**
-     * @var \Magento\Framework\Reflection\DataObjectProcessor
-     */
-    private $dataObjectProcessor;
-
-    /**
-     * @var \Magento\Framework\Api\DataObjectHelper
-     */
-    private $dataObjectHelper;
+    protected $resource;
 
     /**
      * @var \Mageprince\Faq\Api\Data\FaqGroupSearchResultsInterfaceFactory
      */
-    private $searchResultsFactory;
+    protected $searchResultsFactory;
 
     /**
+     * @var FaqGroupCollectionFactory
+     */
+    protected $faqGroupCollectionFactory;
+
+    /**
+     * @var FaqGroupFactory
+     */
+    protected $faqGroupFactory;
+
+    /**
+     * FaqGroupRepository constructor.
      * @param ResourceFaqGroup $resource
      * @param FaqGroupFactory $faqGroupFactory
-     * @param FaqGroupInterfaceFactory $dataFaqGroupFactory
      * @param FaqGroupCollectionFactory $faqGroupCollectionFactory
      * @param FaqGroupSearchResultsInterfaceFactory $searchResultsFactory
-     * @param DataObjectHelper $dataObjectHelper
-     * @param DataObjectProcessor $dataObjectProcessor
-     * @param StoreManagerInterface $storeManager
      */
     public function __construct(
         ResourceFaqGroup $resource,
         FaqGroupFactory $faqGroupFactory,
-        FaqGroupInterfaceFactory $dataFaqGroupFactory,
         FaqGroupCollectionFactory $faqGroupCollectionFactory,
-        FaqGroupSearchResultsInterfaceFactory $searchResultsFactory,
-        DataObjectHelper $dataObjectHelper,
-        DataObjectProcessor $dataObjectProcessor,
-        StoreManagerInterface $storeManager
+        FaqGroupSearchResultsInterfaceFactory $searchResultsFactory
     ) {
         $this->resource = $resource;
         $this->faqGroupFactory = $faqGroupFactory;
         $this->faqGroupCollectionFactory = $faqGroupCollectionFactory;
         $this->searchResultsFactory = $searchResultsFactory;
-        $this->dataObjectHelper = $dataObjectHelper;
-        $this->dataFaqGroupFactory = $dataFaqGroupFactory;
-        $this->dataObjectProcessor = $dataObjectProcessor;
-        $this->storeManager = $storeManager;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function save(
-        \Mageprince\Faq\Api\Data\FaqGroupInterface $faqGroup
-    ) {
+    public function save(FaqGroupInterface $faqGroup)
+    {
         try {
-            $faqGroup->getResource()->save($faqGroup);
+            $this->resource->save($faqGroup);
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(__(
                 'Could not save the faqGroup: %1',
@@ -121,7 +85,7 @@ class FaqGroupRepository implements FaqGroupRepositoryInterface
     public function getById($faqGroupId)
     {
         $faqGroup = $this->faqGroupFactory->create();
-        $faqGroup->getResource()->load($faqGroup, $faqGroupId);
+        $this->resource->load($faqGroup, $faqGroupId);
         if (!$faqGroup->getId()) {
             throw new NoSuchEntityException(__('FaqGroup with id "%1" does not exist.', $faqGroupId));
         }
@@ -145,7 +109,7 @@ class FaqGroupRepository implements FaqGroupRepositoryInterface
                 $collection->addFieldToFilter($filter->getField(), [$condition => $filter->getValue()]);
             }
         }
-        
+
         $sortOrders = $criteria->getSortOrders();
         if ($sortOrders) {
             /** @var SortOrder $sortOrder */
@@ -158,7 +122,7 @@ class FaqGroupRepository implements FaqGroupRepositoryInterface
         }
         $collection->setCurPage($criteria->getCurrentPage());
         $collection->setPageSize($criteria->getPageSize());
-        
+
         $searchResults = $this->searchResultsFactory->create();
         $searchResults->setSearchCriteria($criteria);
         $searchResults->setTotalCount($collection->getSize());
@@ -169,11 +133,10 @@ class FaqGroupRepository implements FaqGroupRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function delete(
-        \Mageprince\Faq\Api\Data\FaqGroupInterface $faqGroup
-    ) {
+    public function delete(FaqGroupInterface $faqGroup)
+    {
         try {
-            $faqGroup->getResource()->delete($faqGroup);
+            $this->resource->delete($faqGroup);
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(__(
                 'Could not delete the FaqGroup: %1',

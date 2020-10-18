@@ -12,12 +12,12 @@
 
 namespace Mageprince\Faq\Observer;
 
-use Magento\Framework\Event\ObserverInterface;
-use Magento\Framework\Event\Observer as EventObserver;
-use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Config\Storage\WriterInterface;
-use Magento\UrlRewrite\Model\UrlRewriteFactory;
+use Magento\Framework\App\RequestInterface;
+use Magento\Framework\Event\Observer as EventObserver;
+use Magento\Framework\Event\ObserverInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use Magento\UrlRewrite\Model\UrlRewriteFactory;
 
 class ConfigChange implements ObserverInterface
 {
@@ -26,20 +26,22 @@ class ConfigChange implements ObserverInterface
     /**
      * @var RequestInterface
      */
-    private $request;
+    protected $request;
 
     /**
      * @var WriterInterface
      */
-    private $configWriter;
+    protected $configWriter;
+
     /**
      * @var UrlRewriteFactory
      */
-    private $urlRewriteFactory;
+    protected $urlRewriteFactory;
+
     /**
      * @var StoreManagerInterface
      */
-    private $storeManager;
+    protected $storeManager;
 
     /**
      * ConfigChange constructor.
@@ -64,9 +66,9 @@ class ConfigChange implements ObserverInterface
     public function execute(EventObserver $observer)
     {
         $faqParams = $this->request->getParam('groups');
-        $faqUrlVal = $faqParams['seo']['fields'];
-        if (key_exists('faq_url', $faqUrlVal)) {
-            $urlKey = str_replace(' ', '-', $faqUrlVal['faq_url']['value']);
+        if (!empty($faqParams['seo']['fields']['faq_url'])) {
+            $faqUrlVal = $faqParams['seo']['fields']['faq_url'];
+            $urlKey = str_replace(' ', '-', $faqUrlVal['value']);
             $filterUrlKey = preg_replace('/[^A-Za-z0-9\-]/', '', $urlKey);
             $this->configWriter->save('faqtab/seo/faq_url', $filterUrlKey);
             $stores = $this->storeManager->getStores();

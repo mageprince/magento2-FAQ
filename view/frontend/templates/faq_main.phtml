@@ -9,15 +9,13 @@
  * @author MagePrince <info@mageprince.com>
  */
 ?>
-<?php
-/** @var $block \Mageprince\Faq\Block\Index\Index */
-$pageType = $block->getPageTypeAction();
-$faqGroupCollection = $block->getFaqGroupCollection();
-?>
+<?php /** @var $block \Mageprince\Faq\Block\Index\Index */ ?>
 <?php if ($block->isEnable()): ?>
+    <?php $faqGroupCollection = $block->getFaqGroupCollection(); ?>
     <?php if ($faqGroupCollection->getSize()): ?>
+        <?php $pageType = $block->getPageTypeAction(); ?>
         <div id="faq-loader">
-            <img src="<?= $block->getViewFileUrl('images/loader-1.gif'); ?>" />
+            <img src="<?= $block->getViewFileUrl('images/loader-1.gif'); ?>"  alt="loader"/>
         </div>
         <div class="faq-collection" id="faq-collection" style="display: none">
             <?php if ($block->getGroupId()): ?>
@@ -47,14 +45,14 @@ $faqGroupCollection = $block->getFaqGroupCollection();
                             <div class="faq-group">
                                 <?php if ($block->isShowGroup() || $pageType == 'ajax'): ?>
                                     <div id="faq-group-image" class="faq-group-image">
-                                        <a href="#group<?= /* @noEscape */  $group->getFaqgroupId(); ?>"
+                                        <a href="#group<?= /* @noEscape */  $group->getFaqGroupId(); ?>"
                                            class="group-link"
-                                           groupId="<?= /* @noEscape */  $group->getFaqgroupId(); ?>">
+                                           groupId="<?= /* @noEscape */  $group->getFaqGroupId(); ?>">
                                             <?php if ($group->getIcon()): ?>
-                                                <img class="group-image"
+                                                <img class="group-image" alt="group-image"
                                                      src="<?= /* @noEscape */  $block->getImageUrl($group->getIcon()); ?>" />
                                             <?php else: ?>
-                                                <img class="group-image"
+                                                <img class="group-image" alt="group-image"
                                                      src="<?= /* @noEscape */  $block->getViewFileUrl('Mageprince_Faq::images/faq.png'); ?>" />
                                             <?php endif; ?>
                                         </a>
@@ -62,9 +60,9 @@ $faqGroupCollection = $block->getFaqGroupCollection();
                                 <?php endif; ?>
                                 <?php if ($block->isShowGroupTitle()): ?>
                                     <div class="faq-groupname">
-                                        <a href="#group<?= /* @noEscape */  $group->getFaqgroupId(); ?>"
+                                        <a href="#group<?= /* @noEscape */  $group->getFaqGroupId(); ?>"
                                            class="group-link"
-                                           groupId="<?= /* @noEscape */  $group->getFaqgroupId(); ?>">
+                                           groupId="<?= /* @noEscape */  $group->getFaqGroupId(); ?>">
                                             <?= /* @noEscape */  $group->getGroupName(); ?>
                                         </a>
                                     </div>
@@ -76,7 +74,7 @@ $faqGroupCollection = $block->getFaqGroupCollection();
                 <div id="faq-content" class="faq-content">
                     <?php if ($pageType == 'scroll'): ?>
                         <?php foreach ($faqGroupCollection as $group): ?>
-                            <div id="group<?= /* @noEscape */  $group->getFaqgroupId(); ?>">
+                            <div id="group<?= /* @noEscape */  $group->getFaqGroupId(); ?>">
                                 <?php if ($block->isShowGroupTitle()): ?>
                                     <div class="group-title">
                                         <?= /* @noEscape */  $group->getGroupName(); ?>
@@ -100,7 +98,7 @@ $faqGroupCollection = $block->getFaqGroupCollection();
                     <?php else:?>
                         <?php $group = $faqGroupCollection->getFirstItem(); ?>
                         <?php if ($block->isShowGroupTitle()): ?>
-                            <div class="group-title" id="group<?= /* @noEscape */  $group->getFaqgroupId(); ?>">
+                            <div class="group-title" id="group<?= /* @noEscape */  $group->getFaqGroupId(); ?>">
                                 <?= /* @noEscape */  $group->getGroupName(); ?>
                             </div>
                         <?php endif; ?>
@@ -119,19 +117,20 @@ $faqGroupCollection = $block->getFaqGroupCollection();
                 </div>
             <?php endif; ?>
         </div>
+        <script type="text/x-magento-init">
+        {
+            "*": {
+                "faq": {
+                    "pageType" : "<?= /* @noEscape */ $pageType ?>",
+                    "ajax_url" : "<?= $block->escapeUrl($block->getBaseUrl()) ?>"
+                }
+            }
+        }
+        </script>
     <?php else: ?>
         <div>
             <h1><?= /* @noEscape */ __('No FAQ Group available') ?></h1>
         </div>
     <?php endif; ?>
 <?php endif; ?>
-<script type="text/x-magento-init">
-    {
-        "*": {
-            "faq": {
-                "pageType" : "<?= /* @noEscape */ $pageType ?>",
-                "ajax_url" : "<?= $block->escapeUrl($block->getBaseUrl()) ?>"
-            }
-        }
-    }
-</script>
+
