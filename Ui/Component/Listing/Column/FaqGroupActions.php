@@ -68,25 +68,12 @@ class FaqGroupActions extends Column
                                 ]
                             ),
                             'label' => __('Edit')
-                        ],
-                        'delete' => [
-                            'href' => $this->urlBuilder->getUrl(
-                                static::URL_PATH_DELETE,
-                                [
-                                    'faqgroup_id' => $item['faqgroup_id']
-                                ]
-                            ),
-                            'label' => __('Delete'),
-                            'confirm' => [
-                                'title' => __('Delete "${ $.$data.groupname }"'),
-                                'message' => __('Are you sure you wan\'t to delete a "${ $.$data.groupname }" record?')
-                            ]
                         ]
                     ];
                 }
             }
         }
-        
+
         return $dataSource;
     }
 }
