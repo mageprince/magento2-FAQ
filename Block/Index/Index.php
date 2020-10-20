@@ -163,7 +163,7 @@ class Index extends Template
             'customer_group',
             [
                 ['null' => true],
-                ['finset' => $this->helper->getCurrentCustomer()]
+                ['finset' => $this->helper->getCustomerGroupId()]
             ]
         );
         $collection->addFieldToFilter(

@@ -12,11 +12,11 @@
 
 namespace Mageprince\Faq\Helper;
 
+use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Store\Model\ScopeInterface;
 use Mageprince\Faq\Model\Config\DefaultConfig;
-use Magento\Customer\Model\Session as CustomerSession;
 
 class Data extends AbstractHelper
 {
@@ -66,14 +66,9 @@ class Data extends AbstractHelper
      *
      * @return int
      */
-    public function getCurrentCustomer()
+    public function getCustomerGroupId()
     {
-        $customerGroupId = 0;
-        if ($this->customerSession->isLoggedIn()) {
-            $customerGroupId = $this->customerSession->getCustomer()->getGroupId();
-        }
-
-        return $customerGroupId;
+        return $this->customerSession->getCustomer()->getGroupId();
     }
 
     /**
