@@ -22,8 +22,7 @@ define([
 
         function scrollToGroup(data) {
             var target = $(data.getAttribute('href'));
-            if( target.length ) {
-                event.preventDefault();
+            if(target.length) {
                 $('html, body').stop().animate({
                     scrollTop: target.offset().top
                 }, 1000);
