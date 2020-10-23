@@ -17,6 +17,7 @@ use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Store\Model\ScopeInterface;
 use Mageprince\Faq\Model\Config\DefaultConfig;
+use Magento\Framework\App\Http\Context as AuthContext;
 
 class Data extends AbstractHelper
 {
@@ -26,17 +27,25 @@ class Data extends AbstractHelper
     protected $customerSession;
 
     /**
+     * @var AuthContext
+     */
+    protected $authContext;
+
+    /**
      * Data constructor.
      *
      * @param Context $context
      * @param CustomerSession $customerSession
+     * @param AuthContext $authContext
      */
     public function __construct(
         Context $context,
-        CustomerSession $customerSession
+        CustomerSession $customerSession,
+        AuthContext $authContext
     ) {
         parent::__construct($context);
         $this->customerSession = $customerSession;
+        $this->authContext = $authContext;
     }
 
     /**
@@ -68,7 +77,12 @@ class Data extends AbstractHelper
      */
     public function getCustomerGroupId()
     {
-        return $this->customerSession->getCustomer()->getGroupId();
+        $customerGroup = 0;
+        $isLoggedIn = $this->authContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH);
+        if ($isLoggedIn) {
+            $customerGroup = $this->customerSession->getCustomer()->getGroupId();
+        }
+        return $customerGroup;
     }
 
     /**
