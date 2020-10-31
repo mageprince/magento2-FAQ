@@ -8,8 +8,8 @@ define([
 
         setAccordian();
 
-        $('#faq-collection').show();
-        $('#faq-loader').hide();
+        $('.mageprince-faq-collection').show();
+        $('.mageprince-faq-loader').hide();
 
         function setAccordian() {
             $(".faq-accordion").accordion({

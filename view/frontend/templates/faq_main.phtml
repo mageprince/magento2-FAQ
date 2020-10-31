@@ -14,10 +14,10 @@
     <?php $faqGroupCollection = $block->getFaqGroupCollection(); ?>
     <?php if ($faqGroupCollection->getSize()): ?>
         <?php $pageType = $block->getPageTypeAction(); ?>
-        <div id="faq-loader">
+        <div class="mageprince-faq-loader">
             <img src="<?= $block->getViewFileUrl('images/loader-1.gif'); ?>"  alt="loader"/>
         </div>
-        <div class="faq-collection" id="faq-collection" style="display: none">
+        <div class="mageprince-faq-collection" style="display: none">
             <?php if ($block->getGroupId()): ?>
                 <div id="faq-content" class="faq-content">
                     <?php if ($block->isShowGroupTitle()): ?>
