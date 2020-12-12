@@ -18,7 +18,7 @@ https://marketplace.magento.com/prince-module-faq.html
 
 # Demo
 
-<b><a href="http://demo.mageprince.com/">Frontend</a>   |   <a href="http://demo.mageprince.com/admin">Backend</a></b>
+<b><a href="https://demo2.mageprince.com/faq/">Frontend</a>   |   <a href="http://demo2.mageprince.com/admin">Backend</a></b>
 
 # Use below code for CMS page and Static Block
 
