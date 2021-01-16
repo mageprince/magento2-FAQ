@@ -23,14 +23,14 @@
                     <?php if ($block->isShowGroupTitle()): ?>
                         <?php $groupData = $block->getGroupById($block->getGroupId()); ?>
                         <div class="group-title">
-                            <?= /* @noEscape */ __($groupData->getGroupName()) ?>
+                            <?= $block->escapeHtml(__($groupData->getGroupName())) ?>
                         </div>
                     <?php endif; ?>
                     <div class="faq-accordion">
                         <?php $faqCollection = $block->getFaqCollection($block->getGroupId()); ?>
                         <?php if ($faqCollection->getSize()): ?>
                             <?php foreach ($faqCollection as $faq): ?>
-                                <h3><?= /* @noEscape */ __($faq->getTitle()) ?></h3>
+                                <h3><?= $block->escapeHtml(__($faq->getTitle())) ?></h3>
                                 <div>
                                     <p><?= /* @noEscape */  $block->filterOutputHtml($faq->getContent()); ?></p>
                                 </div>
@@ -45,25 +45,25 @@
                             <div class="faq-group">
                                 <?php if ($block->isShowGroup() || $pageType == 'ajax'): ?>
                                     <div id="faq-group-image" class="faq-group-image">
-                                        <a href="#group<?= /* @noEscape */  $group->getFaqGroupId(); ?>"
+                                        <a href="#group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>"
                                            class="group-link"
-                                           groupId="<?= /* @noEscape */  $group->getFaqGroupId(); ?>">
+                                           groupId="<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>">
                                             <?php if ($group->getIcon()): ?>
                                                 <img class="group-image" alt="group-image"
-                                                     src="<?= /* @noEscape */  $block->getImageUrl($group->getIcon()); ?>" />
+                                                     src="<?= $block->escapeUrl($block->getImageUrl($group->getIcon())); ?>" />
                                             <?php else: ?>
                                                 <img class="group-image" alt="group-image"
-                                                     src="<?= /* @noEscape */  $block->getViewFileUrl('Mageprince_Faq::images/faq.png'); ?>" />
+                                                     src="<?= $block->escapeUrl($block->getViewFileUrl('Mageprince_Faq::images/faq.png')); ?>" />
                                             <?php endif; ?>
                                         </a>
                                     </div>
                                 <?php endif; ?>
                                 <?php if ($block->isShowGroupTitle()): ?>
                                     <div class="faq-groupname">
-                                        <a href="#group<?= /* @noEscape */  $group->getFaqGroupId(); ?>"
+                                        <a href="#group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>"
                                            class="group-link"
-                                           groupId="<?= /* @noEscape */  $group->getFaqGroupId(); ?>">
-                                            <?= /* @noEscape */  $group->getGroupName(); ?>
+                                           groupId="<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>">
+                                            <?= $block->escapeHtml($group->getGroupName()); ?>
                                         </a>
                                     </div>
                                 <?php endif; ?>
@@ -71,20 +71,30 @@
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
+                <?php if ($block->isCollapseExpandEnabled()): ?>
+                    <div class="collspan-expand-block">
+                        <a href="#" id="collapse-faqs">
+                            <?= $block->escapeHtml(__('Collapse All')) ?>
+                        </a> |
+                        <a href="#" id="expand-faqs">
+                            <?= $block->escapeHtmlAttr(__('Expand All')) ?>
+                        </a>
+                    </div>
+                <?php endif; ?>
                 <div id="faq-content" class="faq-content">
                     <?php if ($pageType == 'scroll'): ?>
                         <?php foreach ($faqGroupCollection as $group): ?>
-                            <div id="group<?= /* @noEscape */  $group->getFaqGroupId(); ?>">
+                            <div id="group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>">
                                 <?php if ($block->isShowGroupTitle()): ?>
                                     <div class="group-title">
-                                        <?= /* @noEscape */  $group->getGroupName(); ?>
+                                        <?= $block->escapeHtml($group->getGroupName()); ?>
                                     </div>
                                 <?php endif; ?>
                                 <div class="faq-accordion">
                                     <?php $faqCollection = $block->getFaqCollection($group->getId()); ?>
                                     <?php if ($faqCollection->getSize()): ?>
                                         <?php foreach ($faqCollection as $faq): ?>
-                                            <h3><?= /* @noEscape */ __($faq->getTitle()) ?></h3>
+                                            <h3><?= $block->escapeHtml(__($faq->getTitle())) ?></h3>
                                             <div>
                                                 <p>
                                                     <?= /* @noEscape */  $block->filterOutputHtml($faq->getContent()); ?>
@@ -99,14 +109,14 @@
                         <?php $group = $faqGroupCollection->getFirstItem(); ?>
                         <?php if ($block->isShowGroupTitle()): ?>
                             <div class="group-title" id="group<?= /* @noEscape */  $group->getFaqGroupId(); ?>">
-                                <?= /* @noEscape */  $group->getGroupName(); ?>
+                                <?= $block->escapeHtml($group->getGroupName()); ?>
                             </div>
                         <?php endif; ?>
                         <div class="faq-accordion">
                             <?php $faqCollection = $block->getFaqCollection($group->getId()); ?>
                             <?php if ($faqCollection->getSize()): ?>
                                 <?php foreach ($faqCollection as $faq): ?>
-                                    <h3><?= /* @noEscape */ __($faq->getTitle()) ?></h3>
+                                    <h3><?= $block->escapeHtml(__($faq->getTitle())) ?></h3>
                                     <div>
                                         <p><?= /* @noEscape */  $block->filterOutputHtml($faq->getContent()); ?></p>
                                     </div>
@@ -120,16 +130,16 @@
         <script type="text/x-magento-init">
         {
             "*": {
-                "faq": {
-                    "pageType" : "<?= /* @noEscape */ $pageType ?>",
-                    "ajax_url" : "<?= $block->escapeUrl($block->getBaseUrl()) ?>"
+                "Mageprince_Faq/js/faq": {
+                    "page_type" : "<?= $block->escapeHtml($pageType) ?>",
+                    "ajax_url" : "<?= $block->escapeUrl($block->getAjaxUrl()) ?>"
                 }
             }
         }
         </script>
     <?php else: ?>
         <div>
-            <h1><?= /* @noEscape */ __('No FAQ Group available') ?></h1>
+            <h1><?= $block->escapeHtml(__('No FAQ Group available')) ?></h1>
         </div>
     <?php endif; ?>
 <?php endif; ?>

@@ -38,4 +38,9 @@ class DefaultConfig
      * Faq url config path
      */
     const FAQ_URL_CONFIG_PATH = 'faqtab/seo/faq_url';
+
+    /**
+     * Is faqs collapse expand enabled config path
+     */
+    const CONFIG_PATH_IS_ENABLED_COLLAPSE_EXPAND = 'faqtab/design/is_collapse_expand';
 }

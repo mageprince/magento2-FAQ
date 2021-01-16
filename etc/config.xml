@@ -19,6 +19,7 @@
             </general>
             <seo>
                 <faq_url>faq</faq_url>
+                <meta_title>FAQ</meta_title>
             </seo>
             <design>
                 <page_type>scroll</page_type>
@@ -26,6 +27,7 @@
                 <showgrouptitle>1</showgrouptitle>
                 <footerlink>1</footerlink>
                 <headerlink>1</headerlink>
+                <is_collapse_expand>1</is_collapse_expand>
             </design>
         </faqtab>
     </default>

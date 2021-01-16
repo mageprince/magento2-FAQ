@@ -295,4 +295,24 @@ class Index extends Template
         }
         return $pageType;
     }
+
+    /**
+     * Check is faqs collapse expand enabled
+     *
+     * @return bool
+     */
+    public function isCollapseExpandEnabled()
+    {
+        return $this->getConfig(DefaultConfig::CONFIG_PATH_IS_ENABLED_COLLAPSE_EXPAND);
+    }
+
+    /**
+     * Get ajax url
+     *
+     * @return string
+     */
+    public function getAjaxUrl()
+    {
+        return $this->getUrl('faq/index/ajax');
+    }
 }

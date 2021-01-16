@@ -30,23 +30,7 @@
                     <label>Page Title</label>
                 </field>
             </group>
-            <group id="seo" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Search Engine Optimization </label>
-                <field id="faq_url" translate="label" sortOrder="10" type="text" showInDefault="1">
-                    <label>FAQ Url</label>
-                    <validate>required-entry validate-identifier</validate>
-                </field>
-                <field id="meta_title" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Meta Title</label>
-                </field>
-                <field id="meta_keywords" translate="label" sortOrder="30" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Meta Keywords</label>
-                </field>
-                <field id="meta_description" translate="label" sortOrder="40" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Meta Description</label>
-                </field>
-            </group>
-            <group id="design" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="design" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Design</label>
                 <field id="page_type" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Page Style</label>
@@ -70,6 +54,26 @@
                 <field id="headerlink" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Show Header Link</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_collapse_expand" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Collapse All Expand All</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="seo" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Search Engine Optimization </label>
+                <field id="faq_url" translate="label" sortOrder="10" type="text" showInDefault="1">
+                    <label>FAQ Url</label>
+                    <validate>required-entry validate-identifier</validate>
+                </field>
+                <field id="meta_title" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Meta Title</label>
+                </field>
+                <field id="meta_keywords" translate="label" sortOrder="30" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Meta Keywords</label>
+                </field>
+                <field id="meta_description" translate="label" sortOrder="40" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Meta Description</label>
                 </field>
             </group>
             <group id="faq_info" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
