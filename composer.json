@@ -1,5 +1,5 @@
 {
-    "name": "prince/module-faq",
+    "name": "mageprince/module-faq",
     "description": "Magento2 FAQ Module",
     "homepage": "https://github.com/mageprince/magento2-FAQ",
     "type": "magento2-module",
