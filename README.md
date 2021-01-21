@@ -1,3 +1,9 @@
+[![Latest Stable Version](https://poser.pugx.org/mageprince/module-faq/v)](//packagist.org/packages/mageprince/module-faq)
+[![Total Downloads](https://poser.pugx.org/mageprince/module-faq/downloads)](//packagist.org/packages/mageprince/module-faq)
+[![Monthly Downloads](https://poser.pugx.org/mageprince/module-faq/d/monthly)](//packagist.org/packages/mageprince/module-faq)
+[![License](https://poser.pugx.org/mageprince/module-faq/license)](//packagist.org/packages/mageprince/module-faq)
+
+
 # Magento 2 FAQ
 
 This module adds an easy way to use FAQ section to your Magento store with jQuery Accordion. In this module, admin can add and update FAQ. Admin can also create FAQ group with group icon. Admin can add widgets, blocks, images etc. in FAQ answer with wyswing editor.
