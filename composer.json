@@ -3,12 +3,12 @@
     "description": "Magento2 FAQ Module",
     "homepage": "https://github.com/mageprince/magento2-FAQ",
     "type": "magento2-module",
-    "version": "2.0.8",
+    "version": "2.0.9",
     "license": "GPL-3.0-or-later",
     "authors": [
         {
-          "name": "Prince Patel",
-          "email": "mail.mageprince@gmail.com"
+          "name": "Mageprince",
+          "email": "contact@mageprince.com"
         }
     ],
     "support": {

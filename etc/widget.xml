@@ -1,0 +1,34 @@
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget class="Mageprince\Faq\Block\Index\Index" id="mageprince_faq_widget">
+        <label>Mageprince FAQ</label>
+        <description>FAQ widget</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="10">
+                <label>Title</label>
+            </parameter>
+            <parameter name="group_id" xsi:type="multiselect" visible="true" required="true"
+                       source_model="Mageprince\Faq\Model\ResourceModel\FaqGroup\Collection" sort_order="20">
+                <label translate="true">Select Faq Group</label>
+            </parameter>
+            <parameter name="show_group" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno" sort_order="30">
+                <label translate="true">Show group</label>
+            </parameter>
+            <parameter name="page_type" xsi:type="select" visible="true"
+                       source_model="Mageprince\Faq\Model\Config\Source\PageType" sort_order="40">
+                <label translate="true">Page Type</label>
+                <depends>
+                    <parameter name="show_group" value="1" />
+                </depends>
+            </parameter>
+            <parameter name="show_group_title" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno" sort_order="50">
+                <label translate="true">Show group title</label>
+            </parameter>
+            <parameter name="enable_collapse_expand" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno" sort_order="60">
+                <label translate="true">Enable Collapse All Expand All</label>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

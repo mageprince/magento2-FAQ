@@ -20,6 +20,7 @@ use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\Template;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use Magento\Widget\Block\BlockInterface;
 use Mageprince\Faq\Api\Data\FaqGroupInterface;
 use Mageprince\Faq\Api\FaqGroupRepositoryInterface;
 use Mageprince\Faq\Helper\Data as HelperData;
@@ -29,7 +30,7 @@ use Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory;
 use Mageprince\Faq\Model\ResourceModel\FaqGroup\Collection as FaqGroupCollection;
 use Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory as FaqGroupCollectionFactory;
 
-class Index extends Template
+class Index extends Template implements BlockInterface
 {
     /**
      * Default faq template
@@ -122,9 +123,6 @@ class Index extends Template
      */
     public function getFaqCollection($group)
     {
-        if ($this->getGroupId()) {
-            $group = $this->getGroupId();
-        }
         $faqCollection = $this->faqCollectionFactory->create();
         $faqCollection->addFieldToFilter(
             'group',
@@ -147,6 +145,9 @@ class Index extends Template
     {
         $faqGroupCollection = $this->faqGroupCollectionFactory->create();
         $this->filterCollectionData($faqGroupCollection);
+        if ($this->getGroupId()) {
+            $faqGroupCollection->addFieldToFilter('faqgroup_id', ['in' => $this->getGroupId()]);
+        }
         return $faqGroupCollection;
     }
 
@@ -303,7 +304,12 @@ class Index extends Template
      */
     public function isCollapseExpandEnabled()
     {
-        return $this->getConfig(DefaultConfig::CONFIG_PATH_IS_ENABLED_COLLAPSE_EXPAND);
+        if ($this->getEnableCollapseExpand() != null) {
+            $isEnable = $this->getEnableCollapseExpand();
+        } else {
+            $isEnable = $this->getConfig(DefaultConfig::CONFIG_PATH_IS_ENABLED_COLLAPSE_EXPAND);
+        }
+        return $isEnable;
     }
 
     /**
