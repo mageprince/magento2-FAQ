@@ -18,6 +18,9 @@
             <img src="<?= $block->getViewFileUrl('images/loader-1.gif'); ?>"  alt="loader"/>
         </div>
         <div class="mageprince-faq-collection" style="display: none">
+            <?php if ($this->getTitle()): ?>
+                <h1 class="faq-page-title"><?= $block->escapeHtml($this->getTitle()) ?></h1>
+            <?php endif; ?>
             <?php if ($block->isShowGroup() || $pageType == 'ajax'): ?>
                 <div class="faq-groups">
                     <?php foreach ($faqGroupCollection as $group): ?>
