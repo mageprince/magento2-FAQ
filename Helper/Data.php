@@ -16,6 +16,7 @@ use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Store\Model\ScopeInterface;
+use Mageprince\Base\Helper\Data as BaseHelper;
 use Mageprince\Faq\Model\Config\DefaultConfig;
 use Magento\Framework\App\Http\Context as AuthContext;
 
@@ -32,20 +33,28 @@ class Data extends AbstractHelper
     protected $authContext;
 
     /**
+     * @var BaseHelper
+     */
+    protected $baseHelper;
+
+    /**
      * Data constructor.
      *
      * @param Context $context
      * @param CustomerSession $customerSession
      * @param AuthContext $authContext
+     * @param BaseHelper $baseHelper
      */
     public function __construct(
         Context $context,
         CustomerSession $customerSession,
-        AuthContext $authContext
+        AuthContext $authContext,
+        BaseHelper $baseHelper
     ) {
-        parent::__construct($context);
         $this->customerSession = $customerSession;
         $this->authContext = $authContext;
+        $this->baseHelper = $baseHelper;
+        parent::__construct($context);
     }
 
     /**
@@ -93,11 +102,7 @@ class Data extends AbstractHelper
      */
     public function checkBlockData($data)
     {
-        if ($data == '1') {
-            return true;
-        } elseif ($data == '0') {
-            return false;
-        }
+        return $this->baseHelper->checkBlockData($data);
     }
 
     /**
