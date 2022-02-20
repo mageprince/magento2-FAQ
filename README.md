@@ -22,6 +22,7 @@ https://marketplace.magento.com/prince-module-faq.html
 - Show FAQ by group on CMS page and static block
 - Load FAQ by ajax on group selection on the frontend
 - Custom FAQ URL
+- Add FAQ anywhere by widget
 
 <b>Check full description and user guid on <a href="https://marketplace.magento.com/mageprince-module-faq.html">Magento Marketplace</a></b>
 
@@ -60,15 +61,24 @@ If you encounter any problems or bugs, please <a href="https://github.com/magepr
 
 # Frontend
 
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Faq/1-frontend.png" height="800"/>
+<img src="https://marketplace.magento.com/media/catalog/product/2/4/243f_1_faq_page.jpg" height="600"/>
+<img src="https://marketplace.magento.com/media/catalog/product/5/b/5bd6_3_widget.jpg" height="600"/>
 
-# FAQ Content
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Faq/2.1-frontend.png" height="800"/>
+# Widget
 
-# FAQ on CMS page
+<img src="https://marketplace.magento.com/media/catalog/product/e/e/eebd_13_widget.jpg" height="600"/>
 
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Faq/2.2-CMSpage.png" height="400"/>
+# FAQ Admin
 
-# FAQGroup Admin Grid
+<img src="https://marketplace.magento.com/media/catalog/product/6/8/681c_9_faq_edit_1.jpg" height="600"/>
+<img src="https://marketplace.magento.com/media/catalog/product/5/4/544e_10_faq_edit_2.jpg" height="600"/>
 
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Faq/4-faqgroup-grid.png" height="400"/>
+# FAQ Group Admin
+
+<img src="https://marketplace.magento.com/media/catalog/product/c/a/ca69_5_group_grid.jpg" height="600"/>
+<img src="https://marketplace.magento.com/media/catalog/product/a/b/ab94_6_group_edit.jpg" height="600"/>
+
+# FAQ Configuration
+
+<img src="https://marketplace.magento.com/media/catalog/product/f/a/fabe_11_configuration_1.jpg" height="600"/>
+<img src="https://marketplace.magento.com/media/catalog/product/2/f/2f3d_12_configuration_2.jpg" height="600"/>
