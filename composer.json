@@ -1,9 +1,13 @@
 {
     "name": "mageprince/module-faq",
     "description": "Magento2 FAQ Module",
+    "homepage": "https://github.com/mageprince/magento2-FAQ",
     "type": "magento2-module",
     "version": "2.1.4",
     "license": "GPL-3.0-or-later",
+    "support": {
+        "issues": "https://github.com/mageprince/magento2-FAQ/issues"
+    },
     "autoload": {
         "files": [
             "registration.php"
