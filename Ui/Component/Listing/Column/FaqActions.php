@@ -1,13 +1,22 @@
 <?php
-
 /**
  * MagePrince
- * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Mageprince_Faq
- * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
- * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
- * @author MagePrince <info@mageprince.com>
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the mageprince.com license that is
+ * available through the world-wide-web at this URL:
+ * https://mageprince.com/end-user-license-agreement
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    MagePrince
+ * @package     Mageprince_Faq
+ * @copyright   Copyright (c) MagePrince (https://mageprince.com/)
+ * @license     https://mageprince.com/end-user-license-agreement
  */
 
 namespace Mageprince\Faq\Ui\Component\Listing\Column;
@@ -22,15 +31,15 @@ class FaqActions extends Column
     /**
      * @var UrlInterface
      */
-    private $urlBuilder;
+    protected $urlBuilder;
 
-    const URL_PATH_EDIT = 'mageprince_faq/faq/edit';
-
-    const URL_PATH_DELETE = 'mageprince_faq/faq/delete';
+    /**
+     * Faq delete url path
+     */
+    private const URL_PATH_EDIT = 'mageprince_faq/faq/edit';
 
     /**
      * FaqActions constructor.
-     *
      * @param ContextInterface $context
      * @param UiComponentFactory $uiComponentFactory
      * @param UrlInterface $urlBuilder

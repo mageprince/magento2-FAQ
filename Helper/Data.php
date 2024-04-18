@@ -1,13 +1,22 @@
 <?php
-
 /**
  * MagePrince
- * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Mageprince_Faq
- * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
- * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
- * @author MagePrince <info@mageprince.com>
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the mageprince.com license that is
+ * available through the world-wide-web at this URL:
+ * https://mageprince.com/end-user-license-agreement
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    MagePrince
+ * @package     Mageprince_Faq
+ * @copyright   Copyright (c) MagePrince (https://mageprince.com/)
+ * @license     https://mageprince.com/end-user-license-agreement
  */
 
 namespace Mageprince\Faq\Helper;
@@ -16,7 +25,6 @@ use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Store\Model\ScopeInterface;
-use Mageprince\Base\Helper\Data as BaseHelper;
 use Mageprince\Faq\Model\Config\DefaultConfig;
 use Magento\Framework\App\Http\Context as AuthContext;
 
@@ -33,33 +41,26 @@ class Data extends AbstractHelper
     protected $authContext;
 
     /**
-     * @var BaseHelper
-     */
-    protected $baseHelper;
-
-    /**
      * Data constructor.
      *
      * @param Context $context
      * @param CustomerSession $customerSession
      * @param AuthContext $authContext
-     * @param BaseHelper $baseHelper
      */
     public function __construct(
         Context $context,
         CustomerSession $customerSession,
-        AuthContext $authContext,
-        BaseHelper $baseHelper
+        AuthContext $authContext
     ) {
         $this->customerSession = $customerSession;
         $this->authContext = $authContext;
-        $this->baseHelper = $baseHelper;
         parent::__construct($context);
     }
 
     /**
      * Get config path
-     * @param $config
+     *
+     * @param string $config
      * @return mixed
      */
     public function getConfig($config)
@@ -72,6 +73,7 @@ class Data extends AbstractHelper
 
     /**
      * Get faq url
+     *
      * @return string
      */
     public function getFaqUrl()
@@ -97,12 +99,16 @@ class Data extends AbstractHelper
     /**
      * Check is block data
      *
-     * @param $data
+     * @param string $data
      * @return bool
      */
     public function checkBlockData($data)
     {
-        return $this->baseHelper->checkBlockData($data);
+        if ($data == '1') {
+            return true;
+        } elseif ($data == '0') {
+            return false;
+        }
     }
 
     /**

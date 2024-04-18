@@ -29,7 +29,7 @@ This module adds an easy way to use FAQ section to your Magento store with jQuer
 
 ### 1. Install from Magento Marketplace
 
-  [Magento Marketplace Link](https://commercemarketplace.adobe.com/mageprince-module-faq.html)
+[Magento Marketplace Link](https://commercemarketplace.adobe.com/mageprince-module-faq.html)
 
 ### 2. Install via composer (packagist.org)
 
@@ -72,5 +72,3 @@ If you encounter any problems or bugs, please <a href="https://github.com/magepr
 <img src="https://commercemarketplace.adobe.com/media/catalog/product/d/3/d33b_11_configuration_1_2.jpg"/>
 <img src="https://commercemarketplace.adobe.com/media/catalog/product/d/6/d672_12_configuration_2_2.jpg"/>
 <img src="https://commercemarketplace.adobe.com/media/catalog/product/6/1/6112_13_widget_2.jpg"/>
-
-

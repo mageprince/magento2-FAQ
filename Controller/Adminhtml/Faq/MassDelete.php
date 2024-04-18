@@ -1,13 +1,22 @@
 <?php
-
 /**
  * MagePrince
- * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Mageprince_Faq
- * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
- * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
- * @author MagePrince <info@mageprince.com>
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the mageprince.com license that is
+ * available through the world-wide-web at this URL:
+ * https://mageprince.com/end-user-license-agreement
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    MagePrince
+ * @package     Mageprince_Faq
+ * @copyright   Copyright (c) MagePrince (https://mageprince.com/)
+ * @license     https://mageprince.com/end-user-license-agreement
  */
 
 namespace Mageprince\Faq\Controller\Adminhtml\Faq;
@@ -30,7 +39,6 @@ class MassDelete extends Faq
 
     /**
      * MassDelete constructor.
-     *
      * @param Filter $filter
      * @param CollectionFactory $collectionFactory
      * @param Action\Context $context
@@ -46,7 +54,7 @@ class MassDelete extends Faq
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function _isAllowed()
     {
