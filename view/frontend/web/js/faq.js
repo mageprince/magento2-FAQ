@@ -29,10 +29,10 @@ define([
             $(this.options.faqLoaderSelector).hide();
 
             $(this.options.groupLinkSelector).on('click', function(event) {
+                event.preventDefault();
                 if (self.options.page_type == self.options.pageTypeScroll) {
                     self._scrollToGroup(this);
                 } else {
-                    event.preventDefault();
                     var groupId = $(this).attr('groupid');
                     var groupUrl = self.options.ajax_url;
                     var currentElem = this;

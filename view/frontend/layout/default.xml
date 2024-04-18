@@ -2,14 +2,24 @@
 <!--
 /**
  * MagePrince
- * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Mageprince_Faq
- * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
- * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
- * @author MagePrince <info@mageprince.com>
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the mageprince.com license that is
+ * available through the world-wide-web at this URL:
+ * https://mageprince.com/end-user-license-agreement
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    MagePrince
+ * @package     Mageprince_Faq
+ * @copyright   Copyright (c) MagePrince (https://mageprince.com/)
+ * @license     https://mageprince.com/end-user-license-agreement
  */
--->
+ -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="header.links">
@@ -21,7 +31,7 @@
             </block>
         </referenceBlock>
         <referenceBlock name="footer_links">
-            <block class="Mageprince\Faq\Block\FooterLink" name="faq-footer-link" after="privacy-policy-link">
+            <block class="Mageprince\Faq\Block\FooterLink" name="faq-footer-link">
                 <arguments>
                     <argument name="label" xsi:type="string" translate="true">FAQ</argument>
                     <argument name="path" xsi:type="helper" helper="Mageprince\Faq\Helper\Data::getFaqUrl" />

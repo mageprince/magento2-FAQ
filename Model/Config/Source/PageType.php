@@ -1,24 +1,31 @@
 <?php
-
 /**
  * MagePrince
- * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Mageprince_Faq
- * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
- * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
- * @author MagePrince <info@mageprince.com>
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the mageprince.com license that is
+ * available through the world-wide-web at this URL:
+ * https://mageprince.com/end-user-license-agreement
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    MagePrince
+ * @package     Mageprince_Faq
+ * @copyright   Copyright (c) MagePrince (https://mageprince.com/)
+ * @license     https://mageprince.com/end-user-license-agreement
  */
 
 namespace Mageprince\Faq\Model\Config\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
+use Mageprince\Faq\Model\Config\DefaultConfig;
 
 class PageType implements OptionSourceInterface
 {
-    const SCROLL = 'scroll';
-    const AJAX = 'ajax';
-
     /**
      * Get page type
      *
@@ -26,9 +33,12 @@ class PageType implements OptionSourceInterface
      */
     public function toOptionArray()
     {
-        return  [
-            ['value' => self::SCROLL, 'label' => 'Scroll'],
-            ['value' => self::AJAX, 'label' => 'Ajax']
-        ];
+        return  [[
+            'value' => DefaultConfig::FAQ_PAGE_TYPE_SCROLL,
+            'label' => 'Scroll'
+        ], [
+            'value' => DefaultConfig::FAQ_PAGE_TYPE_AJAX,
+            'label' => 'Ajax'
+        ]];
     }
 }

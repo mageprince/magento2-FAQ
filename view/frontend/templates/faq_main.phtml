@@ -1,31 +1,47 @@
 <?php
 /**
  * MagePrince
- * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Mageprince_Faq
- * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
- * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
- * @author MagePrince <info@mageprince.com>
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the mageprince.com license that is
+ * available through the world-wide-web at this URL:
+ * https://mageprince.com/end-user-license-agreement
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    MagePrince
+ * @package     Mageprince_Faq
+ * @copyright   Copyright (c) MagePrince (https://mageprince.com/)
+ * @license     https://mageprince.com/end-user-license-agreement
  */
 ?>
-<?php /** @var $block \Mageprince\Faq\Block\Index\Index */ ?>
+<?php
+/**
+ * @var $block \Mageprince\Faq\Block\Index\Index
+ */
+use Mageprince\Faq\Model\Config\DefaultConfig;
+?>
 <?php if ($block->isEnable()): ?>
     <?php $faqGroupCollection = $block->getFaqGroupCollection(); ?>
     <?php if ($faqGroupCollection->getSize()): ?>
         <?php $pageType = $block->getPageTypeAction(); ?>
         <div class="mageprince-faq-loader">
-            <img src="<?= $block->getViewFileUrl('images/loader-1.gif'); ?>"  alt="loader"/>
+            <img src="<?= $block->escapeUrl($block->getViewFileUrl('images/loader-1.gif')); ?>"
+                 alt="<?= $block->escapeHtmlAttr(__('loader')); ?>"/>
         </div>
         <div class="mageprince-faq-collection" style="display: none">
-            <?php if ($this->getTitle()): ?>
-                <h1 class="faq-page-title"><?= $block->escapeHtml($this->getTitle()) ?></h1>
+            <?php if ($block->getTitle()): ?>
+                <h1 class="faq-page-title"><?= $block->escapeHtml($block->getTitle()) ?></h1>
             <?php endif; ?>
             <?php if ($block->isShowGroup() || $pageType == 'ajax'): ?>
                 <div class="faq-groups">
                     <?php foreach ($faqGroupCollection as $group): ?>
                         <div class="faq-group">
-                            <?php if ($block->isShowGroup() || $pageType == 'ajax'): ?>
+                            <?php if ($block->isShowGroup() || $pageType == DefaultConfig::FAQ_PAGE_TYPE_AJAX): ?>
                                 <div id="faq-group-image" class="faq-group-image">
                                     <a href="#group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>"
                                        class="group-link"

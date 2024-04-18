@@ -2,14 +2,24 @@
 <!--
 /**
  * MagePrince
- * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Mageprince_Faq
- * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
- * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
- * @author MagePrince <info@mageprince.com>
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the mageprince.com license that is
+ * available through the world-wide-web at this URL:
+ * https://mageprince.com/end-user-license-agreement
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    MagePrince
+ * @package     Mageprince_Faq
+ * @copyright   Copyright (c) MagePrince (https://mageprince.com/)
+ * @license     https://mageprince.com/end-user-license-agreement
  */
--->
+ -->
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
 	<argument name="data" xsi:type="array">
 		<item name="js_config" xsi:type="array">
@@ -20,7 +30,7 @@
 		<item name="buttons" xsi:type="array">
 			<item name="add" xsi:type="array">
 				<item name="name" xsi:type="string">add</item>
-				<item name="label" translate="true" xsi:type="string">Add New FAQGroup</item>
+				<item name="label" translate="true" xsi:type="string">Add New FAQ Group</item>
 				<item name="class" xsi:type="string">primary</item>
 				<item name="url" xsi:type="string">*/*/new</item>
 			</item>
@@ -60,10 +70,10 @@
 		        <argument name="data" xsi:type="array">
 		            <item name="config" xsi:type="array">
 		                <item name="type" xsi:type="string">delete</item>
-		                <item name="label" xsi:type="string" translate="true">Delete FaqGroup(s)</item>
+		                <item name="label" xsi:type="string" translate="true">Delete Faq Group(s)</item>
 		                <item name="url" xsi:type="url" path="mageprince_faq/faqgroup/massDelete"/>
 		                <item name="confirm" xsi:type="array">
-		                    <item name="title" xsi:type="string" translate="true">Delete FaqGroup(s)</item>
+		                    <item name="title" xsi:type="string" translate="true">Delete Faq Group(s)</item>
 		                    <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected FaqGroup(s)?</item>
 		                </item>
 		            </item>

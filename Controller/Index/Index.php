@@ -1,24 +1,35 @@
 <?php
-
 /**
  * MagePrince
- * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Mageprince_Faq
- * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
- * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
- * @author MagePrince <info@mageprince.com>
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the mageprince.com license that is
+ * available through the world-wide-web at this URL:
+ * https://mageprince.com/end-user-license-agreement
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    MagePrince
+ * @package     Mageprince_Faq
+ * @copyright   Copyright (c) MagePrince (https://mageprince.com/)
+ * @license     https://mageprince.com/end-user-license-agreement
  */
 
 namespace Mageprince\Faq\Controller\Index;
 
+use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Theme\Block\Html\Title as HtmlTitle;
 use Mageprince\Faq\Helper\Data;
+use Mageprince\Faq\Model\Config\DefaultConfig;
 
-class Index extends \Magento\Framework\App\Action\Action
+class Index extends Action
 {
     /**
      * @var PageFactory
@@ -54,17 +65,17 @@ class Index extends \Magento\Framework\App\Action\Action
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
-        if ($this->helper->getConfig('faqtab/general/enable')) {
+        if ($this->helper->isEnable()) {
             $pageMainTitle = $resultPage->getLayout()->getBlock('page.main.title');
-            $pageTitle = $this->helper->getConfig('faqtab/general/page_title');
+            $pageTitle = $this->helper->getConfig(DefaultConfig::CONFIG_PATH_PAGE_TITLE);
 
             if ($pageMainTitle && $pageMainTitle instanceof HtmlTitle) {
                 $pageMainTitle->setPageTitle($pageTitle);
             }
 
-            $metaTitleConfig = $this->helper->getConfig('faqtab/seo/meta_title');
-            $metaKeywordsConfig = $this->helper->getConfig('faqtab/seo/meta_keywords');
-            $metaDescriptionConfig = $this->helper->getConfig('faqtab/seo/meta_description');
+            $metaTitleConfig = $this->helper->getConfig(DefaultConfig::FAQ_META_TITLE);
+            $metaKeywordsConfig = $this->helper->getConfig(DefaultConfig::FAQ_META_KEYWORD);
+            $metaDescriptionConfig = $this->helper->getConfig(DefaultConfig::FAQ_META_DESCRIPTION);
 
             $resultPage->getConfig()->getTitle()->set($metaTitleConfig);
             $resultPage->getConfig()->setDescription($metaDescriptionConfig);

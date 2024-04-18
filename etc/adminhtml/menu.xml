@@ -2,22 +2,33 @@
 <!--
 /**
  * MagePrince
- * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Mageprince_Faq
- * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
- * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
- * @author MagePrince <info@mageprince.com>
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the mageprince.com license that is
+ * available through the world-wide-web at this URL:
+ * https://mageprince.com/end-user-license-agreement
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    MagePrince
+ * @package     Mageprince_Faq
+ * @copyright   Copyright (c) MagePrince (https://mageprince.com/)
+ * @license     https://mageprince.com/end-user-license-agreement
  */
--->
+ -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
 	<menu>
-		<add id="Mageprince_Faq::menu"
-			 module="Mageprince_Faq"
-			 resource="Mageprince_Faq::menu"
-			 sortOrder="11"
-			 translate="title"
-			 title="FAQ"/>
+        <add id="Mageprince_Faq::menu"
+             title="Mageprince FAQ"
+             translate="title"
+             module="Mageprince_Faq"
+             parent="Magento_Backend::content"
+             sortOrder="80"
+             resource="Mageprince_Faq::menu"/>
 		<add id="Mageprince_Faq::faqgroup"
 			 action="mageprince_faq/faqgroup/index"
 			 module="Mageprince_Faq"
@@ -25,7 +36,7 @@
 			 resource="Mageprince_Faq::FaqGroup"
 			 sortOrder="10"
 			 translate="title"
-			 title="Manage FAQGroup"/>
+			 title="Manage FAQ Group"/>
 		<add id="Mageprince_Faq::faq"
 			 action="mageprince_faq/faq/index"
 			 module="Mageprince_Faq"
@@ -42,29 +53,5 @@
 			 sortOrder="30"
 			 translate="title"
 			 title="Configuration"/>
-		<add id="Mageprince_Faq::menu_useful"
-			 module="Mageprince_Faq"
-			 parent="Mageprince_Faq::menu"
-			 resource="Mageprince_Faq::menu"
-			 sortOrder="40"
-			 translate="title"
-			 title="Useful Links"/>
-		<add id="Mageprince_Faq::faq_user_guid"
-			 action="mageprince_faq/faq/index"
-			 module="Mageprince_Faq"
-			 parent="Mageprince_Faq::menu_useful"
-			 resource="Mageprince_Faq::menu"
-			 sortOrder="50"
-			 target="_blank"
-			 translate="title"
-			 title="FAQ User Guid"/>
-		<add id="Mageprince_Faq::other_modules"
-			 module="Mageprince_Faq"
-			 parent="Mageprince_Faq::menu_useful"
-			 resource="Mageprince_Faq::menu"
-			 sortOrder="60"
-			 target="_blank"
-			 translate="title"
-			 title="Mageprince Modules"/>
 	</menu>
 </config>

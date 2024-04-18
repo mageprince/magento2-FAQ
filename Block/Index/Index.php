@@ -1,31 +1,38 @@
 <?php
-
 /**
  * MagePrince
- * Copyright (C) 2020 Mageprince <info@mageprince.com>
  *
- * @package Mageprince_Faq
- * @copyright Copyright (c) 2020 Mageprince (http://www.mageprince.com/)
- * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
- * @author MagePrince <info@mageprince.com>
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the mageprince.com license that is
+ * available through the world-wide-web at this URL:
+ * https://mageprince.com/end-user-license-agreement
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    MagePrince
+ * @package     Mageprince_Faq
+ * @copyright   Copyright (c) MagePrince (https://mageprince.com/)
+ * @license     https://mageprince.com/end-user-license-agreement
  */
 
 namespace Mageprince\Faq\Block\Index;
 
 use Magento\Cms\Model\Template\FilterProvider;
-use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\Template;
 use Magento\Store\Model\ScopeInterface;
-use Magento\Store\Model\StoreManagerInterface;
 use Magento\Widget\Block\BlockInterface;
 use Mageprince\Faq\Api\Data\FaqGroupInterface;
 use Mageprince\Faq\Api\FaqGroupRepositoryInterface;
 use Mageprince\Faq\Helper\Data as HelperData;
 use Mageprince\Faq\Model\Config\DefaultConfig;
-use Mageprince\Faq\Model\FaqGroupFactory;
 use Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory;
 use Mageprince\Faq\Model\ResourceModel\FaqGroup\Collection as FaqGroupCollection;
 use Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory as FaqGroupCollectionFactory;
@@ -34,9 +41,10 @@ class Index extends Template implements BlockInterface
 {
     /**
      * Default faq template
+     *
      * @var string
      */
-    protected $_template = 'Mageprince_Faq::faq_main.phtml';
+    protected $_template = DefaultConfig::FAQ_MAIN_TEMPLATE_FILE;
 
     /**
      * @var CollectionFactory
@@ -49,24 +57,9 @@ class Index extends Template implements BlockInterface
     protected $faqGroupCollectionFactory;
 
     /**
-     * @var FaqGroupFactory
-     */
-    protected $faqGroupFactory;
-
-    /**
-     * @var StoreManagerInterface
-     */
-    protected $storeManager;
-
-    /**
      * @var HelperData
      */
     protected $customerSession;
-
-    /**
-     * @var ScopeConfigInterface
-     */
-    protected $scopeConfig;
 
     /**
      * @var HelperData
@@ -85,12 +78,10 @@ class Index extends Template implements BlockInterface
 
     /**
      * Index constructor.
-     *
      * @param Template\Context $context
      * @param CollectionFactory $faqCollectionFactory
      * @param FaqGroupRepositoryInterface $faqGroupRepository
      * @param FaqGroupCollectionFactory $faqGroupCollectionFactory
-     * @param FaqGroupFactory $faqGroupFactory
      * @param FilterProvider $filterProvider
      * @param HelperData $helper
      */
@@ -99,16 +90,12 @@ class Index extends Template implements BlockInterface
         CollectionFactory $faqCollectionFactory,
         FaqGroupRepositoryInterface $faqGroupRepository,
         FaqGroupCollectionFactory $faqGroupCollectionFactory,
-        FaqGroupFactory $faqGroupFactory,
         FilterProvider $filterProvider,
         HelperData $helper
     ) {
         $this->faqCollectionFactory = $faqCollectionFactory;
         $this->faqGroupCollectionFactory = $faqGroupCollectionFactory;
         $this->faqGroupRepository = $faqGroupRepository;
-        $this->faqGroupFactory = $faqGroupFactory;
-        $this->storeManager = $context->getStoreManager();
-        $this->scopeConfig = $context->getScopeConfig();
         $this->helper = $helper;
         $this->filterProvider = $filterProvider;
         parent::__construct($context);
@@ -117,7 +104,7 @@ class Index extends Template implements BlockInterface
     /**
      * Get faq collection
      *
-     * @param $group
+     * @param int $group
      * @return \Mageprince\Faq\Model\ResourceModel\Faq\Collection
      * @throws NoSuchEntityException
      */
@@ -154,7 +141,7 @@ class Index extends Template implements BlockInterface
     /**
      * Filter collection data
      *
-     * @param $collection
+     * @param AbstractCollection $collection
      * @throws NoSuchEntityException
      */
     private function filterCollectionData($collection)
@@ -180,7 +167,7 @@ class Index extends Template implements BlockInterface
     /**
      * Get group by id
      *
-     * @param $groupId
+     * @param int $groupId
      * @return FaqGroupInterface
      * @throws LocalizedException
      */
@@ -192,40 +179,50 @@ class Index extends Template implements BlockInterface
     /**
      * Filter faq content
      *
-     * @param $string
+     * @param string $string
      * @return string
-     * @throws \Exception
      */
     public function filterOutputHtml($string)
     {
-        return $this->filterProvider->getPageFilter()->filter($string);
+        $output = '';
+        try {
+            $output = $this->filterProvider->getPageFilter()->filter($string);
+        } catch (\Exception $e) {
+            $this->_logger->error('Faq filter output error: ' . $e->getMessage());
+        }
+        return $output;
     }
 
     /**
      * Get icon image url
      *
-     * @param $icon
+     * @param string $icon
      * @return string
-     * @throws NoSuchEntityException
      */
     public function getImageUrl($icon)
     {
-        $mediaUrl = $this->storeManager
-            ->getStore()
-            ->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
-        $imageUrl = $mediaUrl . 'faq/tmp/icon/' . $icon;
+        $imageUrl = '';
+        try {
+            $mediaUrl = $this->_storeManager
+                ->getStore()
+                ->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
+            $imageUrl = $mediaUrl . DefaultConfig::ICON_TMP_PATH . $icon;
+        } catch (\Exception $e) {
+            $this->_logger->error('Faq get image error:' . $e->getMessage());
+        }
+
         return $imageUrl;
     }
 
     /**
      * Get config value
      *
-     * @param $config
+     * @param string $config
      * @return mixed
      */
     public function getConfig($config)
     {
-        return $this->scopeConfig->getValue(
+        return $this->_scopeConfig->getValue(
             $config,
             ScopeInterface::SCOPE_STORE
         );
@@ -239,7 +236,7 @@ class Index extends Template implements BlockInterface
      */
     public function getCurrentStore()
     {
-        return $this->storeManager->getStore()->getId();
+        return $this->_storeManager->getStore()->getId();
     }
 
     /**
@@ -287,10 +284,10 @@ class Index extends Template implements BlockInterface
      */
     public function getPageTypeAction()
     {
-        if ($this->getPageType() == 'ajax') {
-            $pageType = 'ajax';
-        } elseif ($this->getPageType() == 'scroll') {
-            $pageType = 'scroll';
+        if ($this->getPageType() == DefaultConfig::FAQ_PAGE_TYPE_AJAX) {
+            $pageType = DefaultConfig::FAQ_PAGE_TYPE_AJAX;
+        } elseif ($this->getPageType() == DefaultConfig::FAQ_PAGE_TYPE_SCROLL) {
+            $pageType = DefaultConfig::FAQ_PAGE_TYPE_SCROLL;
         } else {
             $pageType = $this->getConfig(DefaultConfig::CONFIG_PATH_PAGE_TYPE);
         }
@@ -319,6 +316,6 @@ class Index extends Template implements BlockInterface
      */
     public function getAjaxUrl()
     {
-        return $this->getUrl('faq/index/ajax');
+        return $this->getUrl(DefaultConfig::FAQ_PAGE_AJAX_URL);
     }
 }
