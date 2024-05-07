@@ -18,6 +18,7 @@ This module adds an easy way to use FAQ section to your Magento store with jQuer
 - Load FAQ by ajax on group selection on the frontend
 - Custom FAQ URL
 - Add FAQ anywhere by widget
+- GraphQL support
 
 <b>Check full description and user guid on <a href="https://commercemarketplace.adobe.com/mageprince-module-faq.html">Magento Marketplace</a></b>
 
@@ -39,6 +40,58 @@ Run the following command in the Magento 2 root folder:
     php bin/magento setup:upgrade
     php bin/magento setup:di:compile
     php bin/magento setup:static-content:deploy
+
+# GraphQL
+
+### Get all FAQs
+
+    query faqs {
+      faqs {
+        faq_id
+        title
+        content
+        group
+        storeview
+        customer_group
+        sortorder
+        status
+        created_at
+        updated_at
+      }
+    }
+    
+### Get FAQs by Group ID:
+
+    query faqs {
+      faqs(groupId: 1) {
+        faq_id
+        title
+        content
+        group
+        storeview
+        customer_group
+        sortorder
+        status
+        created_at
+        updated_at
+      }
+    }
+
+### Get all FAQ Groups
+
+    query faqs {
+      faqGroups {
+        faqgroup_id
+        groupname
+        icon
+        storeview
+        customer_group
+        sortorder
+        status
+        created_at
+        updated_at
+      }
+    }
 
 # Use the below code for the CMS page and Static Block
 
