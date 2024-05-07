@@ -1,0 +1,36 @@
+type Query {
+    faqs(
+        groupId: Int,
+        pageSize: Int,
+        currentPage: Int
+    ): [FaqItems] @resolver(class: "Mageprince\\Faq\\Model\\Resolver\\Faq") @doc(description: "Return faqs")
+    faqGroups (
+         pageSize: Int,
+         currentPage: Int
+    ): [FaqGroupItems] @resolver(class: "Mageprince\\Faq\\Model\\Resolver\\FaqGroup") @doc(description: "Return faq groups")
+}
+
+type FaqItems {
+    faq_id: Int
+    title: String,
+    content: String,
+    group: String,
+    storeview: String,
+    customer_group: String,
+    sortorder: Int,
+    status: Int,
+    created_at: String,
+    updated_at: String
+}
+
+type FaqGroupItems {
+    faqgroup_id: Int,
+    groupname: String,
+    icon: String,
+    storeview: String,
+    customer_group: String,
+    sortorder: String,
+    status: Int,
+    created_at: String,
+    updated_at: String
+}
