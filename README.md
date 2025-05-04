@@ -10,7 +10,7 @@
 
 This module adds an easy and efficient way to integrate a comprehensive FAQ section into your Magento store using a jQuery Accordion layout. It allows the admin to create and manage FAQs and organize them into groups, each with its own icon for better visual distinction. With a rich WYSIWYG editor, admins can enhance FAQ answers by adding widgets, static blocks, images, and more. The module streamlines customer support by making key information easily accessible in a user-friendly and interactive format.
 
-# Features
+# ✨ Features
 
 - Display all FAQs or FAQs by group on CMS pages and static blocks
 - Enable AJAX-based FAQ loading on group selection for a seamless frontend experience
@@ -29,11 +29,11 @@ This module adds an easy and efficient way to integrate a comprehensive FAQ sect
 
 <b>Check full description and user guid on <a href="https://commercemarketplace.adobe.com/mageprince-module-faq.html">Magento Marketplace</a></b>
 
-# Demo
+# 📺 Demo
 
 <b><a href="https://demo.mageprince.com/faq/">Frontend</a>   |   <a href="https://demo.mageprince.com/admin">Backend</a></b>
 
-# How to install
+# 🚀 Installation Instructions
 
 ### 1. Install from Magento Marketplace
 
@@ -41,12 +41,25 @@ This module adds an easy and efficient way to integrate a comprehensive FAQ sect
 
 ### 2. Install via composer (packagist.org)
 
-Run the following command in the Magento 2 root folder:
+Run the following Magento CLI commands:
 
-    composer require mageprince/module-faq
-    php bin/magento setup:upgrade
-    php bin/magento setup:di:compile
-    php bin/magento setup:static-content:deploy
+```
+composer require mageprince/module-faq
+php bin/magento setup:upgrade
+php bin/magento setup:di:compile
+php bin/magento setup:static-content:deploy
+```
+
+### 3. Manual Installation
+
+Copy the content of the repo to the Magento 2 `app/code/Mageprince/Paymentfee`
+
+Run the following Magento CLI commands:
+```
+php bin/magento setup:upgrade
+php bin/magento setup:di:compile
+php bin/magento setup:static-content:deploy
+```
 
 # GraphQL
 
@@ -103,24 +116,24 @@ Run the following command in the Magento 2 root folder:
 # How to Display FAQs in CMS Pages or Static Blocks
 
 <b>1. To show all FAQ</b>
-
-<code>{{block class="Mageprince\Faq\Block\Index\Index" template="Mageprince_Faq::faq_main.phtml" show_group_title=1 show_group=1 page_type="scroll"}}</code>
-
+```
+{{block class="Mageprince\Faq\Block\Index\Index" template="Mageprince_Faq::faq_main.phtml" show_group_title=1 show_group=1 page_type="scroll"}}
+```
 <b>2. To show FAQ by group</b>
+```
+{{block class="Mageprince\Faq\Block\Index\Index" template="Mageprince_Faq::faq_main.phtml" group_id=1 show_group_title=1}}
+```
 
-<code>{{block class="Mageprince\Faq\Block\Index\Index" template="Mageprince_Faq::faq_main.phtml" group_id=1 show_group_title=1}}</code>
-
-
-# Contribution
+# 🤝 Contribution
 
 Want to contribute to this extension? The quickest way is to <a href="https://help.github.com/articles/about-pull-requests/">open a pull request</a> on GitHub.
 
-# Support
+# 🛠 Support
 
 If you encounter any problems or bugs, please <a href="https://github.com/mageprince/magento2-FAQ/issues">open an issue</a> on GitHub.
 
 
-# Extension Screenshots
+# 📸 Screenshots
 
 ![1_faq_page](https://github.com/user-attachments/assets/c041d098-fea4-4cd4-aeb8-8907f6612554)
 ![3_widget](https://github.com/user-attachments/assets/909d8260-2f77-42e5-ad11-8c4a2d355e34)
