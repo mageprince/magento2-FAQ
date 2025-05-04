@@ -8,17 +8,24 @@
 
 # Magento 2 FAQ
 
-This module adds an easy way to use FAQ section to your Magento store with jQuery Accordion. In this module, admin can add and update FAQ. Admin can also create FAQ group with group icon. Admin can add widgets, blocks, images etc. in FAQ answer with wyswing editor.
+This module adds an easy and efficient way to integrate a comprehensive FAQ section into your Magento store using a jQuery Accordion layout. It allows the admin to create and manage FAQs and organize them into groups, each with its own icon for better visual distinction. With a rich WYSIWYG editor, admins can enhance FAQ answers by adding widgets, static blocks, images, and more. The module streamlines customer support by making key information easily accessible in a user-friendly and interactive format.
 
+# Features
 
-# New Features
-
-- Show all FAQ on CMS page and static block
-- Show FAQ by group on CMS page and static block
-- Load FAQ by ajax on group selection on the frontend
-- Custom FAQ URL
-- Add FAQ anywhere by widget
-- GraphQL support
+- Display all FAQs or FAQs by group on CMS pages and static blocks
+- Enable AJAX-based FAQ loading on group selection for a seamless frontend experience
+- Define a custom URL for the FAQ page
+- Full GraphQL support to retrieve all FAQs, FAQs by group ID, and FAQ groups
+- Create and manage FAQ groups (categories) with editing capabilities
+- Provide detailed FAQ answers using a rich WYSIWYG editor
+- Assign store view visibility to individual FAQs and FAQ groups
+- Restrict FAQ and group visibility by customer group
+- Organize FAQs into groups for better navigation and user experience
+- Lightweight and easy-to-install extension with no impact on site performance
+- Supports multistore environments
+- Add custom icons to FAQ groups
+- Support for inserting images, static blocks, and widgets in FAQ answers
+- Support for collapse/expand view toggle on the FAQ page
 
 <b>Check full description and user guid on <a href="https://commercemarketplace.adobe.com/mageprince-module-faq.html">Magento Marketplace</a></b>
 
@@ -26,7 +33,7 @@ This module adds an easy way to use FAQ section to your Magento store with jQuer
 
 <b><a href="https://demo.mageprince.com/faq/">Frontend</a>   |   <a href="https://demo.mageprince.com/admin">Backend</a></b>
 
-# How to install Magento 2 FAQ
+# How to install
 
 ### 1. Install from Magento Marketplace
 
@@ -93,7 +100,7 @@ Run the following command in the Magento 2 root folder:
       }
     }
 
-# Use the below code for the CMS page and Static Block
+# How to Display FAQs in CMS Pages or Static Blocks
 
 <b>1. To show all FAQ</b>
 
@@ -115,13 +122,13 @@ If you encounter any problems or bugs, please <a href="https://github.com/magepr
 
 # Extension Screenshots
 
-<img src="https://commercemarketplace.adobe.com/media/catalog/product/f/b/fb74_1_faq_page_2.jpg"/>
-<img src="https://commercemarketplace.adobe.com/media/catalog/product/e/7/e777_3_widget_2.jpg"/>
-<img src="https://commercemarketplace.adobe.com/media/catalog/product/8/5/85d4_5_group_grid_2.jpg"/>
-<img src="https://commercemarketplace.adobe.com/media/catalog/product/1/6/16de_6_group_edit_2.jpg"/>
-<img src="https://commercemarketplace.adobe.com/media/catalog/product/1/5/1579_7_faq_grid_2.jpg"/>
-<img src="https://commercemarketplace.adobe.com/media/catalog/product/0/e/0e7b_9_faq_edit_1_2.jpg"/>
-<img src="https://commercemarketplace.adobe.com/media/catalog/product/9/b/9b28_10_faq_edit_2_2.jpg"/>
-<img src="https://commercemarketplace.adobe.com/media/catalog/product/d/3/d33b_11_configuration_1_2.jpg"/>
-<img src="https://commercemarketplace.adobe.com/media/catalog/product/d/6/d672_12_configuration_2_2.jpg"/>
-<img src="https://commercemarketplace.adobe.com/media/catalog/product/6/1/6112_13_widget_2.jpg"/>
+![1_faq_page](https://github.com/user-attachments/assets/c041d098-fea4-4cd4-aeb8-8907f6612554)
+![3_widget](https://github.com/user-attachments/assets/909d8260-2f77-42e5-ad11-8c4a2d355e34)
+![5_group_grid](https://github.com/user-attachments/assets/c2ba51ef-3542-4749-b502-26699a730bc7)
+![6_group_edit](https://github.com/user-attachments/assets/59cb03e0-e0e3-430e-9bd5-de99f8c45255)
+![7_faq_grid](https://github.com/user-attachments/assets/5b163a90-9994-4c77-a743-b43e8c6141c1)
+![9_faq_edit_1](https://github.com/user-attachments/assets/a19091c6-11ca-43e1-84f8-85ed4722c9ed)
+![10_faq_edit_2](https://github.com/user-attachments/assets/22e6308d-834d-4a8d-b868-83e765d0ba91)
+![11_configuration_1](https://github.com/user-attachments/assets/4ead115b-8d76-4028-800e-7eebccc8df06)
+![12_configuration_2](https://github.com/user-attachments/assets/43fe266b-a9cc-4bea-a42a-fac985d7741b)
+![13_widget](https://github.com/user-attachments/assets/bffc21d2-629e-4de9-a28c-d73637071ac9)
