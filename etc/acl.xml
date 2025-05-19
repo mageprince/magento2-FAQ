@@ -23,13 +23,15 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
 	<acl>
 		<resources>
-			<resource id="Magento_Backend::admin">
-				<resource id="Mageprince_Faq::menu" sortOrder="10" title="FAQ">
-					<resource id="Mageprince_Faq::Faq" sortOrder="10" title="Faq Management"/>
-					<resource id="Mageprince_Faq::FaqGroup" sortOrder="20" title="Faq Group Management"/>
-					<resource id="Mageprince_Faq::Configuration" sortOrder="30" title="Configuration" />
-				</resource>
-			</resource>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::content">
+                    <resource id="Mageprince_Faq::menu" sortOrder="10" title="FAQ">
+                        <resource id="Mageprince_Faq::Faq" sortOrder="10" title="Faq Management"/>
+                        <resource id="Mageprince_Faq::FaqGroup" sortOrder="20" title="Faq Group Management"/>
+                        <resource id="Mageprince_Faq::Configuration" sortOrder="30" title="Configuration" />
+                    </resource>
+                </resource>
+            </resource>
 		</resources>
 	</acl>
 </config>
