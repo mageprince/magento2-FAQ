@@ -1,6 +1,6 @@
 define([
     'jquery',
-    'jquery/ui'
+    'jquery-ui-modules/accordion'
 ], function ($) {
     'use strict';
 
