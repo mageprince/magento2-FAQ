@@ -39,6 +39,8 @@ use Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory as FaqGroupCol
 
 class Index extends Template implements BlockInterface
 {
+    private const HYVA_LAYOUT_HANDLE_PREFIX = 'hyva_';
+
     /**
      * Default faq template
      *
@@ -317,5 +319,40 @@ class Index extends Template implements BlockInterface
     public function getAjaxUrl()
     {
         return $this->getUrl(DefaultConfig::FAQ_PAGE_AJAX_URL);
+    }
+
+    /**
+     * Render Hyva-compatible markup when the block is used inside a Hyva store view.
+     *
+     * @return string
+     */
+    protected function _toHtml()
+    {
+        if ($this->isHyvaRequest() && $this->getTemplate() === DefaultConfig::FAQ_MAIN_TEMPLATE_FILE) {
+            $this->setTemplate(DefaultConfig::FAQ_MAIN_HYVA_TEMPLATE_FILE);
+        }
+
+        return parent::_toHtml();
+    }
+
+    /**
+     * Hyva adds an hyva_ prefixed layout handle for every active layout handle.
+     *
+     * @return bool
+     */
+    public function isHyvaRequest()
+    {
+        $layout = $this->getLayout();
+        if (!$layout) {
+            return false;
+        }
+
+        foreach ($layout->getUpdate()->getHandles() as $handle) {
+            if (strpos($handle, self::HYVA_LAYOUT_HANDLE_PREFIX) === 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

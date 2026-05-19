@@ -1,0 +1,269 @@
+<?php
+/**
+ * Hyva compatible FAQ page and widget template.
+ *
+ * @var $block \Mageprince\Faq\Block\Index\Index
+ */
+use Mageprince\Faq\Model\Config\DefaultConfig;
+exit('asd');
+?>
+<?php if ($block->isEnable()): ?>
+    <?php $faqGroupCollection = $block->getFaqGroupCollection(); ?>
+    <?php if ($faqGroupCollection->getSize()): ?>
+        <?php
+        $pageType = $block->getPageTypeAction();
+        $isAjax = $pageType === DefaultConfig::FAQ_PAGE_TYPE_AJAX;
+        ?>
+        <section
+            class="mageprince-faq-hyva"
+            @click="handleClick($event)"
+            x-data="mageprinceFaq({
+                pageType: '<?= $block->escapeJs($pageType); ?>',
+                pageTypeScroll: '<?= $block->escapeJs(DefaultConfig::FAQ_PAGE_TYPE_SCROLL); ?>',
+                ajaxUrl: '<?= $block->escapeJs($block->getAjaxUrl()); ?>'
+            })"
+        >
+            <?php if ($block->getTitle()): ?>
+                <h1 class="faq-page-title"><?= $block->escapeHtml($block->getTitle()) ?></h1>
+            <?php endif; ?>
+
+            <?php if ($block->isShowGroup() || $isAjax): ?>
+                <div class="faq-groups">
+                    <?php foreach ($faqGroupCollection as $group): ?>
+                        <div class="faq-group">
+                            <?php if ($block->isShowGroup() || $isAjax): ?>
+                                <a
+                                    href="#group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>"
+                                    class="group-link"
+                                    @click.prevent="selectGroup('<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>', '#group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>')"
+                                >
+                                    <img
+                                        class="group-image"
+                                        alt="<?= $block->escapeHtmlAttr($group->getGroupName()); ?>"
+                                        src="<?= $block->escapeUrl($group->getIcon() ? $block->getImageUrl($group->getIcon()) : $block->getViewFileUrl('Mageprince_Faq::images/faq.png')); ?>"
+                                    />
+                                </a>
+                            <?php endif; ?>
+                            <?php if ($block->isShowGroupTitle()): ?>
+                                <a
+                                    href="#group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>"
+                                    class="faq-groupname group-link"
+                                    @click.prevent="selectGroup('<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>', '#group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>')"
+                                >
+                                    <?= $block->escapeHtml($group->getGroupName()); ?>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($block->isCollapseExpandEnabled()): ?>
+                <div class="collspan-expand-block">
+                    <button type="button" @click="collapseAll()">
+                        <?= $block->escapeHtml(__('Collapse All')) ?>
+                    </button>
+                    <button type="button" @click="expandAll()">
+                        <?= $block->escapeHtml(__('Expand All')) ?>
+                    </button>
+                </div>
+            <?php endif; ?>
+
+            <div id="faq-content" class="faq-content" x-ref="content" :aria-busy="loading.toString()">
+                <?php if ($pageType === DefaultConfig::FAQ_PAGE_TYPE_SCROLL): ?>
+                    <?php foreach ($faqGroupCollection as $group): ?>
+                        <div id="group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>">
+                            <?php if ($block->isShowGroupTitle()): ?>
+                                <div class="group-title">
+                                    <?= $block->escapeHtml($group->getGroupName()); ?>
+                                </div>
+                            <?php endif; ?>
+                            <div class="faq-accordion">
+                                <?php $faqCollection = $block->getFaqCollection($group->getId()); ?>
+                                <?php if ($faqCollection->getSize()): ?>
+                                    <?php foreach ($faqCollection as $faq): ?>
+                                        <?php $itemKey = $group->getFaqGroupId() . '-' . $faq->getFaqId(); ?>
+                                        <div class="faq-item">
+                                            <button
+                                                type="button"
+                                                class="faq-question"
+                                                aria-expanded="false"
+                                                aria-controls="faq-answer-<?= $block->escapeHtmlAttr($itemKey); ?>"
+                                                data-faq-question
+                                            >
+                                                <span><?= $block->escapeHtml(__($faq->getTitle())) ?></span>
+                                                <span class="faq-toggle" aria-hidden="true">+</span>
+                                            </button>
+                                            <div
+                                                id="faq-answer-<?= $block->escapeHtmlAttr($itemKey); ?>"
+                                                class="faq-answer"
+                                                style="display: none;"
+                                                data-faq-answer
+                                            >
+                                                <?= /* @noEscape */ $block->filterOutputHtml($faq->getContent()); ?>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <?php $group = $faqGroupCollection->getFirstItem(); ?>
+                    <?php if ($block->isShowGroupTitle()): ?>
+                        <div class="group-title" id="group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>">
+                            <?= $block->escapeHtml($group->getGroupName()); ?>
+                        </div>
+                    <?php endif; ?>
+                    <div class="faq-accordion">
+                        <?php $faqCollection = $block->getFaqCollection($group->getId()); ?>
+                        <?php if ($faqCollection->getSize()): ?>
+                            <?php foreach ($faqCollection as $faq): ?>
+                                <?php $itemKey = $group->getFaqGroupId() . '-' . $faq->getFaqId(); ?>
+                                <div class="faq-item">
+                                    <button
+                                        type="button"
+                                        class="faq-question"
+                                        aria-expanded="false"
+                                        aria-controls="faq-answer-<?= $block->escapeHtmlAttr($itemKey); ?>"
+                                        data-faq-question
+                                    >
+                                        <span><?= $block->escapeHtml(__($faq->getTitle())) ?></span>
+                                        <span class="faq-toggle" aria-hidden="true">+</span>
+                                    </button>
+                                    <div
+                                        id="faq-answer-<?= $block->escapeHtmlAttr($itemKey); ?>"
+                                        class="faq-answer"
+                                        style="display: none;"
+                                        data-faq-answer
+                                    >
+                                        <?= /* @noEscape */ $block->filterOutputHtml($faq->getContent()); ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </section>
+
+        <style>
+            .mageprince-faq-hyva { margin-bottom: 2rem; }
+            .mageprince-faq-hyva .faq-page-title { margin-bottom: 1.5rem; font-size: 2rem; font-weight: 700; line-height: 1.2; }
+            .mageprince-faq-hyva .faq-groups { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 2rem; text-align: center; }
+            .mageprince-faq-hyva .faq-group { width: 8.5rem; }
+            .mageprince-faq-hyva .group-link { display: block; color: inherit; text-decoration: none; }
+            .mageprince-faq-hyva .group-link:hover { color: #ff5501; }
+            .mageprince-faq-hyva .group-image { width: 6.25rem; height: 6.25rem; object-fit: contain; margin: 0 auto; padding: 1rem; border: 1px solid #1979c3; }
+            .mageprince-faq-hyva .group-link:hover .group-image { border-color: #ff5501; }
+            .mageprince-faq-hyva .faq-groupname { margin-top: .75rem; font-size: .95rem; font-weight: 700; text-transform: uppercase; }
+            .mageprince-faq-hyva .collspan-expand-block { display: flex; justify-content: flex-end; gap: .75rem; margin-bottom: 1rem; }
+            .mageprince-faq-hyva .collspan-expand-block button { color: #1979c3; font-weight: 600; }
+            .mageprince-faq-hyva .collspan-expand-block button:hover { color: #ff5501; }
+            .mageprince-faq-hyva .group-title { width: 100%; margin: 1.75rem 0 1rem; padding-bottom: .5rem; border-bottom: 1px solid #ddd; color: #198dd3; font-size: 1.125rem; font-weight: 700; line-height: 1.5; text-transform: uppercase; }
+            .mageprince-faq-hyva .faq-item { border: 1px solid #ddd; border-bottom-width: 0; background: #fff; }
+            .mageprince-faq-hyva .faq-item:last-child { border-bottom-width: 1px; }
+            .mageprince-faq-hyva .faq-question { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem; background: #f6f6f6; color: #454545; text-align: left; font-weight: 700; }
+            .mageprince-faq-hyva .faq-question:hover,
+            .mageprince-faq-hyva .faq-question[aria-expanded="true"] { background: #1979c3; color: #fff; }
+            .mageprince-faq-hyva .faq-toggle { flex: 0 0 auto; font-size: 1.25rem; line-height: 1; }
+            .mageprince-faq-hyva .faq-answer { padding: 1rem 1.5rem; color: #333; }
+            .mageprince-faq-hyva .faq-answer > :last-child { margin-bottom: 0; }
+        </style>
+
+        <script>
+            function mageprinceFaq(config) {
+                return {
+                    ajaxUrl: config.ajaxUrl,
+                    loading: false,
+                    pageType: config.pageType,
+                    pageTypeScroll: config.pageTypeScroll,
+                    handleClick(event) {
+                        const question = event.target.closest('[data-faq-question]');
+                        if (!question || !this.$root.contains(question)) {
+                            return;
+                        }
+
+                        this.toggleQuestion(question);
+                    },
+                    toggleQuestion(question) {
+                        const answer = document.getElementById(question.getAttribute('aria-controls'));
+                        if (!answer) {
+                            return;
+                        }
+
+                        const isOpen = question.getAttribute('aria-expanded') === 'true';
+                        this.setQuestionState(question, answer, !isOpen);
+                    },
+                    setQuestionState(question, answer, isOpen) {
+                        question.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                        answer.style.display = isOpen ? '' : 'none';
+
+                        const toggle = question.querySelector('.faq-toggle');
+                        if (toggle) {
+                            toggle.textContent = isOpen ? '-' : '+';
+                        }
+                    },
+                    collapseAll() {
+                        this.$root.querySelectorAll('[data-faq-question][aria-controls]').forEach((question) => {
+                            const answer = document.getElementById(question.getAttribute('aria-controls'));
+                            if (answer) {
+                                this.setQuestionState(question, answer, false);
+                            }
+                        });
+                    },
+                    expandAll() {
+                        this.$root.querySelectorAll('[data-faq-question][aria-controls]').forEach((question) => {
+                            const answer = document.getElementById(question.getAttribute('aria-controls'));
+                            if (answer) {
+                                this.setQuestionState(question, answer, true);
+                            }
+                        });
+                    },
+                    selectGroup(groupId, targetSelector) {
+                        if (this.pageType === this.pageTypeScroll) {
+                            this.scrollTo(targetSelector);
+                            return;
+                        }
+
+                        this.loading = true;
+                        const formKey = window.hyva && typeof window.hyva.getFormKey === 'function'
+                            ? window.hyva.getFormKey()
+                            : (window.FORM_KEY || '');
+                        const body = new URLSearchParams({groupId: groupId, hyva: '1'});
+                        if (formKey) {
+                            body.append('form_key', formKey);
+                        }
+
+                        fetch(this.ajaxUrl, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                                'X-Requested-With': 'XMLHttpRequest'
+                            },
+                            body: body
+                        })
+                            .then((response) => response.json())
+                            .then((response) => {
+                                this.$refs.content.innerHTML = response.faq || '';
+                                this.$nextTick(() => this.scrollTo(targetSelector));
+                            })
+                            .finally(() => {
+                                this.loading = false;
+                            });
+                    },
+                    scrollTo(targetSelector) {
+                        const target = document.querySelector(targetSelector);
+                        if (target) {
+                            target.scrollIntoView({behavior: 'smooth', block: 'start'});
+                        }
+                    }
+                };
+            }
+        </script>
+    <?php else: ?>
+        <div>
+            <h1><?= $block->escapeHtml(__('No FAQ Group available')) ?></h1>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

@@ -60,4 +60,6 @@ class DefaultConfig
      */
     public const FAQ_MAIN_TEMPLATE_FILE = 'Mageprince_Faq::faq_main.phtml';
     public const FAQ_AJAX_TEMPLATE_FILE = 'Mageprince_Faq::faq_ajax.phtml';
+    public const FAQ_MAIN_HYVA_TEMPLATE_FILE = 'Mageprince_Faq::faq_main_hyva.phtml';
+    public const FAQ_AJAX_HYVA_TEMPLATE_FILE = 'Mageprince_Faq::faq_ajax_hyva.phtml';
 }

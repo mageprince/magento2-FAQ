@@ -104,18 +104,23 @@ class Ajax extends Action\Action
      */
     protected function getFaqHtml($groupId)
     {
-        $faqHtml = $this->cache->load($this->getCacheKey($groupId));
+        $isHyva = (bool)$this->getRequest()->getParam('hyva');
+        $faqHtml = $this->cache->load($this->getCacheKey($groupId, $isHyva));
         if (false === $faqHtml) {
             $resultPage = $this->resultPageFactory->create();
             $faqHtml = $resultPage->getLayout()
                 ->createBlock(FaqBlock::class)
-                ->setTemplate(DefaultConfig::FAQ_AJAX_TEMPLATE_FILE)
+                ->setTemplate(
+                    $isHyva
+                        ? DefaultConfig::FAQ_AJAX_HYVA_TEMPLATE_FILE
+                        : DefaultConfig::FAQ_AJAX_TEMPLATE_FILE
+                )
                 ->setGroupId($groupId)
                 ->toHtml();
 
             $this->cache->save(
                 $faqHtml,
-                $this->getCacheKey($groupId),
+                $this->getCacheKey($groupId, $isHyva),
                 [
                     TypeBlock::TYPE_IDENTIFIER
                 ]
@@ -128,10 +133,11 @@ class Ajax extends Action\Action
      * Retrieve cache key
      *
      * @param int $groupId
+     * @param bool $isHyva
      * @return string
      */
-    protected function getCacheKey($groupId)
+    protected function getCacheKey($groupId, $isHyva = false)
     {
-        return self::FAQ_GROUP_CACHE_KEY . $groupId;
+        return self::FAQ_GROUP_CACHE_KEY . $groupId . ($isHyva ? '_hyva' : '');
     }
 }

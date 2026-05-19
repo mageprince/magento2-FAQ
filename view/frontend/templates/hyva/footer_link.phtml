@@ -1,0 +1,26 @@
+<?php
+/**
+ * Hyva footer FAQ link.
+ *
+ * @var $block \Mageprince\Faq\Block\FooterLink
+ * @var $escaper \Magento\Framework\Escaper
+ */
+$label = $block->getData('label');
+$path = $block->getData('path');
+?>
+<?php if ($label && $path): ?>
+    <div class="w-full pr-4 md:w-1/2">
+        <nav aria-label="<?= $escaper->escapeHtmlAttr(__('FAQ Menu')) ?>">
+            <ul class="mt-4">
+                <li>
+                    <a
+                        href="<?= $escaper->escapeUrl($block->getUrl($path)) ?>"
+                        class="text-base leading-6"
+                    >
+                        <?= $escaper->escapeHtml($label) ?>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+<?php endif; ?>

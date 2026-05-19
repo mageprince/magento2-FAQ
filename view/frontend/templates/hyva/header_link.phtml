@@ -1,0 +1,20 @@
+<?php
+/**
+ * Hyva customer menu FAQ link.
+ *
+ * @var $block \Mageprince\Faq\Block\HeaderLink
+ * @var $escaper \Magento\Framework\Escaper
+ */
+$label = $block->getData('label');
+$path = $block->getData('path');
+?>
+<?php if ($label && $path): ?>
+    <a
+        id="<?= $escaper->escapeHtmlAttr($block->getNameInLayout()) ?>"
+        class="block px-4 py-2 hover:bg-gray-100 lg:px-5 lg:py-2"
+        href="<?= $escaper->escapeUrl($block->getUrl($path)) ?>"
+        title="<?= $escaper->escapeHtmlAttr($label) ?>"
+    >
+        <?= $escaper->escapeHtml($label) ?>
+    </a>
+<?php endif; ?>
