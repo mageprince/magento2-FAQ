@@ -25,14 +25,14 @@ use Magento\Framework\Data\OptionSourceInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
-use Mageprince\Faq\Ui\Component\Listing\Options\FaqGroup as FaqGroupOptions;
+use Mageprince\Faq\Ui\Component\Listing\Options\StoreView as StoreViewOptions;
 
-class FaqGroup extends Column implements OptionSourceInterface
+class StoreView extends Column implements OptionSourceInterface
 {
     /**
-     * @var FaqGroupOptions
+     * @var StoreViewOptions
      */
-    protected $faqGroupOptions;
+    protected $storeViewOptions;
 
     /**
      * @var array|null
@@ -40,21 +40,22 @@ class FaqGroup extends Column implements OptionSourceInterface
     protected $options;
 
     /**
-     * FaqGroup constructor.
+     * StoreView constructor.
+     *
      * @param ContextInterface $context
      * @param UiComponentFactory $uiComponentFactory
-     * @param FaqGroupOptions $faqGroupOptions
+     * @param StoreViewOptions $storeViewOptions
      * @param array $components
      * @param array $data
      */
     public function __construct(
         ContextInterface $context,
         UiComponentFactory $uiComponentFactory,
-        FaqGroupOptions $faqGroupOptions,
+        StoreViewOptions $storeViewOptions,
         array $components = [],
         array $data = []
     ) {
-        $this->faqGroupOptions = $faqGroupOptions;
+        $this->storeViewOptions = $storeViewOptions;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
@@ -65,7 +66,7 @@ class FaqGroup extends Column implements OptionSourceInterface
      */
     public function toOptionArray()
     {
-        return $this->faqGroupOptions->toOptionArray();
+        return $this->storeViewOptions->toOptionArray();
     }
 
     /**

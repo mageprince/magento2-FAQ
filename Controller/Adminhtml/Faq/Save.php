@@ -115,15 +115,17 @@ class Save extends Faq
      */
     protected function _filterFaqData($data)
     {
-        $groups = implode(',', $data['group']);
-        $data['group'] = $groups;
-        $cGroup = $data['customer_group'];
-        if (isset($cGroup)) {
+        if (isset($data['group']) && is_array($data['group'])) {
+            $groups = implode(',', $data['group']);
+            $data['group'] = $groups;
+        }
+
+        if (isset($data['customer_group']) && is_array($data['customer_group'])) {
             $customerGroup = implode(',', $data['customer_group']);
             $data['customer_group'] = $customerGroup;
         }
-        $stores = $data['storeview'];
-        if (isset($stores)) {
+
+        if (isset($data['storeview']) && is_array($data['storeview'])) {
             $store = implode(',', $data['storeview']);
             $data['storeview'] = $store;
         }

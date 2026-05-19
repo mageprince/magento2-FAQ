@@ -140,14 +140,12 @@ class Save extends FaqGroup
             $data['icon'] = null;
         }
 
-        $cGroup = $data['customer_group'];
-        if (isset($cGroup)) {
+        if (isset($data['customer_group']) && is_array($data['customer_group'])) {
             $customerGroup = implode(',', $data['customer_group']);
             $data['customer_group'] = $customerGroup;
         }
 
-        $stores = $data['storeview'];
-        if (isset($stores)) {
+        if (isset($data['storeview']) && is_array($data['storeview'])) {
             $store = implode(',', $data['storeview']);
             $data['storeview'] = $store;
         }
