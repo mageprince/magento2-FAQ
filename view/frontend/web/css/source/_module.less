@@ -177,14 +177,20 @@
     }
 
     .ui-accordion .ui-state-default:after {
-        content: '\f054';
-        font-family: 'FontAwesome';
+        content: '';
+        display: block;
+        width: 8px;
+        height: 8px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
         float: right;
+        margin-top: 4px;
+        margin-right: 4px;
+        transform: rotate(-45deg);
     }
 
     .ui-accordion .ui-accordion-header-active:after {
-        content: '\f078';
-        font-family: 'FontAwesome';
+        transform: rotate(45deg);
     }
 
     .collspan-expand-block {

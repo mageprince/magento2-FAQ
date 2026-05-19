@@ -1,8 +1,5 @@
 <?xml version="1.0" ?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <head>
-        <remove src="Mageprince_Faq::css/font-awesome.css"/>
-    </head>
     <body>
         <referenceBlock name="faq.main" template="Mageprince_Faq::faq_main_hyva.phtml"/>
     </body>
