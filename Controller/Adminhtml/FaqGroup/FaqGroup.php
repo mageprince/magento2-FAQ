@@ -30,5 +30,5 @@ abstract class FaqGroup extends Action
      *
      * @see _isAllowed()
      */
-    const ADMIN_RESOURCE = 'Mageprince_Faq::FaqGroup';
+    public const ADMIN_RESOURCE = 'Mageprince_Faq::FaqGroup';
 }

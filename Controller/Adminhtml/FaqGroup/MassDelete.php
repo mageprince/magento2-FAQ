@@ -53,6 +53,11 @@ class MassDelete extends FaqGroup
         parent::__construct($context);
     }
 
+    /**
+     * Mass delete FAQ group records.
+     *
+     * @return \Magento\Framework\Controller\Result\Redirect
+     */
     public function execute()
     {
         try {

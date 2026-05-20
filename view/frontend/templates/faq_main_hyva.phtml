@@ -17,39 +17,56 @@ use Mageprince\Faq\Model\Config\DefaultConfig;
             class="mageprince-faq-hyva"
             @click="handleClick($event)"
             x-data="mageprinceFaq({
-                pageType: '<?= $block->escapeJs($pageType); ?>',
-                pageTypeScroll: '<?= $block->escapeJs(DefaultConfig::FAQ_PAGE_TYPE_SCROLL); ?>',
-                ajaxUrl: '<?= $block->escapeJs($block->getAjaxUrl()); ?>'
+                pageType: '<?= $escaper->escapeJs($pageType); ?>',
+                pageTypeScroll: '<?= $escaper->escapeJs(DefaultConfig::FAQ_PAGE_TYPE_SCROLL); ?>',
+                ajaxUrl: '<?= $escaper->escapeJs($block->getAjaxUrl()); ?>'
             })"
         >
             <?php if ($block->getTitle()): ?>
-                <h1 class="faq-page-title"><?= $block->escapeHtml($block->getTitle()) ?></h1>
+                <h1 class="faq-page-title"><?= $escaper->escapeHtml($block->getTitle()) ?></h1>
             <?php endif; ?>
 
             <?php if ($block->isShowGroup() || $isAjax): ?>
                 <div class="faq-groups">
                     <?php foreach ($faqGroupCollection as $group): ?>
+                        <?php
+                        $groupId = (string)$group->getFaqGroupId();
+                        $groupSelector = '#group' . $groupId;
+                        $groupImageUrl = $group->getIcon()
+                            ? $block->getImageUrl($group->getIcon())
+                            : $block->getViewFileUrl('Mageprince_Faq::images/faq.png');
+                        ?>
                         <div class="faq-group">
                             <?php if ($block->isShowGroup() || $isAjax): ?>
                                 <a
-                                    href="#group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>"
+                                    href="<?= $escaper->escapeUrl($groupSelector) ?>"
                                     class="group-link"
-                                    @click.prevent="selectGroup('<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>', '#group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>')"
+                                    @click.prevent="
+                                        selectGroup(
+                                            '<?= $escaper->escapeJs($groupId) ?>',
+                                            '<?= $escaper->escapeJs($groupSelector) ?>'
+                                        )
+                                    "
                                 >
                                     <img
                                         class="group-image"
-                                        alt="<?= $block->escapeHtmlAttr($group->getGroupName()); ?>"
-                                        src="<?= $block->escapeUrl($group->getIcon() ? $block->getImageUrl($group->getIcon()) : $block->getViewFileUrl('Mageprince_Faq::images/faq.png')); ?>"
+                                        alt="<?= $escaper->escapeHtmlAttr($group->getGroupName()); ?>"
+                                        src="<?= $escaper->escapeUrl($groupImageUrl); ?>"
                                     />
                                 </a>
                             <?php endif; ?>
                             <?php if ($block->isShowGroupTitle()): ?>
                                 <a
-                                    href="#group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>"
+                                    href="<?= $escaper->escapeUrl($groupSelector) ?>"
                                     class="faq-groupname group-link"
-                                    @click.prevent="selectGroup('<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>', '#group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>')"
+                                    @click.prevent="
+                                        selectGroup(
+                                            '<?= $escaper->escapeJs($groupId) ?>',
+                                            '<?= $escaper->escapeJs($groupSelector) ?>'
+                                        )
+                                    "
                                 >
-                                    <?= $block->escapeHtml($group->getGroupName()); ?>
+                                    <?= $escaper->escapeHtml($group->getGroupName()); ?>
                                 </a>
                             <?php endif; ?>
                         </div>
@@ -60,10 +77,10 @@ use Mageprince\Faq\Model\Config\DefaultConfig;
             <?php if ($block->isCollapseExpandEnabled()): ?>
                 <div class="collspan-expand-block">
                     <button type="button" @click="collapseAll()">
-                        <?= $block->escapeHtml(__('Collapse All')) ?>
+                        <?= $escaper->escapeHtml(__('Collapse All')) ?>
                     </button>
                     <button type="button" @click="expandAll()">
-                        <?= $block->escapeHtml(__('Expand All')) ?>
+                        <?= $escaper->escapeHtml(__('Expand All')) ?>
                     </button>
                 </div>
             <?php endif; ?>
@@ -71,10 +88,10 @@ use Mageprince\Faq\Model\Config\DefaultConfig;
             <div id="faq-content" class="faq-content" x-ref="content" :aria-busy="loading.toString()">
                 <?php if ($pageType === DefaultConfig::FAQ_PAGE_TYPE_SCROLL): ?>
                     <?php foreach ($faqGroupCollection as $group): ?>
-                        <div id="group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>">
+                        <div id="group<?= $escaper->escapeHtmlAttr($group->getFaqGroupId()); ?>">
                             <?php if ($block->isShowGroupTitle()): ?>
                                 <div class="group-title">
-                                    <?= $block->escapeHtml($group->getGroupName()); ?>
+                                    <?= $escaper->escapeHtml($group->getGroupName()); ?>
                                 </div>
                             <?php endif; ?>
                             <div class="faq-accordion">
@@ -87,14 +104,14 @@ use Mageprince\Faq\Model\Config\DefaultConfig;
                                                 type="button"
                                                 class="faq-question"
                                                 aria-expanded="false"
-                                                aria-controls="faq-answer-<?= $block->escapeHtmlAttr($itemKey); ?>"
+                                                aria-controls="faq-answer-<?= $escaper->escapeHtmlAttr($itemKey); ?>"
                                                 data-faq-question
                                             >
-                                                <span><?= $block->escapeHtml(__($faq->getTitle())) ?></span>
+                                                <span><?= $escaper->escapeHtml(__($faq->getTitle())) ?></span>
                                                 <span class="faq-toggle" aria-hidden="true">+</span>
                                             </button>
                                             <div
-                                                id="faq-answer-<?= $block->escapeHtmlAttr($itemKey); ?>"
+                                                id="faq-answer-<?= $escaper->escapeHtmlAttr($itemKey); ?>"
                                                 class="faq-answer"
                                                 style="display: none;"
                                                 data-faq-answer
@@ -110,8 +127,8 @@ use Mageprince\Faq\Model\Config\DefaultConfig;
                 <?php else: ?>
                     <?php $group = $faqGroupCollection->getFirstItem(); ?>
                     <?php if ($block->isShowGroupTitle()): ?>
-                        <div class="group-title" id="group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>">
-                            <?= $block->escapeHtml($group->getGroupName()); ?>
+                        <div class="group-title" id="group<?= $escaper->escapeHtmlAttr($group->getFaqGroupId()); ?>">
+                            <?= $escaper->escapeHtml($group->getGroupName()); ?>
                         </div>
                     <?php endif; ?>
                     <div class="faq-accordion">
@@ -124,14 +141,14 @@ use Mageprince\Faq\Model\Config\DefaultConfig;
                                         type="button"
                                         class="faq-question"
                                         aria-expanded="false"
-                                        aria-controls="faq-answer-<?= $block->escapeHtmlAttr($itemKey); ?>"
+                                        aria-controls="faq-answer-<?= $escaper->escapeHtmlAttr($itemKey); ?>"
                                         data-faq-question
                                     >
-                                        <span><?= $block->escapeHtml(__($faq->getTitle())) ?></span>
+                                        <span><?= $escaper->escapeHtml(__($faq->getTitle())) ?></span>
                                         <span class="faq-toggle" aria-hidden="true">+</span>
                                     </button>
                                     <div
-                                        id="faq-answer-<?= $block->escapeHtmlAttr($itemKey); ?>"
+                                        id="faq-answer-<?= $escaper->escapeHtmlAttr($itemKey); ?>"
                                         class="faq-answer"
                                         style="display: none;"
                                         data-faq-answer
@@ -147,27 +164,131 @@ use Mageprince\Faq\Model\Config\DefaultConfig;
         </section>
 
         <style>
-            .mageprince-faq-hyva { margin-bottom: 2rem; }
-            .mageprince-faq-hyva .faq-page-title { margin-bottom: 1.5rem; font-size: 2rem; font-weight: 700; line-height: 1.2; }
-            .mageprince-faq-hyva .faq-groups { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 2rem; text-align: center; }
-            .mageprince-faq-hyva .faq-group { width: 8.5rem; }
-            .mageprince-faq-hyva .group-link { display: block; color: inherit; text-decoration: none; }
-            .mageprince-faq-hyva .group-link:hover { color: #ff5501; }
-            .mageprince-faq-hyva .group-image { width: 6.25rem; height: 6.25rem; object-fit: contain; margin: 0 auto; padding: 1rem; border: 1px solid #1979c3; }
-            .mageprince-faq-hyva .group-link:hover .group-image { border-color: #ff5501; }
-            .mageprince-faq-hyva .faq-groupname { margin-top: .75rem; font-size: .95rem; font-weight: 700; text-transform: uppercase; }
-            .mageprince-faq-hyva .collspan-expand-block { display: flex; justify-content: flex-end; gap: .75rem; margin-bottom: 1rem; }
-            .mageprince-faq-hyva .collspan-expand-block button { color: #1979c3; font-weight: 600; }
-            .mageprince-faq-hyva .collspan-expand-block button:hover { color: #ff5501; }
-            .mageprince-faq-hyva .group-title { width: 100%; margin: 1.75rem 0 1rem; padding-bottom: .5rem; border-bottom: 1px solid #ddd; color: #198dd3; font-size: 1.125rem; font-weight: 700; line-height: 1.5; text-transform: uppercase; }
-            .mageprince-faq-hyva .faq-item { border: 1px solid #ddd; border-bottom-width: 0; background: #fff; }
-            .mageprince-faq-hyva .faq-item:last-child { border-bottom-width: 1px; }
-            .mageprince-faq-hyva .faq-question { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem; background: #f6f6f6; color: #454545; text-align: left; font-weight: 700; }
+            .mageprince-faq-hyva {
+                margin-bottom: 2rem;
+            }
+
+            .mageprince-faq-hyva .faq-page-title {
+                font-size: 2rem;
+                font-weight: 700;
+                line-height: 1.2;
+                margin-bottom: 1.5rem;
+            }
+
+            .mageprince-faq-hyva .faq-groups {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
+                margin-bottom: 2rem;
+                text-align: center;
+            }
+
+            .mageprince-faq-hyva .faq-group {
+                width: 8.5rem;
+            }
+
+            .mageprince-faq-hyva .group-link {
+                color: inherit;
+                display: block;
+                text-decoration: none;
+            }
+
+            .mageprince-faq-hyva .group-link:hover {
+                color: #ff5501;
+            }
+
+            .mageprince-faq-hyva .group-image {
+                border: 1px solid #1979c3;
+                height: 6.25rem;
+                margin: 0 auto;
+                object-fit: contain;
+                padding: 1rem;
+                width: 6.25rem;
+            }
+
+            .mageprince-faq-hyva .group-link:hover .group-image {
+                border-color: #ff5501;
+            }
+
+            .mageprince-faq-hyva .faq-groupname {
+                font-size: .95rem;
+                font-weight: 700;
+                margin-top: .75rem;
+                text-transform: uppercase;
+            }
+
+            .mageprince-faq-hyva .collspan-expand-block {
+                display: flex;
+                gap: .75rem;
+                justify-content: flex-end;
+                margin-bottom: 1rem;
+            }
+
+            .mageprince-faq-hyva .collspan-expand-block button {
+                color: #1979c3;
+                font-weight: 600;
+            }
+
+            .mageprince-faq-hyva .collspan-expand-block button:hover {
+                color: #ff5501;
+            }
+
+            .mageprince-faq-hyva .group-title {
+                border-bottom: 1px solid #ddd;
+                color: #198dd3;
+                font-size: 1.125rem;
+                font-weight: 700;
+                line-height: 1.5;
+                margin: 1.75rem 0 1rem;
+                padding-bottom: .5rem;
+                text-transform: uppercase;
+                width: 100%;
+            }
+
+            .mageprince-faq-hyva .faq-item {
+                background: #fff;
+                border: 1px solid #ddd;
+                border-bottom-width: 0;
+            }
+
+            .mageprince-faq-hyva .faq-item:last-child {
+                border-bottom-width: 1px;
+            }
+
+            .mageprince-faq-hyva .faq-question {
+                align-items: center;
+                background: #f6f6f6;
+                color: #454545;
+                display: flex;
+                font-weight: 700;
+                gap: 1rem;
+                justify-content: space-between;
+                padding: 1rem;
+                text-align: left;
+                width: 100%;
+            }
+
             .mageprince-faq-hyva .faq-question:hover,
-            .mageprince-faq-hyva .faq-question[aria-expanded="true"] { background: #1979c3; color: #fff; }
-            .mageprince-faq-hyva .faq-toggle { flex: 0 0 auto; font-size: 1.25rem; line-height: 1; }
-            .mageprince-faq-hyva .faq-answer { padding: 1rem 1.5rem; color: #333; }
-            .mageprince-faq-hyva .faq-answer > :last-child { margin-bottom: 0; }
+            .mageprince-faq-hyva .faq-question[aria-expanded="true"] {
+                background: #1979c3;
+                color: #fff;
+            }
+
+            .mageprince-faq-hyva .faq-toggle {
+                flex: 0 0 auto;
+                font-size: 1.25rem;
+                line-height: 1;
+            }
+
+            .mageprince-faq-hyva .faq-answer {
+                color: #333;
+                padding: 1rem 1.5rem;
+            }
+
+            .mageprince-faq-hyva .faq-answer > :last-child {
+                margin-bottom: 0;
+            }
         </style>
 
         <script>
@@ -262,7 +383,7 @@ use Mageprince\Faq\Model\Config\DefaultConfig;
         </script>
     <?php else: ?>
         <div>
-            <h1><?= $block->escapeHtml(__('No FAQ Group available')) ?></h1>
+            <h1><?= $escaper->escapeHtml(__('No FAQ Group available')) ?></h1>
         </div>
     <?php endif; ?>
 <?php endif; ?>

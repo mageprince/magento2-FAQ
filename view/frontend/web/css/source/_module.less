@@ -1,14 +1,29 @@
+@faq-active-background-color: #007fff;
+@faq-active-border-color: #003eff;
+@faq-border-color: #ddd;
+@faq-group-border-color: #1979c3;
+@faq-group-title-border-color: #b55;
+@faq-heading-background-color: #f6f6f6;
+@faq-heading-color: #454545;
+@faq-hover-color: #ff5501;
+@faq-link-color: #2b2b2b;
+@faq-primary-color: #198dd3;
+@faq-text-color: #333;
+@faq-ui-border-color: #c5c5c5;
+@faq-visual-focus-color: rgb(94, 158, 214);
+@faq-white-color: #fff;
+
 .mageprince-faq-collection {
     margin-bottom: 20px;
 
     .ui-accordion .ui-accordion-header {
-        display: block;
         cursor: pointer;
-        position: relative;
-        margin: 10px 0 0 0;
-        padding: 0.8em .5em 0.8em 1em;
+        display: block;
         font-size: 15px;
         font-weight: bold;
+        margin: 10px 0 0;
+        padding: .8em .5em .8em 1em;
+        position: relative;
     }
 
     .ui-accordion .ui-accordion-content {
@@ -47,26 +62,26 @@
     }
 
     .faq-accordion .ui-widget.ui-widget-content {
-        border: 1px solid #c5c5c5;
+        border: 1px solid @faq-ui-border-color;
     }
 
     .faq-accordion .ui-widget-content {
-        border: 1px solid #ddd;
-        background: #fff;
-        color: #333;
+        background: @faq-white-color;
+        border: 1px solid @faq-border-color;
+        color: @faq-text-color;
     }
 
     .faq-accordion .ui-widget-content a {
-        color: #333;
+        color: @faq-text-color;
     }
 
     .ui-state-default,
     .ui-widget-content .ui-state-default,
     .ui-widget-header .ui-state-default {
-        border: 1px solid #c5c5c5;
-        background: #f6f6f6;
+        background: @faq-heading-background-color;
+        border: 1px solid @faq-ui-border-color;
+        color: @faq-heading-color;
         font-weight: normal;
-        color: #454545;
     }
 
     .ui-state-hover a,
@@ -77,45 +92,45 @@
     .ui-state-focus a:hover,
     .ui-state-focus a:link,
     .ui-state-focus a:visited {
-        color: #2b2b2b;
+        color: @faq-link-color;
         text-decoration: none;
     }
 
     .ui-visual-focus {
-        box-shadow: 0 0 3px 1px rgb(94, 158, 214);
+        box-shadow: 0 0 3px 1px @faq-visual-focus-color;
     }
 
     .ui-state-active,
     .ui-widget-content .ui-state-active,
     .ui-widget-header .ui-state-active {
-        border: 1px solid #003eff;
-        background: #007fff;
+        background: @faq-active-background-color;
+        border: 1px solid @faq-active-border-color;
+        color: @faq-white-color;
         font-weight: normal;
-        color: #fff;
     }
 
     .ui-state-active a,
     .ui-state-active a:link,
     .ui-state-active a:visited {
-        color: #fff;
+        color: @faq-white-color;
         text-decoration: none;
     }
 
     .group-title {
-        margin: 25px 0;
+        border-bottom: 1px solid @faq-border-color;
+        color: @faq-primary-color;
         font-size: 18px;
-        text-transform: uppercase;
-        line-height: 1.5;
-        padding-bottom: 0.25em;
-        border-bottom: 1px solid #ddd;
-        width: 100%;
-        color: #198dd3;
         font-weight: bold;
+        line-height: 1.5;
+        margin: 25px 0;
+        padding-bottom: .25em;
+        text-transform: uppercase;
+        width: 100%;
     }
 
     .group-title i {
-        border-bottom: 1px solid #b55;
-        border-bottom-color: #198dd3;
+        border-bottom: 1px solid @faq-group-title-border-color;
+        border-bottom-color: @faq-primary-color;
         bottom: -1px;
         float: left;
         position: absolute;
@@ -134,9 +149,9 @@
     }
 
     .faq-group-image {
-        border: 1px solid #1979c3;
+        border: 1px solid @faq-group-border-color;
         margin-right: 25px;
-        padding: 20px;
+        padding: 10px;
     }
 
     img.group-image {
@@ -153,40 +168,40 @@
     }
 
     .faq-group a.group-link:hover {
-        color: #ff5501;
+        color: @faq-hover-color;
         text-decoration: none;
     }
 
     .faq-group .faq-group-image:hover {
-        border-color: #ff5501;
+        border-color: @faq-hover-color;
     }
 
     .faq-content .ui-accordion-header:hover {
-        background-color: #1979c3;
-        color: #fff;
+        background-color: @faq-group-border-color;
+        color: @faq-white-color;
     }
 
     .faq-group:hover {
-        border-color: #ff5501;
+        border-color: @faq-hover-color;
     }
 
     .faq-collection {
-        margin-bottom: 30px;
         float: left;
+        margin-bottom: 30px;
         width: 100%;
     }
 
     .ui-accordion .ui-state-default:after {
+        border-bottom: 2px solid currentColor;
+        border-right: 2px solid currentColor;
         content: '';
         display: block;
-        width: 8px;
-        height: 8px;
-        border-right: 2px solid currentColor;
-        border-bottom: 2px solid currentColor;
         float: right;
-        margin-top: 4px;
+        height: 8px;
         margin-right: 4px;
+        margin-top: 4px;
         transform: rotate(-45deg);
+        width: 8px;
     }
 
     .ui-accordion .ui-accordion-header-active:after {

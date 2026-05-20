@@ -54,6 +54,11 @@ class Edit extends Faq
         parent::__construct($context);
     }
 
+    /**
+     * Edit FAQ page.
+     *
+     * @return \Magento\Framework\Controller\ResultInterface
+     */
     public function execute()
     {
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */

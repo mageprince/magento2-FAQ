@@ -73,7 +73,11 @@ class FaqRepository implements FaqRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Save FAQ.
+     *
+     * @param FaqInterface $faq
+     * @return FaqInterface
+     * @throws CouldNotSaveException
      */
     public function save(FaqInterface $faq)
     {
@@ -89,12 +93,16 @@ class FaqRepository implements FaqRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Get FAQ by id.
+     *
+     * @param int $faqId
+     * @return FaqInterface
+     * @throws NoSuchEntityException
      */
     public function getById($faqId)
     {
         $faq = $this->faqFactory->create();
-        $faq->getResource()->load($faq, $faqId);
+        $this->resource->load($faq, $faqId);
         if (!$faq->getId()) {
             throw new NoSuchEntityException(__('Faq with id "%1" does not exist.', $faqId));
         }
@@ -102,7 +110,10 @@ class FaqRepository implements FaqRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Get FAQ list.
+     *
+     * @param \Magento\Framework\Api\SearchCriteriaInterface $criteria
+     * @return \Mageprince\Faq\Api\Data\FaqSearchResultsInterface
      */
     public function getList(
         \Magento\Framework\Api\SearchCriteriaInterface $criteria
@@ -140,7 +151,11 @@ class FaqRepository implements FaqRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Delete FAQ.
+     *
+     * @param FaqInterface $faq
+     * @return bool
+     * @throws CouldNotDeleteException
      */
     public function delete(FaqInterface $faq)
     {
@@ -156,7 +171,12 @@ class FaqRepository implements FaqRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Delete FAQ by id.
+     *
+     * @param int $faqId
+     * @return bool
+     * @throws CouldNotDeleteException
+     * @throws NoSuchEntityException
      */
     public function deleteById($faqId)
     {

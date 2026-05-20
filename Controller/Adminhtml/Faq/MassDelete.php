@@ -61,6 +61,11 @@ class MassDelete extends Faq
         return $this->_authorization->isAllowed('Mageprince_Faq::Faq');
     }
 
+    /**
+     * Mass delete FAQ records.
+     *
+     * @return \Magento\Framework\Controller\Result\Redirect
+     */
     public function execute()
     {
         try {

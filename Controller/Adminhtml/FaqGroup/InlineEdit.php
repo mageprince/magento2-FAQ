@@ -56,7 +56,7 @@ class InlineEdit extends Action
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function _isAllowed()
     {
@@ -84,7 +84,7 @@ class InlineEdit extends Action
                 foreach (array_keys($postItems) as $faqGroupId) {
                     try {
                         $model = $this->faqGroupRepository->getById($faqGroupId);
-                        $model->setData(array_merge($model->getData(), $postItems[$faqGroupId]));
+                        $model->addData($postItems[$faqGroupId]);
                         $this->faqGroupRepository->save($model);
                     } catch (\Exception $e) {
                         $messages[] = "[Faqgroup ID: {$faqGroupId}]  {$e->getMessage()}";

@@ -28,6 +28,8 @@ use Mageprince\Faq\Model\ResourceModel\FaqGroup as FaqGroupResourceModel;
 class FaqGroup extends AbstractModel implements FaqGroupInterface
 {
     /**
+     * Initialize resource model.
+     *
      * @return void
      */
     public function _construct()
@@ -36,7 +38,9 @@ class FaqGroup extends AbstractModel implements FaqGroupInterface
     }
 
     /**
-     * @inheridoc
+     * Get FAQ group id.
+     *
+     * @return int
      */
     public function getFaqGroupId()
     {
@@ -44,7 +48,10 @@ class FaqGroup extends AbstractModel implements FaqGroupInterface
     }
 
     /**
-     * @inheridoc
+     * Set FAQ group id.
+     *
+     * @param int $faqGroupId
+     * @return FaqGroupInterface
      */
     public function setFaqGroupId($faqGroupId)
     {
@@ -52,7 +59,9 @@ class FaqGroup extends AbstractModel implements FaqGroupInterface
     }
 
     /**
-     * @inheridoc
+     * Get group name.
+     *
+     * @return string|null
      */
     public function getGroupName()
     {
@@ -60,7 +69,10 @@ class FaqGroup extends AbstractModel implements FaqGroupInterface
     }
 
     /**
-     * @inheridoc
+     * Set group name.
+     *
+     * @param string $groupName
+     * @return FaqGroupInterface
      */
     public function setGroupName($groupName)
     {
@@ -68,7 +80,9 @@ class FaqGroup extends AbstractModel implements FaqGroupInterface
     }
 
     /**
-     * @inheridoc
+     * Get icon.
+     *
+     * @return string|null
      */
     public function getIcon()
     {
@@ -76,7 +90,10 @@ class FaqGroup extends AbstractModel implements FaqGroupInterface
     }
 
     /**
-     * @inheridoc
+     * Set icon.
+     *
+     * @param string $icon
+     * @return FaqGroupInterface
      */
     public function setIcon($icon)
     {
@@ -84,7 +101,9 @@ class FaqGroup extends AbstractModel implements FaqGroupInterface
     }
 
     /**
-     * @inheridoc
+     * Get FAQ ids.
+     *
+     * @return string|null
      */
     public function getFaqIds()
     {
@@ -92,7 +111,10 @@ class FaqGroup extends AbstractModel implements FaqGroupInterface
     }
 
     /**
-     * @inheridoc
+     * Set FAQ ids.
+     *
+     * @param string $faqIds
+     * @return FaqGroupInterface
      */
     public function setFaqIds($faqIds)
     {
@@ -100,7 +122,9 @@ class FaqGroup extends AbstractModel implements FaqGroupInterface
     }
 
     /**
-     * @inheridoc
+     * Get sort order.
+     *
+     * @return string|null
      */
     public function getSortOrder()
     {
@@ -108,7 +132,10 @@ class FaqGroup extends AbstractModel implements FaqGroupInterface
     }
 
     /**
-     * @inheridoc
+     * Set sort order.
+     *
+     * @param string $sortOrder
+     * @return FaqGroupInterface
      */
     public function setSortOrder($sortOrder)
     {
@@ -116,7 +143,9 @@ class FaqGroup extends AbstractModel implements FaqGroupInterface
     }
 
     /**
-     * @inheridoc
+     * Get status.
+     *
+     * @return string|null
      */
     public function getStatus()
     {
@@ -124,7 +153,10 @@ class FaqGroup extends AbstractModel implements FaqGroupInterface
     }
 
     /**
-     * @inheridoc
+     * Set status.
+     *
+     * @param string $status
+     * @return FaqGroupInterface
      */
     public function setStatus($status)
     {

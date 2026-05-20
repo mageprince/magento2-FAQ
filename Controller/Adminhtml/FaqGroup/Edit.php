@@ -54,6 +54,11 @@ class Edit extends FaqGroup
         parent::__construct($context);
     }
 
+    /**
+     * Edit FAQ group page.
+     *
+     * @return \Magento\Framework\Controller\ResultInterface
+     */
     public function execute()
     {
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
