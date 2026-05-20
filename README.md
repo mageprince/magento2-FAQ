@@ -26,6 +26,7 @@ This module adds an easy and efficient way to integrate a comprehensive FAQ sect
 - Add custom icons to FAQ groups
 - Support for inserting images, static blocks, and widgets in FAQ answers
 - Support for collapse/expand view toggle on the FAQ page
+- <a href="https://www.hyva.io/">Hyva</a> compatible
 
 <b>Check full description and user guid on <a href="https://commercemarketplace.adobe.com/mageprince-module-faq.html">Magento Marketplace</a></b>
 
