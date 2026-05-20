@@ -19,26 +19,27 @@
  * @license     https://mageprince.com/end-user-license-agreement
  */
 
-namespace Mageprince\Faq\Ui\Component\Listing\Column;
+namespace Mageprince\Faq\Ui\Component\Listing\Options;
 
 use Magento\Framework\Data\OptionSourceInterface;
-use Mageprince\Faq\Model\ResourceModel\Faq\CollectionFactory;
+use Mageprince\Faq\Model\ResourceModel\FaqGroup\CollectionFactory;
 
-class FaqIds implements OptionSourceInterface
+class FaqGroup implements OptionSourceInterface
 {
     /**
      * @var CollectionFactory
      */
-    protected $faqCollection;
+    private $groupCollectionFactory;
 
     /**
-     * FaqIds constructor.
-     * @param CollectionFactory $faqCollection
+     * FaqGroup constructor.
+     *
+     * @param CollectionFactory $groupCollectionFactory
      */
     public function __construct(
-        CollectionFactory $faqCollection
+        CollectionFactory $groupCollectionFactory
     ) {
-        $this->faqCollection = $faqCollection;
+        $this->groupCollectionFactory = $groupCollectionFactory;
     }
 
     /**
@@ -48,13 +49,14 @@ class FaqIds implements OptionSourceInterface
      */
     public function toOptionArray()
     {
-        $faqArr = [];
-        $faqs = $this->faqCollection->create();
-
-        foreach ($faqs as $faq) {
-            $faqArr[] = ['value' => $faq->getFaqId(), 'label' => __($faq->getTitle())];
+        $options = [];
+        foreach ($this->groupCollectionFactory->create() as $group) {
+            $options[] = [
+                'value' => (string)$group->getFaqGroupId(),
+                'label' => (string)__($group->getGroupname())
+            ];
         }
 
-        return $faqArr;
+        return $options;
     }
 }

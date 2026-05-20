@@ -28,6 +28,8 @@ use Mageprince\Faq\Model\ResourceModel\Faq as FaqModel;
 class Faq extends AbstractModel implements FaqInterface
 {
     /**
+     * Initialize resource model.
+     *
      * @return void
      */
     public function _construct()
@@ -36,7 +38,9 @@ class Faq extends AbstractModel implements FaqInterface
     }
 
     /**
-     * @inheridoc
+     * Get FAQ id.
+     *
+     * @return int
      */
     public function getFaqId()
     {
@@ -44,7 +48,10 @@ class Faq extends AbstractModel implements FaqInterface
     }
 
     /**
-     * @inheridoc
+     * Set FAQ id.
+     *
+     * @param int $faqId
+     * @return FaqInterface
      */
     public function setFaqId($faqId)
     {
@@ -52,7 +59,9 @@ class Faq extends AbstractModel implements FaqInterface
     }
 
     /**
-     * @inheridoc
+     * Get FAQ title.
+     *
+     * @return string|null
      */
     public function getTitle()
     {
@@ -60,7 +69,10 @@ class Faq extends AbstractModel implements FaqInterface
     }
 
     /**
-     * @inheridoc
+     * Set FAQ title.
+     *
+     * @param string $title
+     * @return FaqInterface
      */
     public function setTitle($title)
     {
@@ -68,7 +80,9 @@ class Faq extends AbstractModel implements FaqInterface
     }
 
     /**
-     * @inheridoc
+     * Get FAQ content.
+     *
+     * @return string|null
      */
     public function getContent()
     {
@@ -76,7 +90,10 @@ class Faq extends AbstractModel implements FaqInterface
     }
 
     /**
-     * @inheridoc
+     * Set FAQ content.
+     *
+     * @param string $content
+     * @return FaqInterface
      */
     public function setContent($content)
     {
@@ -84,7 +101,9 @@ class Faq extends AbstractModel implements FaqInterface
     }
 
     /**
-     * @inheridoc
+     * Get sort order.
+     *
+     * @return string|null
      */
     public function getSortOrder()
     {
@@ -92,7 +111,10 @@ class Faq extends AbstractModel implements FaqInterface
     }
 
     /**
-     * @inheridoc
+     * Set sort order.
+     *
+     * @param string $sortOrder
+     * @return FaqInterface
      */
     public function setSortOrder($sortOrder)
     {
@@ -100,7 +122,9 @@ class Faq extends AbstractModel implements FaqInterface
     }
 
     /**
-     * @inheridoc
+     * Get status.
+     *
+     * @return string|null
      */
     public function getStatus()
     {
@@ -108,7 +132,10 @@ class Faq extends AbstractModel implements FaqInterface
     }
 
     /**
-     * @inheridoc
+     * Set status.
+     *
+     * @param string $status
+     * @return FaqInterface
      */
     public function setStatus($status)
     {

@@ -30,5 +30,5 @@ abstract class Faq extends Action
      *
      * @see _isAllowed()
      */
-    const ADMIN_RESOURCE = 'Mageprince_Faq::Faq';
+    public const ADMIN_RESOURCE = 'Mageprince_Faq::Faq';
 }

@@ -30,12 +30,12 @@ use Mageprince\Faq\Model\Config\DefaultConfig;
     <?php if ($faqGroupCollection->getSize()): ?>
         <?php $pageType = $block->getPageTypeAction(); ?>
         <div class="mageprince-faq-loader">
-            <img src="<?= $block->escapeUrl($block->getViewFileUrl('images/loader-1.gif')); ?>"
-                 alt="<?= $block->escapeHtmlAttr(__('loader')); ?>"/>
+            <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('images/loader-1.gif')); ?>"
+                 alt="<?= $escaper->escapeHtmlAttr(__('loader')); ?>"/>
         </div>
         <div class="mageprince-faq-collection" style="display: none">
             <?php if ($block->getTitle()): ?>
-                <h1 class="faq-page-title"><?= $block->escapeHtml($block->getTitle()) ?></h1>
+                <h1 class="faq-page-title"><?= $escaper->escapeHtml($block->getTitle()) ?></h1>
             <?php endif; ?>
             <?php if ($block->isShowGroup() || $pageType == 'ajax'): ?>
                 <div class="faq-groups">
@@ -43,25 +43,31 @@ use Mageprince\Faq\Model\Config\DefaultConfig;
                         <div class="faq-group">
                             <?php if ($block->isShowGroup() || $pageType == DefaultConfig::FAQ_PAGE_TYPE_AJAX): ?>
                                 <div id="faq-group-image" class="faq-group-image">
-                                    <a href="#group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>"
+                                    <a href="#group<?= $escaper->escapeHtmlAttr($group->getFaqGroupId()); ?>"
                                        class="group-link"
-                                       groupId="<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>">
+                                       groupId="<?= $escaper->escapeHtmlAttr($group->getFaqGroupId()); ?>">
                                         <?php if ($group->getIcon()): ?>
+                                            <?php $groupImageUrl = $block->getImageUrl($group->getIcon()); ?>
                                             <img class="group-image" alt="group-image"
-                                                 src="<?= $block->escapeUrl($block->getImageUrl($group->getIcon())); ?>" />
+                                                 src="<?= $escaper->escapeUrl($groupImageUrl); ?>" />
                                         <?php else: ?>
+                                            <?php
+                                            $groupImageUrl = $block->getViewFileUrl(
+                                                'Mageprince_Faq::images/faq.png'
+                                            );
+                                            ?>
                                             <img class="group-image" alt="group-image"
-                                                 src="<?= $block->escapeUrl($block->getViewFileUrl('Mageprince_Faq::images/faq.png')); ?>" />
+                                                 src="<?= $escaper->escapeUrl($groupImageUrl); ?>" />
                                         <?php endif; ?>
                                     </a>
                                 </div>
                             <?php endif; ?>
                             <?php if ($block->isShowGroupTitle()): ?>
                                 <div class="faq-groupname">
-                                    <a href="#group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>"
+                                    <a href="#group<?= $escaper->escapeHtmlAttr($group->getFaqGroupId()); ?>"
                                        class="group-link"
-                                       groupId="<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>">
-                                        <?= $block->escapeHtml($group->getGroupName()); ?>
+                                       groupId="<?= $escaper->escapeHtmlAttr($group->getFaqGroupId()); ?>">
+                                        <?= $escaper->escapeHtml($group->getGroupName()); ?>
                                     </a>
                                 </div>
                             <?php endif; ?>
@@ -72,27 +78,27 @@ use Mageprince\Faq\Model\Config\DefaultConfig;
             <?php if ($block->isCollapseExpandEnabled()): ?>
                 <div class="collspan-expand-block">
                     <a href="#" id="collapse-faqs">
-                        <?= $block->escapeHtml(__('Collapse All')) ?>
+                        <?= $escaper->escapeHtml(__('Collapse All')) ?>
                     </a> |
                     <a href="#" id="expand-faqs">
-                        <?= $block->escapeHtmlAttr(__('Expand All')) ?>
+                        <?= $escaper->escapeHtmlAttr(__('Expand All')) ?>
                     </a>
                 </div>
             <?php endif; ?>
             <div id="faq-content" class="faq-content">
                 <?php if ($pageType == 'scroll'): ?>
                     <?php foreach ($faqGroupCollection as $group): ?>
-                        <div id="group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>">
+                        <div id="group<?= $escaper->escapeHtmlAttr($group->getFaqGroupId()); ?>">
                             <?php if ($block->isShowGroupTitle()): ?>
                                 <div class="group-title">
-                                    <?= $block->escapeHtml($group->getGroupName()); ?>
+                                    <?= $escaper->escapeHtml($group->getGroupName()); ?>
                                 </div>
                             <?php endif; ?>
                             <div class="faq-accordion">
                                 <?php $faqCollection = $block->getFaqCollection($group->getId()); ?>
                                 <?php if ($faqCollection->getSize()): ?>
                                     <?php foreach ($faqCollection as $faq): ?>
-                                        <h3><?= $block->escapeHtml(__($faq->getTitle())) ?></h3>
+                                        <h3><?= $escaper->escapeHtml(__($faq->getTitle())) ?></h3>
                                         <div>
                                             <p>
                                                 <?= /* @noEscape */  $block->filterOutputHtml($faq->getContent()); ?>
@@ -107,14 +113,14 @@ use Mageprince\Faq\Model\Config\DefaultConfig;
                     <?php $group = $faqGroupCollection->getFirstItem(); ?>
                     <?php if ($block->isShowGroupTitle()): ?>
                         <div class="group-title" id="group<?= /* @noEscape */  $group->getFaqGroupId(); ?>">
-                            <?= $block->escapeHtml($group->getGroupName()); ?>
+                            <?= $escaper->escapeHtml($group->getGroupName()); ?>
                         </div>
                     <?php endif; ?>
                     <div class="faq-accordion">
                         <?php $faqCollection = $block->getFaqCollection($group->getId()); ?>
                         <?php if ($faqCollection->getSize()): ?>
                             <?php foreach ($faqCollection as $faq): ?>
-                                <h3><?= $block->escapeHtml(__($faq->getTitle())) ?></h3>
+                                <h3><?= $escaper->escapeHtml(__($faq->getTitle())) ?></h3>
                                 <div>
                                     <p><?= /* @noEscape */  $block->filterOutputHtml($faq->getContent()); ?></p>
                                 </div>
@@ -128,16 +134,15 @@ use Mageprince\Faq\Model\Config\DefaultConfig;
         {
             "*": {
                 "Mageprince_Faq/js/faq": {
-                    "page_type" : "<?= $block->escapeHtml($pageType) ?>",
-                    "ajax_url" : "<?= $block->escapeUrl($block->getAjaxUrl()) ?>"
+                    "page_type" : "<?= $escaper->escapeHtml($pageType) ?>",
+                    "ajax_url" : "<?= $escaper->escapeUrl($block->getAjaxUrl()) ?>"
                 }
             }
         }
         </script>
     <?php else: ?>
         <div>
-            <h1><?= $block->escapeHtml(__('No FAQ Group available')) ?></h1>
+            <h1><?= $escaper->escapeHtml(__('No FAQ Group available')) ?></h1>
         </div>
     <?php endif; ?>
 <?php endif; ?>
-

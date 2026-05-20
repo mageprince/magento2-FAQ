@@ -27,12 +27,12 @@
 	<preference for="Mageprince\Faq\Api\FaqGroupRepositoryInterface" type="Mageprince\Faq\Model\FaqGroupRepository"/>
 	<preference for="Mageprince\Faq\Api\Data\FaqGroupInterface" type="Mageprince\Faq\Model\FaqGroup"/>
 	<preference for="Mageprince\Faq\Api\Data\FaqGroupSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
-	<virtualType name="Mageprince\Faq\Model\ResourceModel\FaqGroup\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+	<type name="Mageprince\Faq\Model\ResourceModel\FaqGroup\Grid\Collection">
 		<arguments>
 			<argument name="mainTable" xsi:type="string">prince_faqgroup</argument>
 			<argument name="resourceModel" xsi:type="string">Mageprince\Faq\Model\ResourceModel\FaqGroup\Collection</argument>
 		</arguments>
-	</virtualType>
+	</type>
 	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
 		<arguments>
 			<argument name="collections" xsi:type="array">
@@ -41,12 +41,12 @@
 			</argument>
 		</arguments>
 	</type>
-	<virtualType name="Mageprince\Faq\Model\ResourceModel\Faq\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+	<type name="Mageprince\Faq\Model\ResourceModel\Faq\Grid\Collection">
 		<arguments>
 			<argument name="mainTable" xsi:type="string">prince_faq</argument>
 			<argument name="resourceModel" xsi:type="string">Mageprince\Faq\Model\ResourceModel\Faq\Collection</argument>
 		</arguments>
-	</virtualType>
+	</type>
 	<type name="Mageprince\Faq\Model\ImageUploader">
 		<arguments>
 			<argument name="baseTmpPath" xsi:type="string">faq/tmp/icon</argument>

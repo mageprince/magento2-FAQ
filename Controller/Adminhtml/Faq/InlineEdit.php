@@ -84,7 +84,7 @@ class InlineEdit extends Action
                 foreach (array_keys($postItems) as $faqId) {
                     try {
                         $model = $this->faqRepository->getById($faqId);
-                        $model->setData(array_merge($model->getData(), $postItems[$faqId]));
+                        $model->addData($postItems[$faqId]);
                         $this->faqRepository->save($model);
                     } catch (\Exception $e) {
                         $messages[] = "[Faq ID: {$faqId}]  {$e->getMessage()}";

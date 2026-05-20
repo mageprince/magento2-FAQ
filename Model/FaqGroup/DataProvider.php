@@ -92,13 +92,16 @@ class DataProvider extends AbstractDataProvider
         $items = $this->collection->getItems();
 
         foreach ($items as $model) {
-            $this->loadedData[$model->getId()] = $model->getData();
+            $data = $model->getData();
             if ($model->getIcon()) {
-                $m['icon'][0]['name'] = $model->getIcon();
-                $m['icon'][0]['url'] = $this->getMediaUrl() . $model->getIcon();
-                $fullData = $this->loadedData;
-                $this->loadedData[$model->getId()] = array_merge($fullData[$model->getId()], $m);
+                $data['icon'] = [
+                    [
+                        'name' => $model->getIcon(),
+                        'url' => $this->getMediaUrl() . $model->getIcon()
+                    ]
+                ];
             }
+            $this->loadedData[$model->getId()] = $data;
         }
 
         $data = $this->dataPersistor->get('prince_faq_faqgroup');

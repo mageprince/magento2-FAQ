@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="header.customer.logged.in.links">
+            <block
+                class="Mageprince\Faq\Block\HeaderLink"
+                name="faq-header-link-hyva-logged-in"
+                template="Mageprince_Faq::hyva/header_link.phtml"
+            >
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">FAQ</argument>
+                    <argument name="path" xsi:type="helper" helper="Mageprince\Faq\Helper\Data::getFaqUrl"/>
+                    <argument name="sort_order" xsi:type="number">35</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceBlock name="header.customer.logged.out.links">
+            <block
+                class="Mageprince\Faq\Block\HeaderLink"
+                name="faq-header-link-hyva-logged-out"
+                template="Mageprince_Faq::hyva/header_link.phtml"
+            >
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">FAQ</argument>
+                    <argument name="path" xsi:type="helper" helper="Mageprince\Faq\Helper\Data::getFaqUrl"/>
+                    <argument name="sort_order" xsi:type="number">30</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceBlock name="footer-content">
+            <block
+                class="Mageprince\Faq\Block\FooterLink"
+                name="faq-footer-link-hyva"
+                template="Mageprince_Faq::hyva/footer_link.phtml"
+                after="footer-static-links"
+            >
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">FAQ</argument>
+                    <argument name="path" xsi:type="helper" helper="Mageprince\Faq\Helper\Data::getFaqUrl"/>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

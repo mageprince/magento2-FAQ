@@ -73,7 +73,11 @@ class FaqGroupRepository implements FaqGroupRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Save FAQ group.
+     *
+     * @param FaqGroupInterface $faqGroup
+     * @return FaqGroupInterface
+     * @throws CouldNotSaveException
      */
     public function save(FaqGroupInterface $faqGroup)
     {
@@ -89,7 +93,11 @@ class FaqGroupRepository implements FaqGroupRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Get FAQ group by id.
+     *
+     * @param int $faqGroupId
+     * @return FaqGroupInterface
+     * @throws NoSuchEntityException
      */
     public function getById($faqGroupId)
     {
@@ -102,7 +110,10 @@ class FaqGroupRepository implements FaqGroupRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Get FAQ group list.
+     *
+     * @param \Magento\Framework\Api\SearchCriteriaInterface $criteria
+     * @return \Mageprince\Faq\Api\Data\FaqGroupSearchResultsInterface
      */
     public function getList(
         \Magento\Framework\Api\SearchCriteriaInterface $criteria
@@ -140,7 +151,11 @@ class FaqGroupRepository implements FaqGroupRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Delete FAQ group.
+     *
+     * @param FaqGroupInterface $faqGroup
+     * @return bool
+     * @throws CouldNotDeleteException
      */
     public function delete(FaqGroupInterface $faqGroup)
     {
@@ -156,7 +171,12 @@ class FaqGroupRepository implements FaqGroupRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Delete FAQ group by id.
+     *
+     * @param int $faqGroupId
+     * @return bool
+     * @throws CouldNotDeleteException
+     * @throws NoSuchEntityException
      */
     public function deleteById($faqGroupId)
     {

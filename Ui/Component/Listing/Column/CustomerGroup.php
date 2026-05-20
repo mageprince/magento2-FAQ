@@ -25,14 +25,14 @@ use Magento\Framework\Data\OptionSourceInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
-use Mageprince\Faq\Ui\Component\Listing\Options\FaqGroup as FaqGroupOptions;
+use Mageprince\Faq\Ui\Component\Listing\Options\CustomerGroup as CustomerGroupOptions;
 
-class FaqGroup extends Column implements OptionSourceInterface
+class CustomerGroup extends Column implements OptionSourceInterface
 {
     /**
-     * @var FaqGroupOptions
+     * @var CustomerGroupOptions
      */
-    protected $faqGroupOptions;
+    protected $customerGroupOptions;
 
     /**
      * @var array|null
@@ -40,21 +40,22 @@ class FaqGroup extends Column implements OptionSourceInterface
     protected $options;
 
     /**
-     * FaqGroup constructor.
+     * CustomerGroup constructor.
+     *
      * @param ContextInterface $context
      * @param UiComponentFactory $uiComponentFactory
-     * @param FaqGroupOptions $faqGroupOptions
+     * @param CustomerGroupOptions $customerGroupOptions
      * @param array $components
      * @param array $data
      */
     public function __construct(
         ContextInterface $context,
         UiComponentFactory $uiComponentFactory,
-        FaqGroupOptions $faqGroupOptions,
+        CustomerGroupOptions $customerGroupOptions,
         array $components = [],
         array $data = []
     ) {
-        $this->faqGroupOptions = $faqGroupOptions;
+        $this->customerGroupOptions = $customerGroupOptions;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
@@ -65,7 +66,7 @@ class FaqGroup extends Column implements OptionSourceInterface
      */
     public function toOptionArray()
     {
-        return $this->faqGroupOptions->toOptionArray();
+        return $this->customerGroupOptions->toOptionArray();
     }
 
     /**

@@ -1,0 +1,41 @@
+<?php
+/**
+ * Hyva compatible FAQ ajax response.
+ *
+ * @var $block \Mageprince\Faq\Block\Index\Index
+ */
+$group = $block->getGroupById($block->getGroupId());
+$faqCollection = $block->getFaqCollection($group->getId());
+?>
+<?php if ($block->isShowGroupTitle()): ?>
+    <div class="group-title" id="group<?= $block->escapeHtmlAttr($group->getFaqGroupId()); ?>">
+        <?= $block->escapeHtml($group->getGroupName()); ?>
+    </div>
+<?php endif; ?>
+<div class="faq-accordion">
+    <?php if ($faqCollection->getSize()): ?>
+        <?php foreach ($faqCollection as $faq): ?>
+            <?php $itemKey = $group->getFaqGroupId() . '-' . $faq->getFaqId(); ?>
+            <div class="faq-item">
+                <button
+                    type="button"
+                    class="faq-question"
+                    aria-expanded="false"
+                    aria-controls="faq-answer-<?= $block->escapeHtmlAttr($itemKey); ?>"
+                    data-faq-question
+                >
+                    <span><?= $block->escapeHtml($faq->getTitle()); ?></span>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div
+                    id="faq-answer-<?= $block->escapeHtmlAttr($itemKey); ?>"
+                    class="faq-answer"
+                    style="display: none;"
+                    data-faq-answer
+                >
+                    <?= /* @noEscape */ $block->filterOutputHtml($faq->getContent()); ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
