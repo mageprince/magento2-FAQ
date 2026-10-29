@@ -1,10 +1,13 @@
-[![Latest Stable Version](https://poser.pugx.org/mageprince/module-faq/v)](//packagist.org/packages/mageprince/module-faq)
-[![Total Downloads](https://poser.pugx.org/mageprince/module-faq/downloads)](//packagist.org/packages/mageprince/module-faq)
-[![Monthly Downloads](https://poser.pugx.org/mageprince/module-faq/d/monthly)](//packagist.org/packages/mageprince/module-faq)
-[![License](https://poser.pugx.org/mageprince/module-faq/license)](//packagist.org/packages/mageprince/module-faq)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mageprince/magento2-FAQ/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mageprince/magento2-FAQ/?branch=master)
-[![Code Intelligence Status](https://scrutinizer-ci.com/g/mageprince/magento2-FAQ/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
-
+<p>
+<a href="https://packagist.org/packages/mageprince/module-faq"><img src="https://img.shields.io/packagist/v/mageprince/module-faq?style=for-the-badge&logo=packagist&logoColor=F28D1A&label=packagist&color=2F7FC1" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/mageprince/module-faq/stats"><img src="https://img.shields.io/packagist/dt/mageprince/module-faq?style=for-the-badge&logo=packagist&logoColor=white&label=downloads&color=D4B53A" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/mageprince/module-faq/stats"><img src="https://img.shields.io/packagist/dm/mageprince/module-faq?style=for-the-badge&label=monthly&color=D4B53A" alt="Monthly Downloads"></a>
+<a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/license-GPL--3.0-232F3E?style=for-the-badge" alt="License: GPL-3.0"></a>
+<a href="https://business.adobe.com/products/magento/magento-commerce.html"><img src="https://img.shields.io/badge/magento-2.4-6CB83A?style=for-the-badge" alt="Magento 2.4"></a>
+<a href="https://www.hyva.io/"><img src="https://img.shields.io/badge/hyv%C3%A4-compatible-0A1A3F?style=for-the-badge" alt="Hyvä compatible"></a>
+<a href="https://mage-os.org/"><img src="https://img.shields.io/badge/mage--os-compatible-F26322?style=for-the-badge" alt="Mage-OS compatible"></a>
+<a href="https://scrutinizer-ci.com/g/mageprince/magento2-FAQ/?branch=master"><img src="https://img.shields.io/scrutinizer/quality/g/mageprince/magento2-FAQ/master?style=for-the-badge&logo=scrutinizerci&label=code%20quality" alt="Scrutinizer Code Quality"></a>
+</p>
 
 # Magento 2 FAQ
 
