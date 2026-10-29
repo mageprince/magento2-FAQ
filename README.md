@@ -1,3 +1,5 @@
+# Magento 2 FAQ
+
 <p>
 <a href="https://packagist.org/packages/mageprince/module-faq"><img src="https://img.shields.io/packagist/v/mageprince/module-faq?style=for-the-badge&logo=packagist&logoColor=F28D1A&label=packagist&color=2F7FC1" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/mageprince/module-faq/stats"><img src="https://img.shields.io/packagist/dt/mageprince/module-faq?style=for-the-badge&logo=packagist&logoColor=white&label=downloads&color=D4B53A" alt="Total Downloads"></a>
@@ -8,8 +10,6 @@
 <a href="https://mage-os.org/"><img src="https://img.shields.io/badge/mage--os-compatible-F26322?style=for-the-badge" alt="Mage-OS compatible"></a>
 <a href="https://scrutinizer-ci.com/g/mageprince/magento2-FAQ/?branch=master"><img src="https://img.shields.io/scrutinizer/quality/g/mageprince/magento2-FAQ/master?style=for-the-badge&logo=scrutinizerci&label=code%20quality" alt="Scrutinizer Code Quality"></a>
 </p>
-
-# Magento 2 FAQ
 
 This module adds an easy and efficient way to integrate a comprehensive FAQ section into your Magento store using a jQuery Accordion layout. It allows the admin to create and manage FAQs and organize them into groups, each with its own icon for better visual distinction. With a rich WYSIWYG editor, admins can enhance FAQ answers by adding widgets, static blocks, images, and more. The module streamlines customer support by making key information easily accessible in a user-friendly and interactive format.
 
