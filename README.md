@@ -13,6 +13,9 @@
 
 This module adds an easy and efficient way to integrate a comprehensive FAQ section into your Magento store using a jQuery Accordion layout. It allows the admin to create and manage FAQs and organize them into groups, each with its own icon for better visual distinction. With a rich WYSIWYG editor, admins can enhance FAQ answers by adding widgets, static blocks, images, and more. The module streamlines customer support by making key information easily accessible in a user-friendly and interactive format.
 
+<img src="https://github.com/hyva-themes.png?size=40" height="20" align="top" alt="Hyvä"/> **Hyvä Theme compatible** – works out of the box on Hyvä, no compat module needed.<br/>
+<img src="https://github.com/mage-os.png?size=40" height="20" align="top" alt="Mage-OS"/> **Mage-OS compatible** – supports Mage-OS as well as Magento Open Source and Adobe Commerce.
+
 # ✨ Features
 
 - Display all FAQs or FAQs by group on CMS pages and static blocks
