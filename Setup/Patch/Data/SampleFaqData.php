@@ -1,7 +1,6 @@
 <?php
 namespace Mageprince\Faq\Setup\Patch\Data;
 
-use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
@@ -55,6 +54,7 @@ class SampleFaqData implements DataPatchInterface
         $setup->getConnection()->insert($faqGroupTable, $faqGroupData);
         $setup->getConnection()->insert($faqTable, $faqData);
         $this->moduleDataSetup->getConnection()->endSetup();
+        return $this;
     }
 
     /**

@@ -100,7 +100,7 @@ class Data extends AbstractHelper
      * Check is block data
      *
      * @param string $data
-     * @return bool
+     * @return bool|null
      */
     public function checkBlockData($data)
     {
@@ -109,6 +109,7 @@ class Data extends AbstractHelper
         } elseif ($data == '0') {
             return false;
         }
+        return null;
     }
 
     /**

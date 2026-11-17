@@ -27,6 +27,8 @@ use Magento\Framework\Event\Observer as EventObserver;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\UrlRewrite\Model\UrlRewriteFactory;
+use Magento\UrlRewrite\Model\ResourceModel\UrlRewrite as UrlRewriteResource;
+use Magento\UrlRewrite\Model\ResourceModel\UrlRewriteCollectionFactory;
 
 class ConfigChange implements ObserverInterface
 {
@@ -48,6 +50,16 @@ class ConfigChange implements ObserverInterface
     protected $urlRewriteFactory;
 
     /**
+     * @var UrlRewriteResource
+     */
+    protected $urlRewriteResource;
+
+    /**
+     * @var UrlRewriteCollectionFactory
+     */
+    protected $urlRewriteCollectionFactory;
+
+    /**
      * @var StoreManagerInterface
      */
     protected $storeManager;
@@ -65,19 +77,25 @@ class ConfigChange implements ObserverInterface
      * @param UrlRewriteFactory $urlRewriteFactory
      * @param StoreManagerInterface $storeManager
      * @param \Psr\Log\LoggerInterface $logger
+     * @param UrlRewriteResource $urlRewriteResource
+     * @param UrlRewriteCollectionFactory $urlRewriteCollectionFactory
      */
     public function __construct(
         RequestInterface $request,
         WriterInterface $configWriter,
         UrlRewriteFactory $urlRewriteFactory,
         StoreManagerInterface $storeManager,
-        \Psr\Log\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger,
+        UrlRewriteResource $urlRewriteResource,
+        UrlRewriteCollectionFactory $urlRewriteCollectionFactory
     ) {
         $this->request = $request;
         $this->configWriter = $configWriter;
         $this->urlRewriteFactory = $urlRewriteFactory;
         $this->storeManager = $storeManager;
         $this->logger = $logger;
+        $this->urlRewriteResource = $urlRewriteResource;
+        $this->urlRewriteCollectionFactory = $urlRewriteCollectionFactory;
     }
 
     /**
@@ -98,21 +116,21 @@ class ConfigChange implements ObserverInterface
                 $stores = $this->storeManager->getStores();
                 foreach ($stores as $store) {
                     $urlRewriteModel = $this->urlRewriteFactory->create();
-                    $rewriteCollection = $urlRewriteModel->getCollection()
+                    $rewriteCollection = $this->urlRewriteCollectionFactory->create()
                         ->addFieldToFilter('request_path', self::REQUEST_PATH)
                         ->addFieldToFilter('store_id', $store->getId())
                         ->getFirstItem();
-                    $urlRewriteModel->load($rewriteCollection->getId());
+                    $this->urlRewriteResource->load($urlRewriteModel, $rewriteCollection->getId());
                     if ($filterUrlKey == self::REQUEST_PATH) {
                         if ($urlRewriteModel->getId()) {
-                            $urlRewriteModel->delete();
+                            $this->urlRewriteResource->delete($urlRewriteModel);
                         }
                     } else {
                         $urlRewriteModel->setStoreId($store->getId());
                         $urlRewriteModel->setTargetPath($filterUrlKey);
                         $urlRewriteModel->setRequestPath(self::REQUEST_PATH);
                         $urlRewriteModel->setredirectType(301);
-                        $urlRewriteModel->save();
+                        $this->urlRewriteResource->save($urlRewriteModel);
                     }
                 }
             }
