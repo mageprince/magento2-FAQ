@@ -26,7 +26,9 @@ use Magento\Framework\App\Cache\Type\Block as TypeBlock;
 use Magento\Framework\App\CacheInterface;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Result\PageFactory;
+use Magento\Store\Model\StoreManagerInterface;
 use Mageprince\Faq\Block\Index\Index as FaqBlock;
 use Mageprince\Faq\Helper\Data;
 use Mageprince\Faq\Model\Config\DefaultConfig;
@@ -59,25 +61,33 @@ class Ajax extends Action\Action
     protected $cache;
 
     /**
+     * @var StoreManagerInterface
+     */
+    protected $storeManager;
+
+    /**
      * Ajax constructor.
      * @param Action\Context $context
      * @param Data $helper
      * @param PageFactory $resultPageFactory
      * @param JsonFactory $resultJsonFactory
      * @param CacheInterface $cache
+     * @param StoreManagerInterface $storeManager
      */
     public function __construct(
         Action\Context $context,
         Data $helper,
         PageFactory $resultPageFactory,
         JsonFactory $resultJsonFactory,
-        CacheInterface $cache
+        CacheInterface $cache,
+        StoreManagerInterface $storeManager
     ) {
         $this->helper = $helper;
         $this->resultPageFactory = $resultPageFactory;
         $this->resultJsonFactory = $resultJsonFactory;
         parent::__construct($context);
         $this->cache = $cache;
+        $this->storeManager = $storeManager;
     }
 
     /**
@@ -135,9 +145,13 @@ class Ajax extends Action\Action
      * @param int $groupId
      * @param bool $isHyva
      * @return string
+     * @throws NoSuchEntityException
      */
     protected function getCacheKey($groupId, $isHyva = false)
     {
-        return self::FAQ_GROUP_CACHE_KEY . $groupId . ($isHyva ? '_hyva' : '');
+        return self::FAQ_GROUP_CACHE_KEY . $groupId
+            . '_store_' . $this->storeManager->getStore()->getId()
+            . '_customer_group_' . $this->helper->getCustomerGroupId()
+            . ($isHyva ? '_hyva' : '');
     }
 }
