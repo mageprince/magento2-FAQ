@@ -119,12 +119,13 @@ class Ajax extends Action\Action
         if (false === $faqHtml) {
             $resultPage = $this->resultPageFactory->create();
             $faqHtml = $resultPage->getLayout()
-                ->createBlock(FaqBlock::class)
-                ->setTemplate(
-                    $isHyva
-                        ? DefaultConfig::FAQ_AJAX_HYVA_TEMPLATE_FILE
-                        : DefaultConfig::FAQ_AJAX_TEMPLATE_FILE
-                )
+                ->createBlock(FaqBlock::class, '', [
+                    'data' => [
+                        'template' => $isHyva
+                            ? DefaultConfig::FAQ_AJAX_HYVA_TEMPLATE_FILE
+                            : DefaultConfig::FAQ_AJAX_TEMPLATE_FILE
+                    ]
+                ])
                 ->setGroupId($groupId)
                 ->toHtml();
 

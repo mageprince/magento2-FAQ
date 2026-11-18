@@ -86,6 +86,7 @@ class Index extends Template implements BlockInterface
      * @param FaqGroupCollectionFactory $faqGroupCollectionFactory
      * @param FilterProvider $filterProvider
      * @param HelperData $helper
+     * @param array $data
      */
     public function __construct(
         Template\Context $context,
@@ -93,14 +94,15 @@ class Index extends Template implements BlockInterface
         FaqGroupRepositoryInterface $faqGroupRepository,
         FaqGroupCollectionFactory $faqGroupCollectionFactory,
         FilterProvider $filterProvider,
-        HelperData $helper
+        HelperData $helper,
+        array $data = []
     ) {
         $this->faqCollectionFactory = $faqCollectionFactory;
         $this->faqGroupCollectionFactory = $faqGroupCollectionFactory;
         $this->faqGroupRepository = $faqGroupRepository;
         $this->helper = $helper;
         $this->filterProvider = $filterProvider;
-        parent::__construct($context);
+        parent::__construct($context, $data);
     }
 
     /**
@@ -329,7 +331,7 @@ class Index extends Template implements BlockInterface
     protected function _toHtml()
     {
         if ($this->isHyvaRequest() && $this->getTemplate() === DefaultConfig::FAQ_MAIN_TEMPLATE_FILE) {
-            $this->setTemplate(DefaultConfig::FAQ_MAIN_HYVA_TEMPLATE_FILE);
+            $this->_template = DefaultConfig::FAQ_MAIN_HYVA_TEMPLATE_FILE;
         }
 
         return parent::_toHtml();
